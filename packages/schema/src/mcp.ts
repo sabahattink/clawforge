@@ -11,10 +11,9 @@ const SnippetFileSchema = z
 const MergePathSchema = z
   .string()
   .min(1)
-  .regex(
-    /^[a-zA-Z_$][a-zA-Z0-9_$]*(\.([a-zA-Z_$][a-zA-Z0-9_$]*|\{\{name\}\}))*$/,
-    { message: "mergePath must be dot-separated identifiers or {{name}} token" },
-  );
+  .regex(/^[a-zA-Z_$][a-zA-Z0-9_$]*(\.([a-zA-Z_$][a-zA-Z0-9_$]*|\{\{name\}\}))*$/, {
+    message: "mergePath must be dot-separated identifiers or {{name}} token",
+  });
 
 const EnvVarSchema = z
   .object({

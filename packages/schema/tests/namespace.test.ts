@@ -50,9 +50,9 @@ describe("formatId", () => {
   });
 
   it("formats a scoped id", () => {
-    expect(
-      formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" }),
-    ).toBe("agent:@kalkan/code-reviewer");
+    expect(formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" })).toBe(
+      "agent:@kalkan/code-reviewer",
+    );
   });
 
   it("round-trips every global id", () => {
@@ -66,14 +66,14 @@ describe("formatId", () => {
   });
 
   it("throws on invalid slug in name", () => {
-    expect(() =>
-      formatId({ kind: "skill", user: null, name: "Bad_Name" }),
-    ).toThrow(/invalid name slug/i);
+    expect(() => formatId({ kind: "skill", user: null, name: "Bad_Name" })).toThrow(
+      /invalid name slug/i,
+    );
   });
 
   it("throws on invalid user handle", () => {
-    expect(() =>
-      formatId({ kind: "skill", user: "bad user", name: "foo" }),
-    ).toThrow(/invalid user handle/i);
+    expect(() => formatId({ kind: "skill", user: "bad user", name: "foo" })).toThrow(
+      /invalid user handle/i,
+    );
   });
 });

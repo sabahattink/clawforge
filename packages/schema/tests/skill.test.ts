@@ -7,9 +7,7 @@ describe("SkillEntrySchema", () => {
     const parsed = SkillEntrySchema.parse({
       ...base(),
       kind: "skill",
-      files: [
-        { source: "skill.md", target: "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" },
-      ],
+      files: [{ source: "skill.md", target: "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }],
     });
     expect(parsed.kind).toBe("skill");
     expect(parsed.files).toHaveLength(1);

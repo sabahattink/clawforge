@@ -2,11 +2,9 @@ import { z } from "zod";
 import { IdReferenceSchema } from "./common.js";
 import { KindSchema, SEMVER_PATTERN, SLUG_PATTERN } from "./constants.js";
 
-const IsoDateTime = z
-  .string()
-  .refine((v) => !Number.isNaN(Date.parse(v)) && /T.+Z$/.test(v), {
-    message: "must be ISO-8601 datetime with Z suffix",
-  });
+const IsoDateTime = z.string().refine((v) => !Number.isNaN(Date.parse(v)) && /T.+Z$/.test(v), {
+  message: "must be ISO-8601 datetime with Z suffix",
+});
 
 const Sha256Hex = z.string().regex(/^[a-f0-9]{64}$/);
 

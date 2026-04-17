@@ -4,9 +4,7 @@ import { RECOMMENDED_CATEGORIES, SEMVER_PATTERN, SLUG_PATTERN } from "./constant
 export const AuthorSchema = z
   .object({
     name: z.string().min(1).max(100),
-    github: z
-      .string()
-      .regex(/^[a-zA-Z0-9][a-zA-Z0-9-]{0,38}$/, "invalid github handle"),
+    github: z.string().regex(/^[a-zA-Z0-9][a-zA-Z0-9-]{0,38}$/, "invalid github handle"),
     url: z
       .string()
       .url()
@@ -17,11 +15,9 @@ export const AuthorSchema = z
   })
   .strict();
 
-const IsoDateTime = z
-  .string()
-  .refine((v) => !Number.isNaN(Date.parse(v)) && /T.+Z$/.test(v), {
-    message: "must be ISO-8601 datetime with Z suffix",
-  });
+const IsoDateTime = z.string().refine((v) => !Number.isNaN(Date.parse(v)) && /T.+Z$/.test(v), {
+  message: "must be ISO-8601 datetime with Z suffix",
+});
 
 const Sha256Hex = z.string().regex(/^[a-f0-9]{64}$/, "must be 64-char lowercase hex");
 const GitSha = z.string().regex(/^[a-f0-9]{7,40}$/, "must be git SHA");
@@ -65,6 +61,4 @@ export const BaseEntrySchema = z
 export type Author = z.infer<typeof AuthorSchema>;
 export type BaseEntry = z.infer<typeof BaseEntrySchema>;
 
-export const RECOMMENDED_CATEGORY_SET: ReadonlySet<string> = new Set(
-  RECOMMENDED_CATEGORIES,
-);
+export const RECOMMENDED_CATEGORY_SET: ReadonlySet<string> = new Set(RECOMMENDED_CATEGORIES);

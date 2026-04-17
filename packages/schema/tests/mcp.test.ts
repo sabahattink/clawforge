@@ -19,9 +19,7 @@ describe("McpEntrySchema", () => {
   it("accepts envVars metadata", () => {
     const parsed = McpEntrySchema.parse({
       ...validMcp,
-      envVars: [
-        { name: "GITHUB_TOKEN", required: true, description: "GitHub API token" },
-      ],
+      envVars: [{ name: "GITHUB_TOKEN", required: true, description: "GitHub API token" }],
     });
     expect(parsed.envVars?.[0]?.name).toBe("GITHUB_TOKEN");
   });
