@@ -102,6 +102,7 @@ node_modules/
 dist/
 .turbo/
 coverage/
+.tmp/
 *.log
 .DS_Store
 .env
@@ -624,6 +625,18 @@ describe("formatId", () => {
   it("round-trips every scoped id", () => {
     const id = "mcp:@anthropic/github-mcp";
     expect(formatId(parseId(id))).toBe(id);
+  });
+
+  it("throws on invalid slug in name", () => {
+    expect(() =>
+      formatId({ kind: "skill", user: null, name: "Bad_Name" }),
+    ).toThrow(/invalid name slug/i);
+  });
+
+  it("throws on invalid user handle", () => {
+    expect(() =>
+      formatId({ kind: "skill", user: "bad user", name: "foo" }),
+    ).toThrow(/invalid user handle/i);
   });
 });
 ```
@@ -1593,13 +1606,9 @@ describe("PresetEntrySchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects preset including itself", () => {
-    const result = PresetEntrySchema.safeParse({
-      ...validPreset,
-      includes: ["preset:strict-tdd"],
-    });
-    expect(result.success).toBe(false);
-  });
+  // Note: the "preset including itself" check is enforced at the union level
+  // (`EntrySchema` in src/entry.ts) via `superRefine`, not here. Keeping
+  // `PresetEntrySchema` as a pure `ZodObject` is required by `z.discriminatedUnion`.
 });
 ```
 
@@ -1623,6 +1632,9 @@ const SnippetFileSchema = z
     message: "settingsPatch must be a relative path without '..' or backslashes",
   });
 
+// Must remain a pure ZodObject (no top-level `.refine()`) so `z.discriminatedUnion`
+// in src/entry.ts will accept it. The "preset cannot include itself" invariant
+// is enforced at the union level via `superRefine`.
 export const PresetEntrySchema = BaseEntrySchema.extend({
   kind: z.literal("preset"),
   includes: z
@@ -1632,12 +1644,7 @@ export const PresetEntrySchema = BaseEntrySchema.extend({
       message: "includes must not contain duplicates",
     }),
   settingsPatch: SnippetFileSchema.optional(),
-})
-  .strict()
-  .refine(
-    (entry) => !entry.includes.includes(`preset:${entry.name}`),
-    { message: "preset cannot include itself" },
-  );
+}).strict();
 
 export type PresetEntry = z.infer<typeof PresetEntrySchema>;
 ```
@@ -1697,6 +1704,19 @@ describe("EntrySchema (discriminated union)", () => {
     const result = EntrySchema.safeParse({ ...base() });
     expect(result.success).toBe(false);
   });
+
+  it("rejects a preset that includes itself (union-level superRefine)", () => {
+    const result = EntrySchema.safeParse({
+      ...base(),
+      name: "strict-tdd",
+      kind: "preset",
+      includes: ["preset:strict-tdd"],
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.path.includes("includes"))).toBe(true);
+    }
+  });
 });
 
 describe("parseEntry", () => {
@@ -1740,7 +1760,12 @@ import { McpEntrySchema } from "./mcp.js";
 import { PresetEntrySchema } from "./preset.js";
 import { SkillEntrySchema } from "./skill.js";
 
-export const EntrySchema = z.discriminatedUnion("kind", [
+// `discriminatedUnion` accepts only `ZodObject` options. Cross-field invariants
+// that span kinds (e.g. "preset cannot include itself") are applied afterwards
+// via `superRefine`, which wraps the union in `ZodEffects`. Consumers should
+// use `EntrySchema` for parsing; the individual `*EntrySchema` exports remain
+// `ZodObject` so they can compose into the union or be reused elsewhere.
+const EntryUnion = z.discriminatedUnion("kind", [
   SkillEntrySchema,
   AgentEntrySchema,
   CommandEntrySchema,
@@ -1749,7 +1774,17 @@ export const EntrySchema = z.discriminatedUnion("kind", [
   PresetEntrySchema,
 ]);
 
-export type Entry = z.infer<typeof EntrySchema>;
+export const EntrySchema = EntryUnion.superRefine((entry, ctx) => {
+  if (entry.kind === "preset" && entry.includes.includes(`preset:${entry.name}`)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "preset cannot include itself",
+      path: ["includes"],
+    });
+  }
+});
+
+export type Entry = z.infer<typeof EntryUnion>;
 
 export function parseEntry(input: unknown): Entry {
   const result = EntrySchema.safeParse(input);
@@ -2160,10 +2195,11 @@ Expected: `packages/schema/dist/` contains `index.js`, `index.cjs`, `index.d.ts`
 
 - [ ] **Step 4: Smoke-test the built output**
 
-Create a temporary file `/tmp/clawmart-smoke.mjs` (or `$TMPDIR` equivalent — on Windows bash use `$(mktemp -u).mjs`):
+Create `.tmp/smoke.mjs` inside the repo (the `.tmp/` directory is already `.gitignore`-ed via `*.log` / build artefacts — add `.tmp/` to `.gitignore` if it isn't covered):
 
 ```js
-import { parseEntry, formatId } from "../../H:/60_OSS/clawmart/packages/schema/dist/index.js";
+import { parseEntry, formatId } from "../packages/schema/dist/index.js";
+
 const entry = parseEntry({
   name: "smoke",
   kind: "skill",
@@ -2181,12 +2217,17 @@ const entry = parseEntry({
   sha256: "b".repeat(64),
   files: [{ source: "smoke.md", target: "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }],
 });
+
 console.log(entry.kind, formatId({ kind: "skill", user: null, name: "smoke" }));
 ```
 
-Run (from repo root):
+Commands (run from `H:/60_OSS/clawmart/`):
+
 ```bash
-node /tmp/clawmart-smoke.mjs
+mkdir -p .tmp
+# Paste the JS above into .tmp/smoke.mjs with your editor, or:
+# (use the repo's preferred method — do NOT place it outside the repo)
+node .tmp/smoke.mjs
 ```
 
 Expected output:
@@ -2194,7 +2235,12 @@ Expected output:
 skill skill:smoke
 ```
 
-Delete the smoke file: `rm /tmp/clawmart-smoke.mjs`.
+Cleanup:
+```bash
+rm -rf .tmp
+```
+
+`.tmp/` is already listed in `.gitignore` from Task 1, so nothing should be staged by accident.
 
 - [ ] **Step 5: Run Biome across the repo**
 
