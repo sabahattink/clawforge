@@ -773,6 +773,10 @@ None blocking. Tracked deferrals:
 - `clawmart publish` helper command (v2).
 - Sigstore signing and entry SBOMs (v2).
 
+**Phase progress:**
+
+- Phase 1 (`@clawmart/schema`): ✅ complete — tag `phase-1-schema-complete`, 70 tests green, coverage 100 % lines / 97.5 % branches, build artefacts produced.
+
 ---
 
 ## 12. Approvals
