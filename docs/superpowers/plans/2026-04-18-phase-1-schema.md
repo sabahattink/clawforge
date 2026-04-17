@@ -1660,7 +1660,7 @@ pnpm --filter @clawmart/schema test
 
 ```bash
 git add packages/schema/src/preset.ts packages/schema/tests/preset.test.ts
-git commit -m "feat(schema): add PresetEntrySchema with self-inclusion guard"
+git commit -m "feat(schema): add PresetEntrySchema with duplicate-includes guard"
 ```
 
 ---
