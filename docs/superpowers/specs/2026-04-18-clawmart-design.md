@@ -285,6 +285,8 @@ interface PresetEntry extends BaseEntry {
 | `{{CLAUDE_DIR}}` | `--scope global` → `~/.claude`; `--scope project` → `./.claude` |
 | `{{name}}` | entry slug |
 
+Only these two tokens are supported in v1. Any other `{{…}}` pattern in `files[].target` is a validation error. Additional tokens (e.g. `{{home}}`, `{{cwd}}`) are deferred.
+
 **Default scopes:**
 - `skill`, `agent` → `global`
 - `cmd`, `preset` → `project`
@@ -423,6 +425,12 @@ Index may reach 10 MB before pagination is needed (v2).
 
 The `before` snapshot is critical — it allows `remove` to cleanly revert JSON merges.
 
+**`sha256` semantics in the manifest.** The entry-level `sha256` field records the hash of the entry's primary content artifact — for file-based entries, the concatenated bytes of all `files[].source` in the order declared; for merge-based entries, the bytes of the referenced `snippetFile`; for presets, the bytes of `settingsPatch` if present, else the serialized `includes` list. This value is compared against the registry index at update time to detect upstream changes.
+
+### 5.5 Offline / fallback behaviour
+
+When MeiliSearch is unreachable, `clawmart search` falls back to a local substring + tag match against the cached `registry.json` (24 h cache). When `registry.json` itself is unreachable and no cache exists, the CLI returns a clear error with a `--registry` flag hint for self-hosted setups. `clawmart add` never depends on the search service and works offline against the cached registry.
+
 ---
 
 ## 6. Web UI (`clawmart.dev`)
@@ -520,7 +528,7 @@ Fallback: Pagefind static index (so browse works even if MeiliSearch is unreacha
 `scripts/build-index.ts`:
 
 1. Enumerate `registry/**/entry.json`.
-2. For each entry: read metadata, compute `sha256`, resolve `createdAt`/`updatedAt` from `git log`.
+2. For each entry: read metadata, compute `sha256`, resolve `createdAt`/`updatedAt` from `git log`. CI workflows must use `actions/checkout@v4` with `fetch-depth: 0` so that commit history is available for this step.
 3. Merge `registry/_verified.json` → set `verified` flags.
 4. Exclude entries listed in `registry/_removed.json` from main index; emit tombstones.
 5. Write:
@@ -666,6 +674,8 @@ Post-publish: download-rate anomalies flagged; ≥ 3 user reports → auto-hide 
 
 All seed entries are MIT-licensed and authored by the owner. No re-publishing of others' content at launch; third-party content catalog-style only, linking to original sources.
 
+**Content authoring is a parallel workstream.** Seed content is not a code-side deliverable — it is produced alongside the CLI / web / validator workstreams, not sequenced after them. The implementation plan should treat "produce seed entries" as an independent track that runs from day one and converges with the launch checklist.
+
 ### 9.2 Pre-launch checklist (T-14 to T-0)
 
 - [ ] ≥ 50 entries live, all verified
@@ -749,6 +759,8 @@ All seed entries are MIT-licensed and authored by the owner. No re-publishing of
 | Registry seed content | Snapshot tests ensure each seed entry validates and builds | 100 % |
 
 E2E smoke pipeline runs on each PR: validate-pr-fixture → build-index → start MeiliSearch container → CLI `add skill:<fixture>` against a local registry server.
+
+The "local registry server" is a minimal static file server (e.g. `serve` or a 20-line Node handler) that exposes the `dist/` output of `build-index` at `http://127.0.0.1:<port>/`. The CLI points at it via `--registry http://127.0.0.1:<port>`. No custom runtime is needed — it is strictly static hosting.
 
 ---
 
