@@ -1,0 +1,23 @@
+{
+  "kind": "preset",
+  "name": "strict-tdd",
+  "displayName": "Strict TDD bundle",
+  "description": "TDD workflow + code-reviewer agent + /review + /test + commit-msg-lint.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["tdd", "testing", "bundle"],
+  "category": "testing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "includes": [
+    "skill:tdd-workflow",
+    "agent:code-reviewer",
+    "cmd:review",
+    "cmd:test",
+    "hook:commit-msg-lint"
+  ]
+}

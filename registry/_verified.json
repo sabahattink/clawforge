@@ -1,4 +1,33 @@
 {
   "version": 1,
-  "entries": {}
+  "entries": {
+    "skill:tdd-workflow": {
+      "verifiedAt": "2026-04-19T12:00:00.000Z",
+      "verifiedBy": "kalkan",
+      "verifiedVersion": "1.0.0",
+      "reason": "Founding seed entry, author-maintained.",
+      "expiresAt": null
+    },
+    "skill:systematic-debugging": {
+      "verifiedAt": "2026-04-19T12:00:00.000Z",
+      "verifiedBy": "kalkan",
+      "verifiedVersion": "1.0.0",
+      "reason": "Founding seed entry, author-maintained.",
+      "expiresAt": null
+    },
+    "agent:code-reviewer": {
+      "verifiedAt": "2026-04-19T12:00:00.000Z",
+      "verifiedBy": "kalkan",
+      "verifiedVersion": "1.0.0",
+      "reason": "Founding seed entry, author-maintained.",
+      "expiresAt": null
+    },
+    "preset:strict-tdd": {
+      "verifiedAt": "2026-04-19T12:00:00.000Z",
+      "verifiedBy": "kalkan",
+      "verifiedVersion": "1.0.0",
+      "reason": "Founding seed bundle, curated by maintainer.",
+      "expiresAt": null
+    }
+  }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>clawmart — new entries</title>
+  <link>https://clawmart.dev</link>
+  <description>Newly added entries to clawmart.</description>
+  <item>
+    <title>Writing Implementation Plans</title>
+    <link>https://clawmart.dev/skill/writing-plans</link>
+    <guid isPermaLink="true">https://clawmart.dev/skill/writing-plans</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Turn a spec into a tight task list: exact files, complete code, TDD per task.</description>
+  </item>
+  <item>
+    <title>TDD Workflow</title>
+    <link>https://clawmart.dev/skill/tdd-workflow</link>
+    <guid isPermaLink="true">https://clawmart.dev/skill/tdd-workflow</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Write tests first, enforce red-green-refactor, keep commits tight.</description>
+  </item>
+  <item>
+    <title>Systematic Debugging</title>
+    <link>https://clawmart.dev/skill/systematic-debugging</link>
+    <guid isPermaLink="true">https://clawmart.dev/skill/systematic-debugging</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Narrow the search space with the scientific method before touching code.</description>
+  </item>
+  <item>
+    <title>Receiving Code Review</title>
+    <link>https://clawmart.dev/skill/receiving-code-review</link>
+    <guid isPermaLink="true">https://clawmart.dev/skill/receiving-code-review</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Turn review comments into better code without thrashing or ego.</description>
+  </item>
+  <item>
+    <title>Strict TDD bundle</title>
+    <link>https://clawmart.dev/preset/strict-tdd</link>
+    <guid isPermaLink="true">https://clawmart.dev/preset/strict-tdd</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>TDD workflow + code-reviewer agent + /review + /test + commit-msg-lint.</description>
+  </item>
+  <item>
+    <title>Filesystem MCP</title>
+    <link>https://clawmart.dev/mcp/filesystem</link>
+    <guid isPermaLink="true">https://clawmart.dev/mcp/filesystem</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Official @modelcontextprotocol filesystem server — read/write files under a root.</description>
+  </item>
+  <item>
+    <title>Commit-message Lint</title>
+    <link>https://clawmart.dev/hook/commit-msg-lint</link>
+    <guid isPermaLink="true">https://clawmart.dev/hook/commit-msg-lint</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Rejects commits whose message does not match Conventional Commits.</description>
+  </item>
+  <item>
+    <title>Auto-format TypeScript</title>
+    <link>https://clawmart.dev/hook/auto-format-ts</link>
+    <guid isPermaLink="true">https://clawmart.dev/hook/auto-format-ts</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Runs Biome format on any TS/TSX file Claude Code just wrote.</description>
+  </item>
+  <item>
+    <title>/test</title>
+    <link>https://clawmart.dev/cmd/test</link>
+    <guid isPermaLink="true">https://clawmart.dev/cmd/test</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Run the test suite relevant to the current diff.</description>
+  </item>
+  <item>
+    <title>/review</title>
+    <link>https://clawmart.dev/cmd/review</link>
+    <guid isPermaLink="true">https://clawmart.dev/cmd/review</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Run the code-reviewer agent on the current diff or a named PR.</description>
+  </item>
+  <item>
+    <title>Planner</title>
+    <link>https://clawmart.dev/agent/planner</link>
+    <guid isPermaLink="true">https://clawmart.dev/agent/planner</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Produces a tight implementation plan from a spec or feature request.</description>
+  </item>
+  <item>
+    <title>Code Reviewer</title>
+    <link>https://clawmart.dev/agent/code-reviewer</link>
+    <guid isPermaLink="true">https://clawmart.dev/agent/code-reviewer</guid>
+    <pubDate>Sat, 18 Apr 2026 21:15:43 GMT</pubDate>
+    <description>Reviews diffs for correctness, readability, and common security issues.</description>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,9 @@
+{
+  "matcher": "Bash",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "cmd=\"$CLAUDE_TOOL_INPUT\"; if echo \"$cmd\" | grep -qE '^git commit'; then msg=$(echo \"$cmd\" | sed -nE 's/.*-m *[\\\"\\x27]([^\\\"\\x27]+)[\\\"\\x27].*/\\1/p'); if [ -n \"$msg\" ] && ! echo \"$msg\" | grep -qE '^(feat|fix|docs|chore|refactor|test|perf|ci|build)(\\([^)]+\\))?!?: .+'; then echo 'commit-msg-lint: message does not match Conventional Commits' >&2; exit 2; fi; fi"
+    }
+  ]
+}

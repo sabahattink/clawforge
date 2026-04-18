@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-19T12:00:00.000Z",
+  "count": 4,
+  "entries": [
+    {
+      "id": "skill:receiving-code-review",
+      "kind": "skill",
+      "name": "receiving-code-review",
+      "displayName": "Receiving Code Review",
+      "description": "Turn review comments into better code without thrashing or ego.",
+      "tags": ["review", "collaboration"],
+      "category": "productivity",
+      "verified": false,
+      "version": "1.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/skills/receiving-code-review/entry.json",
+      "sha256": "85bdb5bf2d7afad4d6c2efc3af8d6c497520a740c6b1b00c75dc45fa32191d1a",
+      "updatedAt": "2026-04-18T21:15:43.000Z"
+    },
+    {
+      "id": "skill:systematic-debugging",
+      "kind": "skill",
+      "name": "systematic-debugging",
+      "displayName": "Systematic Debugging",
+      "description": "Narrow the search space with the scientific method before touching code.",
+      "tags": ["debugging", "methodology"],
+      "category": "debugging",
+      "verified": true,
+      "version": "1.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/skills/systematic-debugging/entry.json",
+      "sha256": "cecc6cf0670b53898f385be77df523dcbec0ad390d42606716d110b4342d9bfe",
+      "updatedAt": "2026-04-18T21:15:43.000Z"
+    },
+    {
+      "id": "skill:tdd-workflow",
+      "kind": "skill",
+      "name": "tdd-workflow",
+      "displayName": "TDD Workflow",
+      "description": "Write tests first, enforce red-green-refactor, keep commits tight.",
+      "tags": ["testing", "tdd", "workflow"],
+      "category": "testing",
+      "verified": true,
+      "version": "1.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+      "sha256": "2727e018eb0c5002bfda27d01a9ca109786430ef876b0efde9405689923cbad8",
+      "updatedAt": "2026-04-18T21:15:43.000Z"
+    },
+    {
+      "id": "skill:writing-plans",
+      "kind": "skill",
+      "name": "writing-plans",
+      "displayName": "Writing Implementation Plans",
+      "description": "Turn a spec into a tight task list: exact files, complete code, TDD per task.",
+      "tags": ["planning", "methodology"],
+      "category": "productivity",
+      "verified": false,
+      "version": "1.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/skills/writing-plans/entry.json",
+      "sha256": "cf168641106d1c2ae068044d18ddf93e5f14c057ce0b520756315b3a238d9302",
+      "updatedAt": "2026-04-18T21:15:43.000Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "skill",
+  "name": "receiving-code-review",
+  "displayName": "Receiving Code Review",
+  "description": "Turn review comments into better code without thrashing or ego.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["review", "collaboration"],
+  "category": "productivity",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [{ "source": "SKILL.md", "target": "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }]
+}

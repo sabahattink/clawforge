@@ -1,0 +1,20 @@
+{
+  "kind": "hook",
+  "name": "auto-format-ts",
+  "displayName": "Auto-format TypeScript",
+  "description": "Runs Biome format on any TS/TSX file Claude Code just wrote.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["devops", "formatting"],
+  "category": "devops",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "snippetFile": "hook.json",
+  "mergeTarget": "settings.json",
+  "mergePath": "hooks.PostToolUse",
+  "strategy": "append"
+}

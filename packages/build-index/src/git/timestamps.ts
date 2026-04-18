@@ -59,6 +59,10 @@ export class ExecaGitReader implements GitReader {
     const lines = stdout.split("\n").filter(Boolean);
     if (lines.length === 0) return null;
     const chosen = first ? lines[lines.length - 1] : lines[0];
-    return chosen ?? null;
+    if (chosen === undefined) return null;
+    // Git emits %aI with a timezone offset (e.g. "+02:00"); normalise to UTC Z.
+    const parsed = Date.parse(chosen);
+    if (Number.isNaN(parsed)) return null;
+    return new Date(parsed).toISOString();
   }
 }

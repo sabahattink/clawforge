@@ -782,6 +782,7 @@ None blocking. Tracked deferrals:
 - Phase 5 (`@clawmart/web`): ✅ complete — tag `phase-5-web-complete`, Astro SSG with 7 static routes (landing, browse, docs, 4 detail pages from `getStaticPaths`), dark-mode default, client-side browse filters verified live in preview. Submit / stats / author / tag / category pages deferred to post-MVP.
 - Phase 6 (CI/CD + governance): ✅ complete — tag `phase-6-cicd-complete`, 5 workflows (`validate-pr`, `publish-registry`, `release-cli`, `release-web`, `weekly-health`), CODEOWNERS wired, PR + issue templates, SECURITY.md, branch-protection playbook documented at `docs/BRANCH_PROTECTION.md`.
 - Phase 7 (verified tier tooling): ✅ complete — tag `phase-7-verified-complete`. `registry/` seeded with empty `_verified.json` and `_removed.json`, `registry/README.md` explains contribution flow, `docs/MAINTAINER_PLAYBOOK.md` covers verification / revocation / takedown / incident response / onboarding. Validator + build-index pipeline end-to-end-tested against the live empty registry.
+- Phase 8 (seed content): ✅ shipped **12 of 50** — tag `phase-8-seed-complete`. Covers every kind (4 skills, 2 agents, 2 cmds, 2 hooks, 1 mcp, 1 preset), 4 verified, real data flowing through build-index into the Astro site's data loader, preview-verified live. Remaining 38 captured in `docs/SEED_BACKLOG.md`. Two bugs found and fixed in the process: build-index passed registry-relative paths to `git log` (now absolute), and git `%aI` returns tz offsets rather than Z-suffixed UTC (now normalised).
 
 ---
 

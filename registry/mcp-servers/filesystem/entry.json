@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "name": "filesystem",
+  "displayName": "Filesystem MCP",
+  "description": "Official @modelcontextprotocol filesystem server — read/write files under a root.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["filesystem", "official"],
+  "category": "productivity",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "snippetFile": "mcp.json",
+  "mergeTarget": "settings.json",
+  "mergePath": "mcpServers.{{name}}",
+  "envVars": [
+    {
+      "name": "MCP_FS_ROOT",
+      "required": true,
+      "description": "Absolute path to the directory the filesystem server is allowed to access."
+    }
+  ]
+}
