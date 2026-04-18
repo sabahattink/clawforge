@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://clawmart.dev/agent/code-reviewer</loc>
+    <loc>https://clawforge.dev/agent/code-reviewer</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/agent/planner</loc>
+    <loc>https://clawforge.dev/agent/planner</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/cmd/review</loc>
+    <loc>https://clawforge.dev/cmd/review</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/cmd/test</loc>
+    <loc>https://clawforge.dev/cmd/test</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/hook/auto-format-ts</loc>
+    <loc>https://clawforge.dev/hook/auto-format-ts</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/hook/commit-msg-lint</loc>
+    <loc>https://clawforge.dev/hook/commit-msg-lint</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/mcp/filesystem</loc>
+    <loc>https://clawforge.dev/mcp/filesystem</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/preset/strict-tdd</loc>
+    <loc>https://clawforge.dev/preset/strict-tdd</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/skill/receiving-code-review</loc>
+    <loc>https://clawforge.dev/skill/receiving-code-review</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/skill/systematic-debugging</loc>
+    <loc>https://clawforge.dev/skill/systematic-debugging</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/skill/tdd-workflow</loc>
+    <loc>https://clawforge.dev/skill/tdd-workflow</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
   <url>
-    <loc>https://clawmart.dev/skill/writing-plans</loc>
+    <loc>https://clawforge.dev/skill/writing-plans</loc>
     <lastmod>2026-04-18</lastmod>
   </url>
 </urlset>

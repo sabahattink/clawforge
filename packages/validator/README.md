@@ -1,11 +1,11 @@
-# @clawmart/validator
+# @clawforge/validator
 
-CI auto-gates for the clawmart registry.
+CI auto-gates for the clawforge registry.
 
 ## Usage (CLI)
 
 ```bash
-clawmart-validate --registry ./registry
+clawforge-validate --registry ./registry
 ```
 
 Exits `0` if no BLOCK issues, `1` if any BLOCK issue is detected, `2` on unexpected failure.
@@ -20,7 +20,7 @@ Exits `0` if no BLOCK issues, `1` if any BLOCK issue is detected, `2` on unexpec
 
 ## Checks
 
-- **Schema validation** — every `entry.json` parses against `@clawmart/schema`.
+- **Schema validation** — every `entry.json` parses against `@clawforge/schema`.
 - **Duplicate detection** — no two entries share `(kind, name)`.
 - **File existence** — every `files[].source` / `snippetFile` / `settingsPatch` exists on disk.
 - **Security scan** — hook and MCP snippets are scanned for dangerous patterns (`rm -rf /`, `curl ... | sh`, ...). Warn patterns (`sudo`, credential paths, shell history) flag but do not block.
@@ -32,7 +32,7 @@ Exits `0` if no BLOCK issues, `1` if any BLOCK issue is detected, `2` on unexpec
   with: { fetch-depth: 0 }
 - uses: pnpm/action-setup@v4
 - run: pnpm install
-- run: pnpm --filter @clawmart/validator build
+- run: pnpm --filter @clawforge/validator build
 - run: node packages/validator/dist/bin.js --registry registry
 ```
 

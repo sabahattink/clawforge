@@ -1,22 +1,22 @@
-# Phase 2: `@clawmart/build-index` — Implementation Plan
+# Phase 2: `@clawforge/build-index` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans. Steps use checkbox (`- [ ]`) syntax.
 
-**Goal:** Ship `@clawmart/build-index` — a workspace package that turns the `registry/**/entry.json` tree into CDN-ready artefacts (`dist/registry.json`, per-kind shards, `sitemap.xml`, `feed.xml`, tombstones). Invoked by CI on every merge to `main`; also usable locally via `pnpm build:index`.
+**Goal:** Ship `@clawforge/build-index` — a workspace package that turns the `registry/**/entry.json` tree into CDN-ready artefacts (`dist/registry.json`, per-kind shards, `sitemap.xml`, `feed.xml`, tombstones). Invoked by CI on every merge to `main`; also usable locally via `pnpm build:index`.
 
 **Architecture:** Pure functions layered behind a thin CLI. Each file I/O and subprocess call sits behind an interface so tests stay hermetic. Git-log timestamps, sha256 hashes, and JSON reads are injected. The main `buildIndex` orchestrator composes them.
 
-**Tech Stack:** TypeScript 5.9, Node 20 built-ins (`node:fs/promises`, `node:crypto`, `node:child_process`), Zod (via `@clawmart/schema`), Vitest. No runtime deps beyond `@clawmart/schema` and `execa`.
+**Tech Stack:** TypeScript 5.9, Node 20 built-ins (`node:fs/promises`, `node:crypto`, `node:child_process`), Zod (via `@clawforge/schema`), Vitest. No runtime deps beyond `@clawforge/schema` and `execa`.
 
-**Spec reference:** [2026-04-18-clawmart-design.md](../specs/2026-04-18-clawmart-design.md) §7.4 (build pipeline) and §4.5 (registry index shape).
+**Spec reference:** [2026-04-18-clawforge-design.md](../specs/2026-04-18-clawforge-design.md) §7.4 (build pipeline) and §4.5 (registry index shape).
 
 ---
 
 ## Prerequisites
 
-- Phase 1 complete (tag `phase-1-schema-complete`) — `@clawmart/schema` importable.
+- Phase 1 complete (tag `phase-1-schema-complete`) — `@clawforge/schema` importable.
 - Node 20+, pnpm 9+, git installed and on `PATH`.
-- Working directory: `H:/60_OSS/clawmart/`.
+- Working directory: `H:/60_OSS/clawforge/`.
 
 ## File structure
 
@@ -24,12 +24,12 @@
 
 | File | Responsibility |
 |---|---|
-| `package.json` | Package manifest, deps on `@clawmart/schema` and `execa` |
+| `package.json` | Package manifest, deps on `@clawforge/schema` and `execa` |
 | `tsconfig.json` | Build config (src/ only) |
 | `tsconfig.test.json` | Test-scope tsconfig (src + tests) |
 | `vitest.config.ts` | Vitest with coverage thresholds |
 | `src/index.ts` | Public API re-exports |
-| `src/bin.ts` | CLI entry point (`clawmart-build-index`) |
+| `src/bin.ts` | CLI entry point (`clawforge-build-index`) |
 | `src/types.ts` | Internal types (BuildResult, BuildError, ...) |
 | `src/fs/enumerate.ts` | Walks `registry/**/entry.json` |
 | `src/fs/read-json.ts` | Typed JSON reader with error wrapping |
@@ -71,7 +71,7 @@ export type BuildError = {
 
 ## Tasks
 
-### Task 1: Scaffold `@clawmart/build-index`
+### Task 1: Scaffold `@clawforge/build-index`
 
 **Files:** `packages/build-index/package.json`, `tsconfig.json`, `tsconfig.test.json`, `vitest.config.ts`, `src/index.ts`
 
@@ -79,16 +79,16 @@ export type BuildError = {
 
 ```json
 {
-  "name": "@clawmart/build-index",
+  "name": "@clawforge/build-index",
   "version": "0.0.1",
-  "description": "Build the clawmart registry index from registry/**/entry.json.",
+  "description": "Build the clawforge registry index from registry/**/entry.json.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "clawmart-build-index": "./dist/bin.js"
+    "clawforge-build-index": "./dist/bin.js"
   },
   "exports": {
     ".": {
@@ -105,7 +105,7 @@ export type BuildError = {
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
   },
   "dependencies": {
-    "@clawmart/schema": "workspace:*",
+    "@clawforge/schema": "workspace:*",
     "execa": "^9.5.0"
   },
   "devDependencies": {
@@ -187,7 +187,7 @@ export {};
 
 ```bash
 pnpm install
-pnpm --filter @clawmart/build-index typecheck
+pnpm --filter @clawforge/build-index typecheck
 ```
 
 Expected: exit 0.
@@ -196,7 +196,7 @@ Expected: exit 0.
 
 ```bash
 git add packages/build-index/ pnpm-lock.yaml
-git commit -m "chore(build-index): scaffold @clawmart/build-index package"
+git commit -m "chore(build-index): scaffold @clawforge/build-index package"
 ```
 
 ---
@@ -279,7 +279,7 @@ import { isErr, isOk } from "../../src/types.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-readjson-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-readjson-"));
   writeFileSync(join(dir, "good.json"), '{"a":1}', "utf8");
   writeFileSync(join(dir, "bad.json"), "{not json}", "utf8");
 });
@@ -356,7 +356,7 @@ import { enumerateEntries } from "../../src/fs/enumerate.js";
 
 let root: string;
 beforeAll(() => {
-  root = mkdtempSync(join(tmpdir(), "clawmart-enum-"));
+  root = mkdtempSync(join(tmpdir(), "clawforge-enum-"));
   // valid entries
   mkdirSync(join(root, "skills", "tdd"), { recursive: true });
   writeFileSync(join(root, "skills", "tdd", "entry.json"), "{}", "utf8");
@@ -401,7 +401,7 @@ describe("enumerateEntries", () => {
 // src/fs/enumerate.ts
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
-import { KINDS, type Kind } from "@clawmart/schema";
+import { KINDS, type Kind } from "@clawforge/schema";
 
 export type EntryLocation = {
   kind: Kind;
@@ -475,7 +475,7 @@ async function pathExists(p: string): Promise<boolean> {
 }
 ```
 
-Also mention: the exported `KINDS` tuple from `@clawmart/schema` is not used here directly because we use a directory-name mapping; but keep the import to validate we parse into valid Kinds. (If the reviewer flags dead import, drop it.)
+Also mention: the exported `KINDS` tuple from `@clawforge/schema` is not used here directly because we use a directory-name mapping; but keep the import to validate we parse into valid Kinds. (If the reviewer flags dead import, drop it.)
 
 - [ ] **Step 4: Run — pass. Step 5: Commit** `feat(build-index): enumerate registry entries by <kind>/<slug>/entry.json`.
 
@@ -497,7 +497,7 @@ import { computeContentSha256 } from "../../src/hash/sha256.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-sha-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-sha-"));
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "a.md"), "hello", "utf8");
   writeFileSync(join(dir, "b.md"), "world", "utf8");
@@ -675,7 +675,7 @@ export class ExecaGitReader implements GitReader {
 // tests/transform/index-entry.test.ts
 import { describe, expect, it } from "vitest";
 import { toIndexEntry } from "../../src/transform/index-entry.js";
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 
 const skill: Entry = {
   kind: "skill",
@@ -697,9 +697,9 @@ const skill: Entry = {
 
 describe("toIndexEntry", () => {
   it("produces a valid global-namespace index entry", () => {
-    const ix = toIndexEntry(skill, "https://cdn.clawmart.dev");
+    const ix = toIndexEntry(skill, "https://cdn.clawforge.dev");
     expect(ix.id).toBe("skill:tdd-workflow");
-    expect(ix.detailUrl).toBe("https://cdn.clawmart.dev/skills/tdd-workflow/entry.json");
+    expect(ix.detailUrl).toBe("https://cdn.clawforge.dev/skills/tdd-workflow/entry.json");
     expect(ix.author).toBe("kalkan");
     expect(ix.verified).toBe(true);
   });
@@ -710,7 +710,7 @@ describe("toIndexEntry", () => {
 
 ```ts
 // src/transform/index-entry.ts
-import type { Entry, IndexEntry } from "@clawmart/schema";
+import type { Entry, IndexEntry } from "@clawforge/schema";
 
 export function toIndexEntry(entry: Entry, cdnBase: string): IndexEntry {
   const kindDir = toKindDir(entry.kind);
@@ -762,7 +762,7 @@ function toKindDir(kind: Entry["kind"]): string {
 ```ts
 // tests/transform/apply-verified.test.ts
 import { describe, expect, it } from "vitest";
-import type { Entry, VerifiedIndex } from "@clawmart/schema";
+import type { Entry, VerifiedIndex } from "@clawforge/schema";
 import { applyVerifiedIndex } from "../../src/transform/apply-verified.js";
 
 const e = (kind: "skill", name: string, version: string, verified: boolean): Entry =>
@@ -822,7 +822,7 @@ describe("applyVerifiedIndex", () => {
 
 ```ts
 // src/transform/apply-verified.ts
-import type { Entry, VerifiedIndex } from "@clawmart/schema";
+import type { Entry, VerifiedIndex } from "@clawforge/schema";
 
 export function applyVerifiedIndex(entries: Entry[], idx: VerifiedIndex): Entry[] {
   return entries.map((entry) => {
@@ -847,7 +847,7 @@ export function applyVerifiedIndex(entries: Entry[], idx: VerifiedIndex): Entry[
 ```ts
 // tests/transform/filter-removed.test.ts
 import { describe, expect, it } from "vitest";
-import type { Entry, RemovedIndex } from "@clawmart/schema";
+import type { Entry, RemovedIndex } from "@clawforge/schema";
 import { filterRemoved } from "../../src/transform/filter-removed.js";
 
 const mkEntry = (name: string): Entry =>
@@ -892,7 +892,7 @@ describe("filterRemoved", () => {
 
 ```ts
 // src/transform/filter-removed.ts
-import type { Entry, RemovedIndex } from "@clawmart/schema";
+import type { Entry, RemovedIndex } from "@clawforge/schema";
 
 export function filterRemoved(entries: Entry[], idx: RemovedIndex): Entry[] {
   const removed = new Set(Object.keys(idx.entries));
@@ -914,7 +914,7 @@ export function filterRemoved(entries: Entry[], idx: RemovedIndex): Entry[] {
 // tests/transform/assemble.test.ts
 import { describe, expect, it } from "vitest";
 import { assembleIndex } from "../../src/transform/assemble.js";
-import type { IndexEntry } from "@clawmart/schema";
+import type { IndexEntry } from "@clawforge/schema";
 
 const ix = (id: string): IndexEntry => ({
   id,
@@ -927,7 +927,7 @@ const ix = (id: string): IndexEntry => ({
   verified: false,
   version: "1.0.0",
   author: "kalkan",
-  detailUrl: `https://cdn.clawmart.dev/${id}/entry.json`,
+  detailUrl: `https://cdn.clawforge.dev/${id}/entry.json`,
   sha256: "a".repeat(64),
   updatedAt: "2026-04-10T18:00:00.000Z",
 });
@@ -946,7 +946,7 @@ describe("assembleIndex", () => {
 
 ```ts
 // src/transform/assemble.ts
-import type { IndexEntry, RegistryIndex } from "@clawmart/schema";
+import type { IndexEntry, RegistryIndex } from "@clawforge/schema";
 
 export function assembleIndex(entries: IndexEntry[], generatedAt: string): RegistryIndex {
   return { version: 1, generatedAt, count: entries.length, entries };
@@ -999,7 +999,7 @@ import { generateSitemap } from "../../src/transform/sitemap.js";
 describe("generateSitemap", () => {
   it("emits urls for every entry", () => {
     const xml = generateSitemap({
-      siteBase: "https://clawmart.dev",
+      siteBase: "https://clawforge.dev",
       entries: [
         {
           kind: "skill",
@@ -1008,14 +1008,14 @@ describe("generateSitemap", () => {
         },
       ],
     });
-    expect(xml).toContain("https://clawmart.dev/skill/tdd");
+    expect(xml).toContain("https://clawforge.dev/skill/tdd");
     expect(xml).toContain("<lastmod>2026-04-10</lastmod>");
     expect(xml.startsWith(`<?xml version="1.0"`)).toBe(true);
   });
 
   it("escapes special characters in URLs", () => {
     const xml = generateSitemap({
-      siteBase: "https://clawmart.dev",
+      siteBase: "https://clawforge.dev",
       entries: [{ kind: "skill", name: "a&b", updatedAt: "2026-04-10T18:00:00.000Z" }],
     });
     expect(xml).toContain("a&amp;b");
@@ -1088,15 +1088,15 @@ describe("generateFeed", () => {
       description: "x",
       updatedAt: `2026-04-${String(18 - (i % 18)).padStart(2, "0")}T12:00:00.000Z`,
     }));
-    const xml = generateFeed({ siteBase: "https://clawmart.dev", entries });
+    const xml = generateFeed({ siteBase: "https://clawforge.dev", entries });
     const itemCount = (xml.match(/<item>/g) ?? []).length;
     expect(itemCount).toBe(50);
   });
 
   it("includes channel metadata", () => {
-    const xml = generateFeed({ siteBase: "https://clawmart.dev", entries: [] });
-    expect(xml).toContain("<title>clawmart — new entries</title>");
-    expect(xml).toContain("<link>https://clawmart.dev</link>");
+    const xml = generateFeed({ siteBase: "https://clawforge.dev", entries: [] });
+    expect(xml).toContain("<title>clawforge — new entries</title>");
+    expect(xml).toContain("<link>https://clawforge.dev</link>");
   });
 });
 ```
@@ -1130,9 +1130,9 @@ export function generateFeed({ siteBase, entries }: FeedInput): string {
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<rss version="2.0">`,
     `<channel>`,
-    `  <title>clawmart — new entries</title>`,
+    `  <title>clawforge — new entries</title>`,
     `  <link>${base}</link>`,
-    `  <description>Newly added entries to clawmart.</description>`,
+    `  <description>Newly added entries to clawforge.</description>`,
     ...items,
     `</channel>`,
     `</rss>`,
@@ -1169,7 +1169,7 @@ import { writeOutputs } from "../../src/fs/write-outputs.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-write-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-write-"));
 });
 afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
@@ -1200,7 +1200,7 @@ describe("writeOutputs", () => {
 // src/fs/write-outputs.ts
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { RegistryIndex, RemovedIndex } from "@clawmart/schema";
+import type { RegistryIndex, RemovedIndex } from "@clawforge/schema";
 
 const KIND_TO_FILENAME: Record<string, string> = {
   skill: "skills.json",
@@ -1299,7 +1299,7 @@ const fakeGit: GitReader = {
 };
 
 beforeAll(() => {
-  distDir = mkdtempSync(join(tmpdir(), "clawmart-build-"));
+  distDir = mkdtempSync(join(tmpdir(), "clawforge-build-"));
 });
 afterAll(() => rmSync(distDir, { recursive: true, force: true }));
 
@@ -1308,8 +1308,8 @@ describe("buildIndex", () => {
     const result = await buildIndex({
       registryRoot: fixtureRoot,
       distDir,
-      cdnBase: "https://cdn.clawmart.dev",
-      siteBase: "https://clawmart.dev",
+      cdnBase: "https://cdn.clawforge.dev",
+      siteBase: "https://clawforge.dev",
       generatedAt: "2026-04-18T12:00:00.000Z",
       git: fakeGit,
     });
@@ -1332,7 +1332,7 @@ describe("buildIndex", () => {
 ```ts
 // src/build.ts
 import { join } from "node:path";
-import { parseEntry, type RegistryIndex, type RemovedIndex, type VerifiedIndex } from "@clawmart/schema";
+import { parseEntry, type RegistryIndex, type RemovedIndex, type VerifiedIndex } from "@clawforge/schema";
 import { enumerateEntries } from "./fs/enumerate.js";
 import { readJson } from "./fs/read-json.js";
 import { writeOutputs } from "./fs/write-outputs.js";
@@ -1491,8 +1491,8 @@ async function main(): Promise<void> {
 
   const registryRoot = resolve(opts["registry"] ?? "registry");
   const distDir = resolve(opts["out"] ?? "dist");
-  const cdnBase = opts["cdn-base"] ?? "https://cdn.clawmart.dev";
-  const siteBase = opts["site-base"] ?? "https://clawmart.dev";
+  const cdnBase = opts["cdn-base"] ?? "https://cdn.clawforge.dev";
+  const siteBase = opts["site-base"] ?? "https://clawforge.dev";
   const generatedAt = opts["generated-at"] ?? new Date().toISOString();
 
   const git = new ExecaGitReader(process.cwd());
@@ -1533,7 +1533,7 @@ Add a root script:
 ```json
 "scripts": {
   ...,
-  "build:index": "pnpm --filter @clawmart/build-index build && node packages/build-index/dist/bin.js --registry registry --out dist --cdn-base https://cdn.clawmart.dev --site-base https://clawmart.dev"
+  "build:index": "pnpm --filter @clawforge/build-index build && node packages/build-index/dist/bin.js --registry registry --out dist --cdn-base https://cdn.clawforge.dev --site-base https://clawforge.dev"
 }
 ```
 
@@ -1559,9 +1559,9 @@ export type { BuildError, Result } from "./types.js";
 - [ ] **Step 2: Typecheck + test + build**
 
 ```bash
-pnpm --filter @clawmart/build-index typecheck
-pnpm --filter @clawmart/build-index test
-pnpm --filter @clawmart/build-index build
+pnpm --filter @clawforge/build-index typecheck
+pnpm --filter @clawforge/build-index test
+pnpm --filter @clawforge/build-index build
 ```
 
 Expected: all green. Coverage thresholds met (bin.ts excluded).
@@ -1585,18 +1585,18 @@ Fix any formatting issues with `pnpm exec biome check --write .`.
 - [ ] **Step 1: Write README**
 
 ```markdown
-# @clawmart/build-index
+# @clawforge/build-index
 
-Builds CDN-ready artefacts from the clawmart registry tree.
+Builds CDN-ready artefacts from the clawforge registry tree.
 
 ## Usage (CLI)
 
 \`\`\`bash
-clawmart-build-index \
+clawforge-build-index \
   --registry ./registry \
   --out ./dist \
-  --cdn-base https://cdn.clawmart.dev \
-  --site-base https://clawmart.dev
+  --cdn-base https://cdn.clawforge.dev \
+  --site-base https://clawforge.dev
 \`\`\`
 
 Outputs (in `--out`):
@@ -1609,13 +1609,13 @@ Outputs (in `--out`):
 ## Usage (programmatic)
 
 \`\`\`ts
-import { buildIndex, ExecaGitReader } from "@clawmart/build-index";
+import { buildIndex, ExecaGitReader } from "@clawforge/build-index";
 
 const result = await buildIndex({
   registryRoot: "./registry",
   distDir: "./dist",
-  cdnBase: "https://cdn.clawmart.dev",
-  siteBase: "https://clawmart.dev",
+  cdnBase: "https://cdn.clawforge.dev",
+  siteBase: "https://clawforge.dev",
   generatedAt: new Date().toISOString(),
   git: new ExecaGitReader(process.cwd()),
 });
@@ -1640,9 +1640,9 @@ Replace each literal `\`\`\`` with real triple-backticks in the actual file.
 
 ```bash
 pnpm lint && \
-  pnpm --filter @clawmart/build-index typecheck && \
-  pnpm --filter @clawmart/build-index test && \
-  pnpm --filter @clawmart/build-index build
+  pnpm --filter @clawforge/build-index typecheck && \
+  pnpm --filter @clawforge/build-index test && \
+  pnpm --filter @clawforge/build-index build
 ```
 
 - [ ] **Step 2: Update spec**
@@ -1650,14 +1650,14 @@ pnpm lint && \
 Append to §11 Phase progress:
 
 ```
-- Phase 2 (`@clawmart/build-index`): ✅ complete — tag `phase-2-build-index-complete`, coverage thresholds met, fixture-based e2e test green.
+- Phase 2 (`@clawforge/build-index`): ✅ complete — tag `phase-2-build-index-complete`, coverage thresholds met, fixture-based e2e test green.
 ```
 
 - [ ] **Step 3: Tag + commit spec note**
 
 ```bash
-git tag phase-2-build-index-complete -m "Phase 2 complete: @clawmart/build-index"
-git add docs/superpowers/specs/2026-04-18-clawmart-design.md
+git tag phase-2-build-index-complete -m "Phase 2 complete: @clawforge/build-index"
+git add docs/superpowers/specs/2026-04-18-clawforge-design.md
 git commit -m "docs(spec): mark phase 2 complete"
 ```
 
@@ -1665,7 +1665,7 @@ git commit -m "docs(spec): mark phase 2 complete"
 
 ## Exit criteria
 
-- [ ] `@clawmart/build-index` builds cleanly and binary is emitted.
+- [ ] `@clawforge/build-index` builds cleanly and binary is emitted.
 - [ ] Fixture-based e2e test (`buildIndex`) produces a valid `RegistryIndex` with `verified` flags applied correctly and removed entries excluded.
 - [ ] Coverage thresholds met (lines/statements ≥ 90, functions ≥ 95, branches ≥ 85; `bin.ts` excluded from coverage).
 - [ ] `pnpm lint` clean.
@@ -1673,4 +1673,4 @@ git commit -m "docs(spec): mark phase 2 complete"
 - [ ] No `any`, no `!`, no `@ts-ignore` in `src/` (except `bin.ts` argv parsing if unavoidable).
 - [ ] Tag `phase-2-build-index-complete` on the latest commit of this phase.
 
-When green, Phase 3 (`@clawmart/validator`) planning begins.
+When green, Phase 3 (`@clawforge/validator`) planning begins.

@@ -1,7 +1,7 @@
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { HookEntry } from "@clawmart/schema";
+import type { HookEntry } from "@clawforge/schema";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { installMerge } from "../../src/installers/merge.js";
 import type { InstallerContext } from "../../src/installers/types.js";
@@ -31,8 +31,8 @@ const hook = (): HookEntry => ({
 });
 
 beforeEach(() => {
-  entryDir = mkdtempSync(join(tmpdir(), "clawmart-mergesrc-"));
-  claudeDir = mkdtempSync(join(tmpdir(), "clawmart-mergeclaude-"));
+  entryDir = mkdtempSync(join(tmpdir(), "clawforge-mergesrc-"));
+  claudeDir = mkdtempSync(join(tmpdir(), "clawforge-mergeclaude-"));
   writeFileSync(
     join(entryDir, "hook.json"),
     JSON.stringify({ matcher: "Write", command: "biome" }),

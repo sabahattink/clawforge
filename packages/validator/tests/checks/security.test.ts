@@ -7,7 +7,7 @@ import { checkSecurity } from "../../src/checks/security.js";
 
 let root: string;
 beforeAll(() => {
-  root = mkdtempSync(join(tmpdir(), "clawmart-sec-"));
+  root = mkdtempSync(join(tmpdir(), "clawforge-sec-"));
   mkdirSync(join(root, "hooks", "evil"), { recursive: true });
   mkdirSync(join(root, "hooks", "warn"), { recursive: true });
   mkdirSync(join(root, "hooks", "safe"), { recursive: true });

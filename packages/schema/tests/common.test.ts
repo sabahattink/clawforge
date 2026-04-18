@@ -99,7 +99,7 @@ describe("BaseEntrySchema", () => {
       requires: ["skill:tdd-guide"],
       conflicts: ["skill:bdd-workflow"],
       repository: { type: "git", url: "https://github.com/kalkan/tdd" },
-      sourcePR: "https://github.com/kalkan/clawmart/pull/1",
+      sourcePR: "https://github.com/kalkan/clawforge/pull/1",
       claudeCodeVersion: ">=2.0.0",
     });
     expect(parsed.requires).toEqual(["skill:tdd-guide"]);

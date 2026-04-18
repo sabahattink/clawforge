@@ -10,7 +10,7 @@ import { removeCommand } from "../../src/commands/remove.js";
 
 let home: string;
 beforeEach(() => {
-  home = mkdtempSync(join(tmpdir(), "clawmart-cmd-"));
+  home = mkdtempSync(join(tmpdir(), "clawforge-cmd-"));
 });
 afterEach(() => rmSync(home, { recursive: true, force: true }));
 
@@ -54,7 +54,7 @@ describe("doctorCommand", () => {
 
 describe("browseCommand", () => {
   it("returns default URL", () => {
-    expect(browseCommand()).toBe("https://clawmart.dev/browse");
+    expect(browseCommand()).toBe("https://clawforge.dev/browse");
   });
 
   it("invokes open when provided", () => {

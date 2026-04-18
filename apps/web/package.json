@@ -1,8 +1,8 @@
 {
-  "name": "@clawmart/web",
+  "name": "@clawforge/web",
   "version": "0.0.1",
   "private": true,
-  "description": "The clawmart.dev Astro site.",
+  "description": "The clawforge.dev Astro site.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/tailwind": "^5.1.2",
-    "@clawmart/schema": "workspace:*",
+    "@clawforge/schema": "workspace:*",
     "astro": "^5.0.0",
     "tailwindcss": "^3.4.14"
   },

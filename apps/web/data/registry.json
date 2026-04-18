@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-19T12:00:00.000Z",
+  "generatedAt": "2026-04-19T14:00:00.000Z",
   "count": 12,
   "entries": [
     {
@@ -9,14 +9,17 @@
       "name": "code-reviewer",
       "displayName": "Code Reviewer",
       "description": "Reviews diffs for correctness, readability, and common security issues.",
-      "tags": ["review", "security"],
+      "tags": [
+        "review",
+        "security"
+      ],
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/agents/code-reviewer/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/agents/code-reviewer/entry.json",
       "sha256": "6c3b76a90541ee2eed4a6e89b72c8a163d981e53c79941eb26d73ce44fbbe496",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "agent:planner",
@@ -24,14 +27,16 @@
       "name": "planner",
       "displayName": "Planner",
       "description": "Produces a tight implementation plan from a spec or feature request.",
-      "tags": ["planning"],
+      "tags": [
+        "planning"
+      ],
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/agents/planner/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/agents/planner/entry.json",
       "sha256": "d58cb213b6fa3edb1acdddebe9dac4d0242d5120434d8517675ff769e8f5378e",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "cmd:review",
@@ -39,14 +44,16 @@
       "name": "review",
       "displayName": "/review",
       "description": "Run the code-reviewer agent on the current diff or a named PR.",
-      "tags": ["review"],
+      "tags": [
+        "review"
+      ],
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/commands/review/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/commands/review/entry.json",
       "sha256": "b876f7643ef99f9ccc959904d05ae377df533d7709f1bac3e8db4fa13a5cc1ba",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "cmd:test",
@@ -54,14 +61,16 @@
       "name": "test",
       "displayName": "/test",
       "description": "Run the test suite relevant to the current diff.",
-      "tags": ["testing"],
+      "tags": [
+        "testing"
+      ],
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/commands/test/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/commands/test/entry.json",
       "sha256": "b4fcf485c2d49b6ff2c119ce36c84ed0949a1bbb0f5e8d9ceffdeb2ac36cedec",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "hook:auto-format-ts",
@@ -69,12 +78,15 @@
       "name": "auto-format-ts",
       "displayName": "Auto-format TypeScript",
       "description": "Runs Biome format on any TS/TSX file Claude Code just wrote.",
-      "tags": ["devops", "formatting"],
+      "tags": [
+        "devops",
+        "formatting"
+      ],
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/hooks/auto-format-ts/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/hooks/auto-format-ts/entry.json",
       "sha256": "cb77fa4dd7696d14e0895374c0326c18807f50f2db341f27703a9647ff083fa4",
       "updatedAt": "2026-04-18T21:15:43.000Z"
     },
@@ -84,12 +96,15 @@
       "name": "commit-msg-lint",
       "displayName": "Commit-message Lint",
       "description": "Rejects commits whose message does not match Conventional Commits.",
-      "tags": ["git", "conventions"],
+      "tags": [
+        "git",
+        "conventions"
+      ],
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/hooks/commit-msg-lint/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/hooks/commit-msg-lint/entry.json",
       "sha256": "634341c6e2d5f4aaee60dbe985a794b316fbfe0c02627c9c97fa3580c7a1537f",
       "updatedAt": "2026-04-18T21:15:43.000Z"
     },
@@ -99,12 +114,15 @@
       "name": "filesystem",
       "displayName": "Filesystem MCP",
       "description": "Official @modelcontextprotocol filesystem server — read/write files under a root.",
-      "tags": ["filesystem", "official"],
+      "tags": [
+        "filesystem",
+        "official"
+      ],
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/mcp-servers/filesystem/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/mcp-servers/filesystem/entry.json",
       "sha256": "726be59b01457c26a5abcfe313467b8b064a142dd67cc7edb187e6891a932cc0",
       "updatedAt": "2026-04-18T21:15:43.000Z"
     },
@@ -114,12 +132,16 @@
       "name": "strict-tdd",
       "displayName": "Strict TDD bundle",
       "description": "TDD workflow + code-reviewer agent + /review + /test + commit-msg-lint.",
-      "tags": ["tdd", "testing", "bundle"],
+      "tags": [
+        "tdd",
+        "testing",
+        "bundle"
+      ],
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/presets/strict-tdd/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/presets/strict-tdd/entry.json",
       "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "updatedAt": "2026-04-18T21:15:43.000Z"
     },
@@ -129,14 +151,17 @@
       "name": "receiving-code-review",
       "displayName": "Receiving Code Review",
       "description": "Turn review comments into better code without thrashing or ego.",
-      "tags": ["review", "collaboration"],
+      "tags": [
+        "review",
+        "collaboration"
+      ],
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/skills/receiving-code-review/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/skills/receiving-code-review/entry.json",
       "sha256": "85bdb5bf2d7afad4d6c2efc3af8d6c497520a740c6b1b00c75dc45fa32191d1a",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "skill:systematic-debugging",
@@ -144,14 +169,17 @@
       "name": "systematic-debugging",
       "displayName": "Systematic Debugging",
       "description": "Narrow the search space with the scientific method before touching code.",
-      "tags": ["debugging", "methodology"],
+      "tags": [
+        "debugging",
+        "methodology"
+      ],
       "category": "debugging",
       "verified": true,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/skills/systematic-debugging/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/skills/systematic-debugging/entry.json",
       "sha256": "cecc6cf0670b53898f385be77df523dcbec0ad390d42606716d110b4342d9bfe",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "skill:tdd-workflow",
@@ -159,14 +187,18 @@
       "name": "tdd-workflow",
       "displayName": "TDD Workflow",
       "description": "Write tests first, enforce red-green-refactor, keep commits tight.",
-      "tags": ["testing", "tdd", "workflow"],
+      "tags": [
+        "testing",
+        "tdd",
+        "workflow"
+      ],
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sha256": "2727e018eb0c5002bfda27d01a9ca109786430ef876b0efde9405689923cbad8",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "skill:writing-plans",
@@ -174,14 +206,17 @@
       "name": "writing-plans",
       "displayName": "Writing Implementation Plans",
       "description": "Turn a spec into a tight task list: exact files, complete code, TDD per task.",
-      "tags": ["planning", "methodology"],
+      "tags": [
+        "planning",
+        "methodology"
+      ],
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/skills/writing-plans/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/skills/writing-plans/entry.json",
       "sha256": "cf168641106d1c2ae068044d18ddf93e5f14c057ce0b520756315b3a238d9302",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     }
   ]
 }

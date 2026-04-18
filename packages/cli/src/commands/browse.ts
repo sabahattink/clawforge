@@ -4,7 +4,7 @@ export type BrowseOptions = {
 };
 
 export function browseCommand(opts: BrowseOptions = {}): string {
-  const base = opts.webBase ?? "https://clawmart.dev";
+  const base = opts.webBase ?? "https://clawforge.dev";
   const url = `${base.replace(/\/$/, "")}/browse`;
   if (opts.open !== undefined) opts.open(url);
   return url;

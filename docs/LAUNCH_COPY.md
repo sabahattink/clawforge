@@ -9,18 +9,18 @@ Draft posts for launch day. Customise before posting; the core pitch stays.
 **Title** (80-char limit)
 
 ```
-Show HN: Clawmart – An npm-like registry for Claude Code skills and agents
+Show HN: Clawforge – An npm-like registry for Claude Code skills and agents
 ```
 
 **Body**
 
 ```
-I built clawmart because the Claude Code ecosystem is scattered — skills in a
+I built clawforge because the Claude Code ecosystem is scattered — skills in a
 dozen gists, agent definitions in private configs, MCP server snippets in
 random READMEs. I wanted `npx create-next-app` energy for Claude Code
 assets.
 
-So: `npx clawmart add skill:tdd-workflow` and you get a plain SKILL.md under
+So: `npx clawforge add skill:tdd-workflow` and you get a plain SKILL.md under
 ~/.claude/skills/ that you can read, edit, and delete. Shadcn-style — you
 own the code, no runtime.
 
@@ -38,8 +38,8 @@ MVP ships 12 seed entries across every kind. 38 more in the backlog.
 Design spec, plans, maintainer playbook, and the security policy are all in
 the repo. Happy to answer anything.
 
-GitHub: github.com/kalkan/clawmart
-Site: clawmart.dev
+GitHub: github.com/kalkan/clawforge
+Site: clawforge.dev
 ```
 
 ---
@@ -57,9 +57,9 @@ I built a registry + CLI for Claude Code skills and agents (one-command installs
 ```
 If you've wanted a single place to find Claude Code skills / agents / hooks /
 MCP configs, and install them without cargo-culting config snippets — I
-think you'll like clawmart.
+think you'll like clawforge.
 
-`npx clawmart add skill:tdd-workflow`
+`npx clawforge add skill:tdd-workflow`
 
 The file lands at ~/.claude/skills/tdd-workflow/SKILL.md. No magic
 filesystem, no plugin engine — just a copied file you own.
@@ -74,7 +74,7 @@ Built-in:
 
 Self-hostable if you want a private registry.
 
-GitHub: github.com/kalkan/clawmart — would love first-week feedback.
+GitHub: github.com/kalkan/clawforge — would love first-week feedback.
 ```
 
 ---
@@ -84,7 +84,7 @@ GitHub: github.com/kalkan/clawmart — would love first-week feedback.
 **Title**
 
 ```
-Clawmart — shadcn/ui for Claude Code assets (single npx install, no lock-in)
+Clawforge — shadcn/ui for Claude Code assets (single npx install, no lock-in)
 ```
 
 **Body** (shorter, CLI audience)
@@ -92,12 +92,12 @@ Clawmart — shadcn/ui for Claude Code assets (single npx install, no lock-in)
 ```
 One-command install, copy-paste semantics, full reversibility.
 
-`npx clawmart add skill:tdd-workflow`
+`npx clawforge add skill:tdd-workflow`
 
 Reads from a public registry (self-hostable). Every install records a
 before-snapshot for JSON-merge entries so `remove` genuinely reverts.
 
-Repo: github.com/kalkan/clawmart
+Repo: github.com/kalkan/clawforge
 ```
 
 ---
@@ -106,14 +106,14 @@ Repo: github.com/kalkan/clawmart
 
 1.
 ```
-I built clawmart — an npm-like registry for Claude Code skills, agents,
+I built clawforge — an npm-like registry for Claude Code skills, agents,
 hooks, and MCP servers.
 
 one command. one file written. fully reversible.
 
-`npx clawmart add skill:tdd-workflow`
+`npx clawforge add skill:tdd-workflow`
 
-github.com/kalkan/clawmart
+github.com/kalkan/clawforge
 ```
 
 2.
@@ -121,7 +121,7 @@ github.com/kalkan/clawmart
 the trigger: every Claude Code user I know has the same folder of gists
 they paste into ~/.claude/skills every time they start a project.
 
-clawmart is that folder, curated, searchable, and installable in one
+clawforge is that folder, curated, searchable, and installable in one
 command.
 ```
 
@@ -129,7 +129,7 @@ command.
 ```
 shadcn-style philosophy: you own the code.
 
-clawmart doesn't hide your skills behind a resolver or runtime. it writes a
+clawforge doesn't hide your skills behind a resolver or runtime. it writes a
 plain file to ~/.claude/skills/<name>/SKILL.md. open it, edit it, commit it
 to your dotfiles — it's yours.
 ```
@@ -144,7 +144,7 @@ the manifest records:
 - sha256 of content
 - source commit of the registry
 
-`clawmart remove` restores state cleanly.
+`clawforge remove` restores state cleanly.
 ```
 
 5.
@@ -152,7 +152,7 @@ the manifest records:
 the scary part about distributing configs: one malicious hook snippet with
 `rm -rf $HOME` can brick a dev's machine.
 
-clawmart's validator blocks dangerous patterns before they merge. also
+clawforge's validator blocks dangerous patterns before they merge. also
 flags sudo, credential-path reads, obfuscated shell.
 
 CI gate, not optional.
@@ -193,8 +193,8 @@ presets — strict-tdd bundle
 
 9.
 ```
-repo: github.com/kalkan/clawmart
-site: clawmart.dev
+repo: github.com/kalkan/clawforge
+site: clawforge.dev
 docs: full maintainer playbook, security policy, branch-protection guide
 already in the repo.
 
@@ -205,7 +205,7 @@ first-week feedback is gold. would appreciate the signal boost 🙏
 
 ## dev.to article outline
 
-**Title**: "How I built clawmart: a registry for the Claude Code ecosystem"
+**Title**: "How I built clawforge: a registry for the Claude Code ecosystem"
 
 Sections:
 
@@ -229,12 +229,12 @@ Targets: TLDR Dev, Console.dev, Pointer.io, Terminal Trove, Hacker News Weekly.
 **Pitch template** (~100 words each):
 
 ```
-Subject: Clawmart — an npm-like registry for Claude Code skills and agents
+Subject: Clawforge — an npm-like registry for Claude Code skills and agents
 
 Hi <name>,
 
-If you cover Claude Code / AI tooling I think clawmart might fit an upcoming
-issue. It's an open-source registry + CLI — `npx clawmart add skill:X` and
+If you cover Claude Code / AI tooling I think clawforge might fit an upcoming
+issue. It's an open-source registry + CLI — `npx clawforge add skill:X` and
 you get a copy-paste, reversible install with security gates baked in.
 
 One-paragraph pitch:
@@ -243,8 +243,8 @@ One-paragraph pitch:
 - Security scanner blocks dangerous patterns before merge
 - Self-hostable for private registries
 
-Repo: github.com/kalkan/clawmart
-Site: clawmart.dev
+Repo: github.com/kalkan/clawforge
+Site: clawforge.dev
 
 Happy to do a 5-minute walkthrough on video if it helps.
 

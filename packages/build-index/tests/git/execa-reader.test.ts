@@ -9,7 +9,7 @@ let repo: string;
 let reader: ExecaGitReader;
 
 beforeAll(async () => {
-  repo = mkdtempSync(join(tmpdir(), "clawmart-git-"));
+  repo = mkdtempSync(join(tmpdir(), "clawforge-git-"));
   await execa("git", ["init", "-q"], { cwd: repo });
   await execa("git", ["config", "user.email", "test@example.com"], { cwd: repo });
   await execa("git", ["config", "user.name", "Test"], { cwd: repo });

@@ -6,7 +6,7 @@ import { HttpRegistryClient } from "../../src/registry/client.js";
 
 let cacheDir: string;
 beforeEach(() => {
-  cacheDir = mkdtempSync(join(tmpdir(), "clawmart-clientcache-"));
+  cacheDir = mkdtempSync(join(tmpdir(), "clawforge-clientcache-"));
 });
 afterEach(() => rmSync(cacheDir, { recursive: true, force: true }));
 

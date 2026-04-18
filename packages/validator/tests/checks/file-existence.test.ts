@@ -7,7 +7,7 @@ import type { LoadedEntry } from "../../src/checks/schema.js";
 
 let root: string;
 beforeAll(() => {
-  root = mkdtempSync(join(tmpdir(), "clawmart-fe-"));
+  root = mkdtempSync(join(tmpdir(), "clawforge-fe-"));
   mkdirSync(join(root, "skills", "tdd"), { recursive: true });
   writeFileSync(join(root, "skills", "tdd", "skill.md"), "content", "utf8");
 });

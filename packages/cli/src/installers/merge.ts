@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 import { getPath, setPath } from "../jsonpath.js";
 import { type InstallResult, type InstallerContext, emptyResult } from "./types.js";
 

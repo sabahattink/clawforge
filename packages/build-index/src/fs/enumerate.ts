@@ -1,6 +1,6 @@
 import { readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
-import type { Kind } from "@clawmart/schema";
+import type { Kind } from "@clawforge/schema";
 
 export type EntryLocation = {
   kind: Kind;

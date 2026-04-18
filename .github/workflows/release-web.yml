@@ -25,22 +25,22 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm --filter @clawmart/schema build
-      - run: pnpm --filter @clawmart/build-index build
+      - run: pnpm --filter @clawforge/schema build
+      - run: pnpm --filter @clawforge/build-index build
 
       - name: Hydrate web data from CDN
         run: |
           mkdir -p apps/web/data
-          curl -sSfL https://cdn.clawmart.dev/registry.json \
+          curl -sSfL https://cdn.clawforge.dev/registry.json \
             -o apps/web/data/registry.json || \
             echo "::warning::CDN fetch failed; using repo fixture"
 
       - name: Build site
-        run: pnpm --filter @clawmart/web build
+        run: pnpm --filter @clawforge/web build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/web/dist --project-name=clawmart
+          command: pages deploy apps/web/dist --project-name=clawforge

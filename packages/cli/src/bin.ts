@@ -18,7 +18,7 @@ import type { PromptFn } from "./installers/types.js";
 import type { Scope } from "./manifest/types.js";
 import { HttpRegistryClient } from "./registry/client.js";
 
-const DEFAULT_CDN = "https://cdn.clawmart.dev";
+const DEFAULT_CDN = "https://cdn.clawforge.dev";
 
 type GlobalOpts = {
   scope?: Scope;
@@ -56,7 +56,7 @@ function promptFn(opts: GlobalOpts): PromptFn {
 async function main(): Promise<void> {
   const program = new Command();
   program
-    .name("clawmart")
+    .name("clawforge")
     .description("The registry for Claude Code.")
     .version("0.0.1")
     .option("--scope <scope>", "install scope: global or project")
@@ -70,7 +70,7 @@ async function main(): Promise<void> {
 
   program
     .command("init")
-    .description("initialise a clawmart manifest")
+    .description("initialise a clawforge manifest")
     .action(async () => {
       const o = program.opts<GlobalOpts>();
       const scope: Scope = o.scope ?? "global";
@@ -83,7 +83,7 @@ async function main(): Promise<void> {
     .description("install an entry by id (e.g. skill:tdd-workflow)")
     .action(async (id: string) => {
       const o = program.opts<GlobalOpts>();
-      const downloadDir = await mkdtemp(join(tmpdir(), "clawmart-dl-"));
+      const downloadDir = await mkdtemp(join(tmpdir(), "clawforge-dl-"));
       const result = await addCommand({
         id,
         client: makeClient(o),
@@ -206,7 +206,7 @@ async function main(): Promise<void> {
 
   program
     .command("browse")
-    .description("open the clawmart web site")
+    .description("open the clawforge web site")
     .action(() => {
       const url = browseCommand();
       process.stdout.write(`${url}\n`);

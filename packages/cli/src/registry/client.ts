@@ -1,4 +1,4 @@
-import type { Entry, RegistryIndex } from "@clawmart/schema";
+import type { Entry, RegistryIndex } from "@clawforge/schema";
 import { type CacheOptions, readCached, writeCache } from "./cache.js";
 
 export type RegistryClient = {

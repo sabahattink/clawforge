@@ -1,5 +1,5 @@
 ---
-import type { Kind } from "@clawmart/schema";
+import type { Kind } from "@clawforge/schema";
 import CopyableCommand from "../../components/CopyableCommand.astro";
 import EntryCard from "../../components/EntryCard.astro";
 import Base from "../../layouts/Base.astro";
@@ -23,10 +23,10 @@ const related = all
   )
   .slice(0, 3);
 const kindDir = kindDirName(entry.kind as Kind);
-const sourceUrl = `https://github.com/kalkan/clawmart/tree/main/registry/${kindDir}/${entry.name}`;
+const sourceUrl = `https://github.com/kalkan/clawforge/tree/main/registry/${kindDir}/${entry.name}`;
 ---
 
-<Base title={`${entry.displayName} — clawmart`} description={entry.description}>
+<Base title={`${entry.displayName} — clawforge`} description={entry.description}>
   <section class="py-8">
     <p class="mb-2 text-xs text-zinc-500">
       <a href="/browse" class="hover:text-brand">browse</a>
@@ -57,7 +57,7 @@ const sourceUrl = `https://github.com/kalkan/clawmart/tree/main/registry/${kindD
   </section>
 
   <section class="mb-8">
-    <CopyableCommand command={`npx clawmart add ${entry.id}`} />
+    <CopyableCommand command={`npx clawforge add ${entry.id}`} />
   </section>
 
   <section class="mb-8 flex flex-wrap gap-2">
@@ -83,7 +83,7 @@ const sourceUrl = `https://github.com/kalkan/clawmart/tree/main/registry/${kindD
       <dd class="truncate font-mono text-xs" title={entry.sha256}>{entry.sha256}</dd>
       <dt class="text-zinc-500">Source</dt>
       <dd>
-        <a href={sourceUrl} class="text-brand hover:underline">github.com/kalkan/clawmart</a>
+        <a href={sourceUrl} class="text-brand hover:underline">github.com/kalkan/clawforge</a>
       </dd>
     </dl>
   </section>

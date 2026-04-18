@@ -1,7 +1,7 @@
 {
-  "name": "@clawmart/schema",
+  "name": "@clawforge/schema",
   "version": "0.0.1",
-  "description": "Zod schemas and TypeScript types for clawmart registry entries.",
+  "description": "Zod schemas and TypeScript types for clawforge registry entries.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",

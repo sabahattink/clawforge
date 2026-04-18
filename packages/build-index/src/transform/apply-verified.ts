@@ -1,4 +1,4 @@
-import type { Entry, VerifiedIndex } from "@clawmart/schema";
+import type { Entry, VerifiedIndex } from "@clawforge/schema";
 
 export function applyVerifiedIndex(entries: Entry[], idx: VerifiedIndex): Entry[] {
   return entries.map((entry) => {

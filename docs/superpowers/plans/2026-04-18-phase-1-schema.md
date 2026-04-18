@@ -1,14 +1,14 @@
-# Phase 1: `@clawmart/schema` — Implementation Plan
+# Phase 1: `@clawforge/schema` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ship `@clawmart/schema` — a Zod-based package that validates every `entry.json` shape in the clawmart registry, exports TypeScript types, and parses namespace IDs (`skill:foo`, `skill:@user/foo`). The package is the dependency foundation for Phases 2–5 (build-index, validator, CLI, web).
+**Goal:** Ship `@clawforge/schema` — a Zod-based package that validates every `entry.json` shape in the clawforge registry, exports TypeScript types, and parses namespace IDs (`skill:foo`, `skill:@user/foo`). The package is the dependency foundation for Phases 2–5 (build-index, validator, CLI, web).
 
 **Architecture:** Single `packages/schema/` workspace package. One Zod schema per entry kind (skill, agent, hook, mcp, cmd, preset), composed into a `z.discriminatedUnion` keyed by `kind`. TS types inferred via `z.infer`. Pure library — no I/O, no side effects. Along the way this phase scaffolds the monorepo root (pnpm + Turborepo + Biome + base tsconfig), because P1 is the first package.
 
 **Tech Stack:** TypeScript 5.9, Zod 3.23+, Vitest 2, Biome 1, pnpm 9, Turborepo 2, tsup 8.
 
-**Spec reference:** [2026-04-18-clawmart-design.md](../specs/2026-04-18-clawmart-design.md) §4 (Registry schema).
+**Spec reference:** [2026-04-18-clawforge-design.md](../specs/2026-04-18-clawforge-design.md) §4 (Registry schema).
 
 ---
 
@@ -16,8 +16,8 @@
 
 - Node.js 20+ (`node -v` must print `v20.x` or higher)
 - pnpm 9+ (install: `npm install -g pnpm@9`)
-- Git initialised in `H:/60_OSS/clawmart/` (already done — verify with `git log --oneline`)
-- Working directory for all commands: `H:/60_OSS/clawmart/`
+- Git initialised in `H:/60_OSS/clawforge/` (already done — verify with `git log --oneline`)
+- Working directory for all commands: `H:/60_OSS/clawforge/`
 
 ## File Structure
 
@@ -75,7 +75,7 @@
 - **Language:** All code and commit messages in English. Plan prose can be Turkish but the artifacts are English.
 - **Commits:** Conventional commits (`feat:`, `test:`, `chore:`, `refactor:`). One commit per task.
 - **Tests first (TDD):** Every task writes a failing test, runs it to confirm failure, implements, re-runs to confirm pass, commits.
-- **Run tests from repo root** using `pnpm --filter @clawmart/schema test` unless stated otherwise.
+- **Run tests from repo root** using `pnpm --filter @clawforge/schema test` unless stated otherwise.
 - **No `any`, no `as` casts, no `// @ts-ignore`** in `src/`. In tests, casts are allowed only inside fixture builders.
 - **File size limit:** ≤ 200 lines per `src/` file; split if exceeded.
 
@@ -144,11 +144,11 @@ SOFTWARE.
 - [ ] **Step 4: Write minimal `README.md`**
 
 ```markdown
-# clawmart
+# clawforge
 
 The registry for Claude Code — skills, agents, hooks, and MCP servers installable with one command.
 
-> Status: pre-alpha. See [design spec](docs/superpowers/specs/2026-04-18-clawmart-design.md).
+> Status: pre-alpha. See [design spec](docs/superpowers/specs/2026-04-18-clawforge-design.md).
 
 License: MIT.
 ```
@@ -157,7 +157,7 @@ License: MIT.
 
 ```json
 {
-  "name": "clawmart",
+  "name": "clawforge",
   "private": true,
   "version": "0.0.0",
   "description": "The registry for Claude Code.",
@@ -315,7 +315,7 @@ git commit -m "chore: configure Biome for lint and format"
 
 ---
 
-### Task 3: Scaffold `@clawmart/schema` package
+### Task 3: Scaffold `@clawforge/schema` package
 
 **Files:**
 - Create: `packages/schema/package.json`
@@ -328,9 +328,9 @@ git commit -m "chore: configure Biome for lint and format"
 
 ```json
 {
-  "name": "@clawmart/schema",
+  "name": "@clawforge/schema",
   "version": "0.0.1",
-  "description": "Zod schemas and TypeScript types for clawmart registry entries.",
+  "description": "Zod schemas and TypeScript types for clawforge registry entries.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -434,7 +434,7 @@ Expected: pnpm links the workspace package, installs Zod and Vitest. Exit code 0
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema typecheck
+pnpm --filter @clawforge/schema typecheck
 ```
 
 Expected: TypeScript compiles with zero errors. Exit code 0.
@@ -443,7 +443,7 @@ Expected: TypeScript compiles with zero errors. Exit code 0.
 
 ```bash
 git add packages/schema/ pnpm-lock.yaml
-git commit -m "chore(schema): scaffold @clawmart/schema package"
+git commit -m "chore(schema): scaffold @clawforge/schema package"
 ```
 
 ---
@@ -494,7 +494,7 @@ describe("KindSchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: Fails with `Cannot find module '../src/constants.js'`.
@@ -535,7 +535,7 @@ export const RECOMMENDED_CATEGORIES = [
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All tests in `constants.test.ts` pass.
@@ -645,7 +645,7 @@ describe("formatId", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: Fails with `Cannot find module '../src/namespace.js'`.
@@ -708,7 +708,7 @@ function assertKind(value: string | undefined): asserts value is Kind {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All namespace + constants tests pass.
@@ -834,7 +834,7 @@ describe("BaseEntrySchema", () => {
       requires: ["skill:tdd-guide"],
       conflicts: ["skill:bdd-workflow"],
       repository: { type: "git", url: "https://github.com/kalkan/tdd" },
-      sourcePR: "https://github.com/kalkan/clawmart/pull/1",
+      sourcePR: "https://github.com/kalkan/clawforge/pull/1",
       claudeCodeVersion: ">=2.0.0",
     });
     expect(parsed.requires).toEqual(["skill:tdd-guide"]);
@@ -846,7 +846,7 @@ describe("BaseEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: Fails with `Cannot find module '../src/common.js'`.
@@ -886,7 +886,7 @@ export const IdReferenceSchema = z
   .string()
   .regex(
     /^(skill|agent|hook|mcp|cmd|preset):(@[a-zA-Z0-9][a-zA-Z0-9-]{0,38}\/)?[a-z][a-z0-9-]{0,63}$/,
-    "must be a clawmart id",
+    "must be a clawforge id",
   );
 
 export const BaseEntrySchema = z
@@ -930,7 +930,7 @@ export const RECOMMENDED_CATEGORY_SET: ReadonlySet<string> = new Set(
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All `common.test.ts` cases pass. Existing tests still pass.
@@ -1073,7 +1073,7 @@ describe("SkillEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: Fails with `Cannot find module '../src/skill.js'`.
@@ -1130,7 +1130,7 @@ export type SkillEntry = z.infer<typeof SkillEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All skill tests pass. Existing tests still pass.
@@ -1197,7 +1197,7 @@ describe("AgentEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: `Cannot find module '../src/agent.js'`.
@@ -1223,7 +1223,7 @@ export type AgentEntry = z.infer<typeof AgentEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All agent tests pass.
@@ -1281,7 +1281,7 @@ describe("CommandEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: `Cannot find module '../src/command.js'`.
@@ -1308,7 +1308,7 @@ export type CommandEntry = z.infer<typeof CommandEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: All command tests pass.
@@ -1379,7 +1379,7 @@ describe("HookEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/hook.ts`**
@@ -1417,7 +1417,7 @@ export type HookEntry = z.infer<typeof HookEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -1490,7 +1490,7 @@ describe("McpEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/mcp.ts`**
@@ -1537,7 +1537,7 @@ export type McpEntry = z.infer<typeof McpEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -1616,7 +1616,7 @@ describe("PresetEntrySchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/preset.ts`**
@@ -1653,7 +1653,7 @@ export type PresetEntry = z.infer<typeof PresetEntrySchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -1746,7 +1746,7 @@ describe("parseEntry", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/entry.ts`**
@@ -1801,7 +1801,7 @@ export function parseEntry(input: unknown): Entry {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -1843,7 +1843,7 @@ const validIndexEntry = {
   verified: true,
   version: "1.2.0",
   author: "kalkan",
-  detailUrl: "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+  detailUrl: "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
   sha256: "a".repeat(64),
   updatedAt: "2026-04-18T12:00:00.000Z",
 };
@@ -1939,7 +1939,7 @@ describe("RemovedIndexSchema", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/registry.ts`**
@@ -2037,7 +2037,7 @@ export type RemovedIndex = z.infer<typeof RemovedIndexSchema>;
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -2098,7 +2098,7 @@ describe("public API", () => {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 3: Implement `src/index.ts`**
@@ -2150,7 +2150,7 @@ export {
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 - [ ] **Step 5: Commit**
@@ -2170,7 +2170,7 @@ git commit -m "feat(schema): wire public API exports"
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema typecheck
+pnpm --filter @clawforge/schema typecheck
 ```
 
 Expected: exit code 0, zero errors.
@@ -2179,7 +2179,7 @@ Expected: exit code 0, zero errors.
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema test
+pnpm --filter @clawforge/schema test
 ```
 
 Expected: all tests pass, coverage ≥ 95 % on lines/statements/functions and ≥ 90 % on branches. If a threshold fails, add missing tests in a new commit before proceeding.
@@ -2188,7 +2188,7 @@ Expected: all tests pass, coverage ≥ 95 % on lines/statements/functions and �
 
 Run:
 ```bash
-pnpm --filter @clawmart/schema build
+pnpm --filter @clawforge/schema build
 ```
 
 Expected: `packages/schema/dist/` contains `index.js`, `index.cjs`, `index.d.ts`, and sourcemaps. No build errors.
@@ -2221,7 +2221,7 @@ const entry = parseEntry({
 console.log(entry.kind, formatId({ kind: "skill", user: null, name: "smoke" }));
 ```
 
-Commands (run from `H:/60_OSS/clawmart/`):
+Commands (run from `H:/60_OSS/clawforge/`):
 
 ```bash
 mkdir -p .tmp
@@ -2272,20 +2272,20 @@ Otherwise move on.
 - [ ] **Step 1: Write `packages/schema/README.md`**
 
 ```markdown
-# @clawmart/schema
+# @clawforge/schema
 
-Zod schemas and TypeScript types for the clawmart registry.
+Zod schemas and TypeScript types for the clawforge registry.
 
 ## Install
 
 ```bash
-pnpm add @clawmart/schema
+pnpm add @clawforge/schema
 ```
 
 ## Usage
 
 ```ts
-import { parseEntry, EntrySchema } from "@clawmart/schema";
+import { parseEntry, EntrySchema } from "@clawforge/schema";
 
 const entry = parseEntry(JSON.parse(await fs.readFile("entry.json", "utf8")));
 // entry is narrowed by its discriminator: SkillEntry | AgentEntry | ...
@@ -2297,7 +2297,7 @@ const result = EntrySchema.safeParse(input);
 ### Namespace IDs
 
 ```ts
-import { parseId, formatId } from "@clawmart/schema";
+import { parseId, formatId } from "@clawforge/schema";
 
 parseId("skill:tdd-workflow");
 // → { kind: "skill", user: null, name: "tdd-workflow" }
@@ -2321,7 +2321,7 @@ All are joined into `EntrySchema` (discriminated on `kind`).
 
 ## Stability
 
-Breaking changes are released as major bumps. See [the clawmart design spec](../../docs/superpowers/specs/2026-04-18-clawmart-design.md).
+Breaking changes are released as major bumps. See [the clawforge design spec](../../docs/superpowers/specs/2026-04-18-clawforge-design.md).
 
 License: MIT.
 ```
@@ -2343,7 +2343,7 @@ git commit -m "docs(schema): add package README"
 
 Run:
 ```bash
-pnpm lint && pnpm --filter @clawmart/schema typecheck && pnpm --filter @clawmart/schema test && pnpm --filter @clawmart/schema build
+pnpm lint && pnpm --filter @clawforge/schema typecheck && pnpm --filter @clawforge/schema test && pnpm --filter @clawforge/schema build
 ```
 
 Expected: every step exits 0. Tests green, coverage thresholds met, build artifacts emitted.
@@ -2352,7 +2352,7 @@ Expected: every step exits 0. Tests green, coverage thresholds met, build artifa
 
 Run:
 ```bash
-git tag phase-1-schema-complete -m "Phase 1 complete: @clawmart/schema ready for consumption by phases 2-5"
+git tag phase-1-schema-complete -m "Phase 1 complete: @clawforge/schema ready for consumption by phases 2-5"
 git log --oneline | head -20
 ```
 
@@ -2360,7 +2360,7 @@ Expected: the tag appears on the latest commit. A summary of roughly 18–22 com
 
 - [ ] **Step 3: Update the spec's open questions**
 
-In `H:/60_OSS/clawmart/docs/superpowers/specs/2026-04-18-clawmart-design.md`, append the following line to §11 Open questions if not already present:
+In `H:/60_OSS/clawforge/docs/superpowers/specs/2026-04-18-clawforge-design.md`, append the following line to §11 Open questions if not already present:
 
 ```
 - Phase 1 status: ✅ complete (tag `phase-1-schema-complete`, commit as of sign-off).
@@ -2369,7 +2369,7 @@ In `H:/60_OSS/clawmart/docs/superpowers/specs/2026-04-18-clawmart-design.md`, ap
 - [ ] **Step 4: Commit the spec note**
 
 ```bash
-git add docs/superpowers/specs/2026-04-18-clawmart-design.md
+git add docs/superpowers/specs/2026-04-18-clawforge-design.md
 git commit -m "docs(spec): mark phase 1 complete"
 ```
 
@@ -2377,7 +2377,7 @@ git commit -m "docs(spec): mark phase 1 complete"
 
 ## Exit criteria (all must hold)
 
-- [ ] `@clawmart/schema` builds cleanly (`pnpm --filter @clawmart/schema build`).
+- [ ] `@clawforge/schema` builds cleanly (`pnpm --filter @clawforge/schema build`).
 - [ ] Test coverage ≥ 95 % lines/statements/functions, ≥ 90 % branches.
 - [ ] `pnpm lint` is clean across the repo.
 - [ ] `EntrySchema.parse` round-trips each of the 6 kinds.

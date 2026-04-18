@@ -10,9 +10,9 @@ Expect an acknowledgement within 24 hours. Coordinated disclosure window is 14 d
 
 ## Scope
 
-- `@clawmart/cli` install/remove/update flows (arbitrary file writes, privilege escalation)
-- `@clawmart/validator` security scanner (missed BLOCK patterns)
-- `@clawmart/build-index` artefact integrity (sha256 verification, supply-chain)
+- `@clawforge/cli` install/remove/update flows (arbitrary file writes, privilege escalation)
+- `@clawforge/validator` security scanner (missed BLOCK patterns)
+- `@clawforge/build-index` artefact integrity (sha256 verification, supply-chain)
 - Malicious entries in the registry (prefer the takedown request template for non-novel cases)
 
 ## Out of scope

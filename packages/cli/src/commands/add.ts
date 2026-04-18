@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { type Entry, type IndexEntry, parseEntry, parseId } from "@clawmart/schema";
+import { type Entry, type IndexEntry, parseEntry, parseId } from "@clawforge/schema";
 import { installEntry } from "../installers/dispatch.js";
 import type { PromptFn } from "../installers/types.js";
 import { readManifest, upsert, writeManifest } from "../manifest/io.js";

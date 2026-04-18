@@ -1,4 +1,4 @@
-import type { Entry, VerifiedIndex } from "@clawmart/schema";
+import type { Entry, VerifiedIndex } from "@clawforge/schema";
 import { describe, expect, it } from "vitest";
 import { applyVerifiedIndex } from "../../src/transform/apply-verified.js";
 

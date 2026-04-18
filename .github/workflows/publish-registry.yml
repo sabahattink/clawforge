@@ -34,16 +34,16 @@ jobs:
 
       - name: Build pipeline
         run: |
-          pnpm --filter @clawmart/schema build
-          pnpm --filter @clawmart/build-index build
+          pnpm --filter @clawforge/schema build
+          pnpm --filter @clawforge/build-index build
 
       - name: Generate registry artefacts
         run: |
           node packages/build-index/dist/bin.js \
             --registry ./registry \
             --out ./dist \
-            --cdn-base https://cdn.clawmart.dev \
-            --site-base https://clawmart.dev \
+            --cdn-base https://cdn.clawforge.dev \
+            --site-base https://clawforge.dev \
             --generated-at "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
 
       - name: Write health marker
@@ -61,21 +61,21 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          npx wrangler@3 r2 object put clawmart-cdn/registry.json \
+          npx wrangler@3 r2 object put clawforge-cdn/registry.json \
             --file=dist/registry.json --content-type=application/json
           for f in skills agents commands hooks mcp presets; do
             if [ -f dist/$f.json ]; then
-              npx wrangler@3 r2 object put clawmart-cdn/$f.json \
+              npx wrangler@3 r2 object put clawforge-cdn/$f.json \
                 --file=dist/$f.json --content-type=application/json
             fi
           done
-          npx wrangler@3 r2 object put clawmart-cdn/sitemap.xml \
+          npx wrangler@3 r2 object put clawforge-cdn/sitemap.xml \
             --file=dist/sitemap.xml --content-type=application/xml
-          npx wrangler@3 r2 object put clawmart-cdn/feed.xml \
+          npx wrangler@3 r2 object put clawforge-cdn/feed.xml \
             --file=dist/feed.xml --content-type=application/rss+xml
-          npx wrangler@3 r2 object put clawmart-cdn/tombstones.json \
+          npx wrangler@3 r2 object put clawforge-cdn/tombstones.json \
             --file=dist/tombstones.json --content-type=application/json
-          npx wrangler@3 r2 object put clawmart-cdn/health.json \
+          npx wrangler@3 r2 object put clawforge-cdn/health.json \
             --file=dist/health.json --content-type=application/json
 
       - name: Reindex MeiliSearch

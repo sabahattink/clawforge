@@ -22,7 +22,7 @@ labels: ["bug", "needs-triage"]
 
 ## Environment
 
-- Package: `@clawmart/cli` / `@clawmart/validator` / `@clawmart/build-index` / web
+- Package: `@clawforge/cli` / `@clawforge/validator` / `@clawforge/build-index` / web
 - Version:
 - OS:
 - Node:

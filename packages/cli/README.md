@@ -1,20 +1,20 @@
-# @clawmart/cli
+# @clawforge/cli
 
-The clawmart CLI — install Claude Code skills, agents, hooks, and MCP servers with one command.
+The clawforge CLI — install Claude Code skills, agents, hooks, and MCP servers with one command.
 
 ## Install
 
 ```bash
-npm install -g @clawmart/cli
+npm install -g @clawforge/cli
 # or
-npx clawmart --help
+npx clawforge --help
 ```
 
 ## Commands
 
 | Command | Description |
 |---|---|
-| `init` | Initialise a clawmart manifest in the chosen scope |
+| `init` | Initialise a clawforge manifest in the chosen scope |
 | `add <id>` | Install an entry (e.g. `skill:tdd-workflow`) |
 | `list` | List installed entries from the manifest |
 | `info <id>` | Show metadata for an entry |
@@ -22,15 +22,15 @@ npx clawmart --help
 | `remove <id>` | Uninstall an entry, reverting files and JSON merges |
 | `update [id]` | Check for and apply updates to tracked entries |
 | `doctor` | Verify installed entries against the manifest |
-| `browse` | Print (or open) the clawmart web site URL |
+| `browse` | Print (or open) the clawforge web site URL |
 
 ## Global flags
 
 | Flag | Purpose |
 |---|---|
 | `--scope <global\|project>` | Install scope (default depends on entry kind) |
-| `--registry <url>` | Alternate registry CDN (default: `https://cdn.clawmart.dev`) |
-| `--track` | Record installs in `.clawmart/manifest.json` so `update` / `remove` can manage them |
+| `--registry <url>` | Alternate registry CDN (default: `https://cdn.clawforge.dev`) |
+| `--track` | Record installs in `.clawforge/manifest.json` so `update` / `remove` can manage them |
 | `--force` | Auto-answer overwrite on file/JSON conflicts |
 | `--dry-run` | Print the plan; write nothing |
 | `--yes`, `-y` | Non-interactive; accept defaults for all prompts |
@@ -40,10 +40,10 @@ npx clawmart --help
 ## Example
 
 ```bash
-clawmart init
-clawmart add skill:tdd-workflow --track
-clawmart list
-clawmart remove skill:tdd-workflow
+clawforge init
+clawforge add skill:tdd-workflow --track
+clawforge list
+clawforge remove skill:tdd-workflow
 ```
 
 ## Scope defaults
@@ -65,19 +65,19 @@ Every install records:
 
 ## Programmatic API
 
-Every command is available as a function via `@clawmart/cli`:
+Every command is available as a function via `@clawforge/cli`:
 
 ```ts
-import { addCommand, HttpRegistryClient } from "@clawmart/cli";
+import { addCommand, HttpRegistryClient } from "@clawforge/cli";
 
 await addCommand({
   id: "skill:tdd-workflow",
-  client: new HttpRegistryClient({ cdnBase: "https://cdn.clawmart.dev" }),
+  client: new HttpRegistryClient({ cdnBase: "https://cdn.clawforge.dev" }),
   track: true,
   force: false,
   dryRun: false,
   onPrompt: async () => "overwrite",
-  downloadDir: "/tmp/clawmart-dl",
+  downloadDir: "/tmp/clawforge-dl",
 });
 ```
 

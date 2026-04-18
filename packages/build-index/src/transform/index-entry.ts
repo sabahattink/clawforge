@@ -1,4 +1,4 @@
-import type { Entry, IndexEntry } from "@clawmart/schema";
+import type { Entry, IndexEntry } from "@clawforge/schema";
 
 export function toIndexEntry(entry: Entry, cdnBase: string): IndexEntry {
   const kindDir = toKindDir(entry.kind);

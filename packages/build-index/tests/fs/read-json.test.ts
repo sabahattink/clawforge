@@ -7,7 +7,7 @@ import { isErr, isOk } from "../../src/types.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-readjson-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-readjson-"));
   writeFileSync(join(dir, "good.json"), '{"a":1}', "utf8");
   writeFileSync(join(dir, "bad.json"), "{not json}", "utf8");
 });

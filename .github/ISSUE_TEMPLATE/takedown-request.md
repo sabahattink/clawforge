@@ -8,7 +8,7 @@ labels: ["takedown-request", "needs-triage"]
 ## Entry
 
 - Entry id: `skill:foo` (or `agent:bar`, etc.)
-- Detail URL: https://cdn.clawmart.dev/...
+- Detail URL: https://cdn.clawforge.dev/...
 
 ## Category
 

@@ -35,7 +35,7 @@ Configure under **Settings → Secrets and variables → Actions**:
 - `CLOUDFLARE_ACCOUNT_ID`
 - `MEILISEARCH_HOST`
 - `MEILISEARCH_API_KEY`
-- `NPM_TOKEN` — automation token with `publish` permission for the `@clawmart` scope
+- `NPM_TOKEN` — automation token with `publish` permission for the `@clawforge` scope
 
 ## Environments
 

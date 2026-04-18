@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { RegistryIndex, RemovedIndex } from "@clawmart/schema";
+import type { RegistryIndex, RemovedIndex } from "@clawforge/schema";
 
 const KIND_TO_FILENAME: Record<string, string> = {
   skill: "skills.json",

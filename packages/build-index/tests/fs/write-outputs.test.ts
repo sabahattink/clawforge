@@ -6,7 +6,7 @@ import { writeOutputs } from "../../src/fs/write-outputs.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-write-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-write-"));
 });
 afterAll(() => rmSync(dir, { recursive: true, force: true }));
 

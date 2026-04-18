@@ -23,7 +23,7 @@ const fakeGit: GitReader = {
 };
 
 beforeAll(() => {
-  distDir = mkdtempSync(join(tmpdir(), "clawmart-build-"));
+  distDir = mkdtempSync(join(tmpdir(), "clawforge-build-"));
 });
 afterAll(() => rmSync(distDir, { recursive: true, force: true }));
 
@@ -32,8 +32,8 @@ describe("buildIndex", () => {
     const result = await buildIndex({
       registryRoot: fixtureRoot,
       distDir,
-      cdnBase: "https://cdn.clawmart.dev",
-      siteBase: "https://clawmart.dev",
+      cdnBase: "https://cdn.clawforge.dev",
+      siteBase: "https://clawforge.dev",
       generatedAt: "2026-04-18T12:00:00.000Z",
       git: fakeGit,
     });

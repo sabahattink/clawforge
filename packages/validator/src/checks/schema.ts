@@ -1,4 +1,4 @@
-import { parseEntry } from "@clawmart/schema";
+import { parseEntry } from "@clawforge/schema";
 import type { ValidationIssue } from "../issue.js";
 
 export type LoadedEntry = {

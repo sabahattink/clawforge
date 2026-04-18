@@ -1,4 +1,4 @@
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 import { describe, expect, it } from "vitest";
 import { toIndexEntry } from "../../src/transform/index-entry.js";
 
@@ -22,16 +22,16 @@ const skill: Entry = {
 
 describe("toIndexEntry", () => {
   it("produces a valid global-namespace index entry", () => {
-    const ix = toIndexEntry(skill, "https://cdn.clawmart.dev");
+    const ix = toIndexEntry(skill, "https://cdn.clawforge.dev");
     expect(ix.id).toBe("skill:tdd-workflow");
-    expect(ix.detailUrl).toBe("https://cdn.clawmart.dev/skills/tdd-workflow/entry.json");
+    expect(ix.detailUrl).toBe("https://cdn.clawforge.dev/skills/tdd-workflow/entry.json");
     expect(ix.author).toBe("kalkan");
     expect(ix.verified).toBe(true);
   });
 
   it("strips trailing slashes from cdnBase", () => {
-    const ix = toIndexEntry(skill, "https://cdn.clawmart.dev/");
-    expect(ix.detailUrl).toBe("https://cdn.clawmart.dev/skills/tdd-workflow/entry.json");
+    const ix = toIndexEntry(skill, "https://cdn.clawforge.dev/");
+    expect(ix.detailUrl).toBe("https://cdn.clawforge.dev/skills/tdd-workflow/entry.json");
   });
 
   it("maps each kind to its registry directory", () => {
