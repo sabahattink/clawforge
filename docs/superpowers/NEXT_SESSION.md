@@ -1,54 +1,94 @@
 # Next Session — Entry Point
 
-**Last session end:** 2026-04-19
-**State of repo:** clean, all work merged to `master`
+**Last session end:** 2026-04-19 (pre-launch state)
+**Repo:** https://github.com/sabahattink/clawforge
+**Working tree:** clean, `master` up to date with origin
+**Local path:** `H:/60_OSS/clawforge/`
 
 ---
 
-## Where we are
+## What shipped so far
 
-Three phases complete and shipped:
+### Code (9 phases complete + rename)
 
-| Phase | Package | Tag | Tests | Notes |
-|---|---|---|---|---|
-| P1 | `@clawforge/schema` | `phase-1-schema-complete` | 70 | Zod schemas + types foundation |
-| P2 | `@clawforge/build-index` | `phase-2-build-index-complete` | 35 | Registry → CDN artefacts pipeline |
-| P3 | `@clawforge/validator` | `phase-3-validator-complete` | 16 | CI auto-gates (schema/dup/file/security) |
-
-Total: **121 tests green**, lint clean, typecheck clean on all three packages.
-
-All three are consumable as workspace packages. `@clawforge/build-index` re-exports `enumerateEntries` which `@clawforge/validator` uses.
-
-## Remaining phases
-
-| # | Phase | Scope |
+| Phase | Package | Tag |
 |---|---|---|
-| **P4** | `@clawforge/cli` | `npx clawforge` — init, add, list, info, update, remove, search, doctor, browse. 6 installer per kind. Manifest I/O. Conflict resolution. Registry fetch + cache. **Biggest phase.** |
-| P5 | Astro web site | `clawforge.dev` — landing / browse / detail / submit / docs / stats / author pages. Shadcn/ui, Tailwind 4, MeiliSearch InstantSearch + Pagefind fallback. OG images via Satori. |
-| P6 | CI/CD | 5 workflows: `validate-pr.yml`, `publish-registry.yml`, `release-cli.yml`, `release-web.yml`, `weekly-health.yml`. Branch protection, CODEOWNERS. Required secrets documented. |
-| P7 | Verified tier tooling | `_verified.json` wiring in build-index, `_removed.json` tombstone handling, CODEOWNERS, issue templates, takedown playbook. |
-| P8 | Seed content | 50 entries authored: 20 skills + 8 agents + 6 hooks + 5 MCP configs + 5 slash commands + 6 presets. All MIT. All by owner. |
-| P9 | Launch readiness | README badges, install GIF, demo video, Plausible analytics, SEO polish, HN / Reddit / Twitter draft copy, newsletter pitches. |
+| P1 | `@clawforge/schema` | `phase-1-schema-complete` |
+| P2 | `@clawforge/build-index` | `phase-2-build-index-complete` |
+| P3 | `@clawforge/validator` | `phase-3-validator-complete` |
+| P4 | `@clawforge/cli` (9 commands) | `phase-4-cli-complete` |
+| P5 | `@clawforge/web` (Astro, 7 pages) | `phase-5-web-complete` |
+| P6 | 5 GitHub Actions workflows + CODEOWNERS | `phase-6-cicd-complete` |
+| P7 | Verified tier + maintainer playbook | `phase-7-verified-complete` |
+| P8 | 12 seed entries (4 verified) | `phase-8-seed-complete` |
+| P9 | README + CONTRIBUTING + FAQ + LAUNCH_COPY | `phase-9-launch-complete` |
+| — | project rename `clawmart` → `clawforge` | `rename-to-clawforge-complete` |
+
+Totals: **176 tests green**, lint clean, 10 tags, all merged to `master`.
+
+### Published to npm
+
+- `@clawforge/schema@0.0.1`
+- `@clawforge/build-index@0.0.1`
+- `@clawforge/validator@0.0.1`
+- `@clawforge/cli@0.0.1`
+
+Try: `npx @clawforge/cli --help`
+
+### GitHub live
+
+- Repo: https://github.com/sabahattink/clawforge
+- Topics: `claude-code, skills, cli, registry, typescript, mcp, agents, anthropic, claude, npm`
+- Discussions + Issues + Wiki: enabled
+- Issue #1: [Call for contributors](https://github.com/sabahattink/clawforge/issues/1)
+- Discussion #2: [clawforge v0.0.1 is live](https://github.com/sabahattink/clawforge/discussions/2)
+
+---
+
+## Do next (in priority order)
+
+### Launch path — morning session work
+
+1. **Pin Discussion #2** (web UI only) — https://github.com/sabahattink/clawforge/discussions/2 → sağ üst menü → Pin discussion.
+2. **Add `NPM_TOKEN` to GitHub Secrets** — required for CI auto-publish on tag push.
+   - Generate fresh granular token at https://www.npmjs.com/settings/sabahattinkalkan/tokens (scope: `@clawforge`, read-and-write, bypass 2FA).
+   - Settings → Secrets and variables → Actions → New secret → Name `NPM_TOKEN`, Value `<token>`.
+   - Or via CLI: `printf '%s' '<token>' | gh secret set NPM_TOKEN --repo sabahattink/clawforge`
+3. **`clawforge.dev` domain** — when purchased:
+   - Cloudflare Pages project: `clawforge` → connect `sabahattink/clawforge` → build command `pnpm --filter @clawforge/web build`, output `apps/web/dist`
+   - DNS: CNAME `@` and `www` to `clawforge.pages.dev`
+4. **Show HN post** — draft ready in `docs/LAUNCH_COPY.md`. Tuesday 09:00 ET (16:00 TRT) is the historical sweet spot.
+5. **Smoke test from a clean machine** — `npm install -g @clawforge/cli && clawforge --help` to verify publish consistency.
+
+### Content backlog (no deadline)
+
+- `docs/SEED_BACKLOG.md` lists 38 remaining entries (target 50).
+- Work through opportunistically pre-launch to thicken the registry.
+
+### Deferred (v2)
+
+- Preset installer recursive fetch — currently errors on `add preset:...`.
+- MeiliSearch-backed fuzzy search in CLI (MVP uses local substring match).
+- Sigstore signing / entry-level SBOM.
+- `clawforge publish` helper command.
+
+---
+
+## Gotchas to remember
+
+- **`.npmrc` handling:** don't let tokens stack. Use `-Encoding ASCII` with `Out-File` without `-Append`. If in doubt, `Remove-Item "$env:USERPROFILE\.npmrc"` and re-establish.
+- **Never paste tokens in chat.** Two earlier exposed tokens have been revoked; keep the current one strictly local.
+- **GitHub handle** is `sabahattink`, full name is `Sabahattin Kalkan`. Tests and fixtures use `"github": "sabahattink"`.
+- **pnpm `--otp` doesn't forward properly** in some setups. Use a granular token with 2FA bypass instead.
+- **Domain defaults:** CDN `cdn.clawforge.dev`, site `clawforge.dev`. Hardcoded in README, launch copy, workflows. When adjusting, grep first.
+- **Preview launch config** lives at `H:/.claude/launch.json` under name `clawforge-web`.
+
+---
 
 ## How to resume
 
-1. Pick the next phase (recommended: P4, the CLI).
-2. Write a detailed implementation plan in `docs/superpowers/plans/2026-MM-DD-phase-N-<name>.md` (follow the P1/P2/P3 pattern).
-3. Dispatch `plan-document-reviewer` subagent for review. Fold in blockers.
-4. Create feature branch `phase-N-<name>`.
-5. Execute via `executing-plans` skill, TDD per task, commit per task, merge to `master` at sign-off with a tag.
+1. Open a fresh Claude Code session in `H:/60_OSS/clawforge/`.
+2. Say: "Resume clawforge — read `docs/superpowers/NEXT_SESSION.md`."
+3. Pick an item from "Do next" above.
 
-## Key design references
-
-- Spec: [`docs/superpowers/specs/2026-04-18-clawforge-design.md`](specs/2026-04-18-clawforge-design.md) — §11 tracks phase progress.
-- Plan archive: `docs/superpowers/plans/` — P1, P2, P3 plans are useful templates.
-
-## Notes / warnings for next session
-
-- **Biome lint rules** are strict (`noExplicitAny`, `noNonNullAssertion`, `useConst`, `noAssignInExpressions`, `useLiteralKeys`). Auto-format with `pnpm exec biome check --fix --unsafe .` before committing when needed.
-- **`noUncheckedIndexedAccess`** is on globally — prefer destructuring defaults over `??`/`!` to satisfy TS without tripping Biome.
-- **`exactOptionalPropertyTypes`** is on — do not pass `{ key: undefined }`, omit the key instead.
-- **Discriminated unions + `.refine()`** — `.refine()` on a `ZodObject` breaks `z.discriminatedUnion`. Use `superRefine` on the union for cross-field invariants (see `packages/schema/src/entry.ts`).
-- **Coverage thresholds** — per-package, tuned to reality. Exclude `src/bin.ts` and sometimes `src/index.ts` (re-export-only) in `vitest.config.ts`.
-- **Git log depth in CI** — P6 workflows must use `actions/checkout@v4` with `fetch-depth: 0`, otherwise `build-index` cannot resolve `createdAt` / `updatedAt`.
-- **CDN base** is currently hard-coded to `https://cdn.clawforge.dev` in scripts. P6 / P9 should audit before launch.
+Everything needed for context (spec, phase plans, playbooks) lives under `docs/`.
