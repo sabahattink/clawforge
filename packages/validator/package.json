@@ -24,6 +24,9 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@clawforge/build-index": "workspace:*",
     "@clawforge/schema": "workspace:*"
