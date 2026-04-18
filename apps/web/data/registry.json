@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-19T00:00:00.000Z",
+  "count": 4,
+  "entries": [
+    {
+      "id": "skill:tdd-workflow",
+      "kind": "skill",
+      "name": "tdd-workflow",
+      "displayName": "TDD Workflow",
+      "description": "Write tests first, enforce red-green-refactor discipline.",
+      "tags": ["testing", "tdd"],
+      "category": "testing",
+      "verified": true,
+      "version": "1.2.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "updatedAt": "2026-04-15T12:00:00.000Z"
+    },
+    {
+      "id": "agent:code-reviewer",
+      "kind": "agent",
+      "name": "code-reviewer",
+      "displayName": "Code Reviewer",
+      "description": "Reviews code for style, bugs, and security issues.",
+      "tags": ["review", "security"],
+      "category": "testing",
+      "verified": true,
+      "version": "2.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/agents/code-reviewer/entry.json",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "updatedAt": "2026-04-17T09:00:00.000Z"
+    },
+    {
+      "id": "hook:auto-format-ts",
+      "kind": "hook",
+      "name": "auto-format-ts",
+      "displayName": "Auto-format TypeScript",
+      "description": "Runs Biome on TypeScript files after every edit.",
+      "tags": ["devops", "formatting"],
+      "category": "devops",
+      "verified": false,
+      "version": "0.3.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/hooks/auto-format-ts/entry.json",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "updatedAt": "2026-04-18T15:00:00.000Z"
+    },
+    {
+      "id": "mcp:github",
+      "kind": "mcp",
+      "name": "github",
+      "displayName": "GitHub MCP",
+      "description": "MCP server wrapping the GitHub REST API.",
+      "tags": ["integrations", "github"],
+      "category": "devops",
+      "verified": true,
+      "version": "1.0.0",
+      "author": "anthropic",
+      "detailUrl": "https://cdn.clawmart.dev/mcp-servers/github/entry.json",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "updatedAt": "2026-04-10T08:00:00.000Z"
+    }
+  ]
+}

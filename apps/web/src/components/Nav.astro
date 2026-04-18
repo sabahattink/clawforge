@@ -1,0 +1,50 @@
+---
+const path = Astro.url.pathname;
+const isActive = (href: string): boolean => (href === "/" ? path === "/" : path.startsWith(href));
+---
+
+<nav class="border-b border-zinc-200 dark:border-zinc-800">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-2 font-bold">
+      <span class="text-brand">clawmart</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a
+        href="/browse"
+        class:list={[
+          "hover:text-brand",
+          isActive("/browse") ? "text-brand" : "text-zinc-600 dark:text-zinc-400",
+        ]}
+        >Browse</a
+      >
+      <a
+        href="/docs"
+        class:list={[
+          "hover:text-brand",
+          isActive("/docs") ? "text-brand" : "text-zinc-600 dark:text-zinc-400",
+        ]}
+        >Docs</a
+      >
+      <a
+        href="https://github.com/kalkan/clawmart"
+        class="text-zinc-600 hover:text-brand dark:text-zinc-400">GitHub</a
+      >
+      <button
+        id="theme-toggle"
+        class="rounded-md border border-zinc-300 px-2 py-1 text-xs text-zinc-600 hover:text-brand dark:border-zinc-700 dark:text-zinc-400"
+        aria-label="Toggle theme"
+      >
+        <span class="hidden dark:inline">☀</span>
+        <span class="dark:hidden">☾</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("clawmart-theme", isDark ? "dark" : "light");
+  });
+</script>
