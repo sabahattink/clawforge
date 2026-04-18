@@ -1,0 +1,9 @@
+{
+  "matcher": "Write|Edit",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "if echo \"$CLAUDE_FILE_PATHS\" | grep -qE '\\.(ts|tsx|js|jsx)$'; then npx --no-install @biomejs/biome format --write \"$CLAUDE_FILE_PATHS\" || true; fi"
+    }
+  ]
+}

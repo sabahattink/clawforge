@@ -1,0 +1,20 @@
+{
+  "kind": "cmd",
+  "name": "test",
+  "displayName": "/test",
+  "description": "Run the test suite relevant to the current diff.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["testing"],
+  "category": "testing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [
+    { "source": "command.md", "target": "{{CLAUDE_DIR}}/commands/{{name}}.md" }
+  ],
+  "invocation": "/test"
+}

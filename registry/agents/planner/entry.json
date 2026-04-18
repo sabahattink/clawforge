@@ -1,0 +1,21 @@
+{
+  "kind": "agent",
+  "name": "planner",
+  "displayName": "Planner",
+  "description": "Produces a tight implementation plan from a spec or feature request.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["planning"],
+  "category": "productivity",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [
+    { "source": "agent.md", "target": "{{CLAUDE_DIR}}/agents/{{name}}.md" }
+  ],
+  "tools": ["Read", "Grep", "Glob"],
+  "model": "sonnet"
+}

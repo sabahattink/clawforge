@@ -1,0 +1,20 @@
+{
+  "kind": "cmd",
+  "name": "review",
+  "displayName": "/review",
+  "description": "Run the code-reviewer agent on the current diff or a named PR.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["review"],
+  "category": "testing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-19T00:00:00.000Z",
+  "updatedAt": "2026-04-19T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [
+    { "source": "command.md", "target": "{{CLAUDE_DIR}}/commands/{{name}}.md" }
+  ],
+  "invocation": "/review"
+}
