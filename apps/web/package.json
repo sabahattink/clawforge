@@ -1,0 +1,24 @@
+{
+  "name": "@clawmart/web",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The clawmart.dev Astro site.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/tailwind": "^5.1.2",
+    "@clawmart/schema": "workspace:*",
+    "astro": "^5.0.0",
+    "tailwindcss": "^3.4.14"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.9.0"
+  }
+}
