@@ -1,4 +1,4 @@
-import type { IndexEntry } from "@clawmart/schema";
+import type { IndexEntry } from "@clawforge/schema";
 import type { RegistryClient } from "../registry/client.js";
 
 export type InfoOptions = {

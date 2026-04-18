@@ -1,4 +1,4 @@
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 import { installFiles } from "./files.js";
 import { installMerge } from "./merge.js";
 import type { InstallResult, InstallerContext } from "./types.js";

@@ -26,8 +26,8 @@ describe("resolveScope", () => {
     expect(r.scope).toBe("global");
   });
 
-  it("builds manifest path under .clawmart/", () => {
+  it("builds manifest path under .clawforge/", () => {
     const r = resolveScope({ scope: "global", home: "/home/u" });
-    expect(r.manifestPath).toBe(join("/home/u", ".claude", ".clawmart", "manifest.json"));
+    expect(r.manifestPath).toBe(join("/home/u", ".claude", ".clawforge", "manifest.json"));
   });
 });

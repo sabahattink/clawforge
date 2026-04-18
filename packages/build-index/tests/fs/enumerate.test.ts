@@ -6,7 +6,7 @@ import { enumerateEntries } from "../../src/fs/enumerate.js";
 
 let root: string;
 beforeAll(() => {
-  root = mkdtempSync(join(tmpdir(), "clawmart-enum-"));
+  root = mkdtempSync(join(tmpdir(), "clawforge-enum-"));
   mkdirSync(join(root, "skills", "tdd"), { recursive: true });
   writeFileSync(join(root, "skills", "tdd", "entry.json"), "{}", "utf8");
   mkdirSync(join(root, "agents", "code-reviewer"), { recursive: true });

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-19T12:00:00.000Z",
+  "generatedAt": "2026-04-19T14:00:00.000Z",
   "count": 2,
   "entries": [
     {
@@ -9,14 +9,17 @@
       "name": "code-reviewer",
       "displayName": "Code Reviewer",
       "description": "Reviews diffs for correctness, readability, and common security issues.",
-      "tags": ["review", "security"],
+      "tags": [
+        "review",
+        "security"
+      ],
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/agents/code-reviewer/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/agents/code-reviewer/entry.json",
       "sha256": "6c3b76a90541ee2eed4a6e89b72c8a163d981e53c79941eb26d73ce44fbbe496",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "agent:planner",
@@ -24,14 +27,16 @@
       "name": "planner",
       "displayName": "Planner",
       "description": "Produces a tight implementation plan from a spec or feature request.",
-      "tags": ["planning"],
+      "tags": [
+        "planning"
+      ],
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/agents/planner/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/agents/planner/entry.json",
       "sha256": "d58cb213b6fa3edb1acdddebe9dac4d0242d5120434d8517675ff769e8f5378e",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     }
   ]
 }

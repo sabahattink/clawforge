@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-19T12:00:00.000Z",
+  "generatedAt": "2026-04-19T14:00:00.000Z",
   "count": 2,
   "entries": [
     {
@@ -9,14 +9,16 @@
       "name": "review",
       "displayName": "/review",
       "description": "Run the code-reviewer agent on the current diff or a named PR.",
-      "tags": ["review"],
+      "tags": [
+        "review"
+      ],
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/commands/review/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/commands/review/entry.json",
       "sha256": "b876f7643ef99f9ccc959904d05ae377df533d7709f1bac3e8db4fa13a5cc1ba",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     },
     {
       "id": "cmd:test",
@@ -24,14 +26,16 @@
       "name": "test",
       "displayName": "/test",
       "description": "Run the test suite relevant to the current diff.",
-      "tags": ["testing"],
+      "tags": [
+        "testing"
+      ],
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/commands/test/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/commands/test/entry.json",
       "sha256": "b4fcf485c2d49b6ff2c119ce36c84ed0949a1bbb0f5e8d9ceffdeb2ac36cedec",
-      "updatedAt": "2026-04-18T21:15:43.000Z"
+      "updatedAt": "2026-04-18T21:22:31.000Z"
     }
   ]
 }

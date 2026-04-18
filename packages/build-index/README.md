@@ -1,15 +1,15 @@
-# @clawmart/build-index
+# @clawforge/build-index
 
-Builds CDN-ready artefacts from the clawmart registry tree.
+Builds CDN-ready artefacts from the clawforge registry tree.
 
 ## Usage (CLI)
 
 ```bash
-clawmart-build-index \
+clawforge-build-index \
   --registry ./registry \
   --out ./dist \
-  --cdn-base https://cdn.clawmart.dev \
-  --site-base https://clawmart.dev
+  --cdn-base https://cdn.clawforge.dev \
+  --site-base https://clawforge.dev
 ```
 
 Outputs (inside `--out`):
@@ -22,13 +22,13 @@ Outputs (inside `--out`):
 ## Usage (programmatic)
 
 ```ts
-import { buildIndex, ExecaGitReader } from "@clawmart/build-index";
+import { buildIndex, ExecaGitReader } from "@clawforge/build-index";
 
 const result = await buildIndex({
   registryRoot: "./registry",
   distDir: "./dist",
-  cdnBase: "https://cdn.clawmart.dev",
-  siteBase: "https://clawmart.dev",
+  cdnBase: "https://cdn.clawforge.dev",
+  siteBase: "https://clawforge.dev",
   generatedAt: new Date().toISOString(),
   git: new ExecaGitReader(process.cwd()),
 });

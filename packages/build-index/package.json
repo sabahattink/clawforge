@@ -1,14 +1,14 @@
 {
-  "name": "@clawmart/build-index",
+  "name": "@clawforge/build-index",
   "version": "0.0.1",
-  "description": "Build the clawmart registry index from registry/**/entry.json.",
+  "description": "Build the clawforge registry index from registry/**/entry.json.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "clawmart-build-index": "./dist/bin.js"
+    "clawforge-build-index": "./dist/bin.js"
   },
   "exports": {
     ".": {
@@ -25,7 +25,7 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
   },
   "dependencies": {
-    "@clawmart/schema": "workspace:*",
+    "@clawforge/schema": "workspace:*",
     "execa": "^9.5.0"
   },
   "devDependencies": {

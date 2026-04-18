@@ -1,4 +1,4 @@
-import type { Entry, IndexEntry, RegistryIndex } from "@clawmart/schema";
+import type { Entry, IndexEntry, RegistryIndex } from "@clawforge/schema";
 import { describe, expect, it } from "vitest";
 import { infoCommand } from "../../src/commands/info.js";
 import { searchCommand } from "../../src/commands/search.js";

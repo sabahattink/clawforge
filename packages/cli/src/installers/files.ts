@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 import { type InstallResult, type InstallerContext, emptyResult } from "./types.js";
 
 type FileBasedEntry = Entry & { files: { source: string; target: string }[] };

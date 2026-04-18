@@ -17,7 +17,7 @@ const validIndexEntry = {
   verified: true,
   version: "1.2.0",
   author: "kalkan",
-  detailUrl: "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+  detailUrl: "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
   sha256: "a".repeat(64),
   updatedAt: "2026-04-18T12:00:00.000Z",
 };

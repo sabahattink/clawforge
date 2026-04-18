@@ -7,7 +7,7 @@ import { type InstalledRecord, emptyManifest } from "../../src/manifest/types.js
 
 let dir: string;
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-manifest-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-manifest-"));
 });
 afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
@@ -15,7 +15,7 @@ const rec = (id: string, version = "1.0.0"): InstalledRecord => ({
   id,
   version,
   installedAt: "2026-04-19T00:00:00.000Z",
-  source: `https://cdn.clawmart.dev/${id}.json`,
+  source: `https://cdn.clawforge.dev/${id}.json`,
   sourceCommit: "a".repeat(40),
   verifiedAtInstall: false,
   files: [],
@@ -34,7 +34,7 @@ describe("readManifest", () => {
   });
 
   it("round-trips via writeManifest", async () => {
-    const path = join(dir, ".clawmart", "manifest.json");
+    const path = join(dir, ".clawforge", "manifest.json");
     const m = emptyManifest("project", "/proj/.claude");
     m.installed.push(rec("skill:a"));
     await writeManifest(path, m);

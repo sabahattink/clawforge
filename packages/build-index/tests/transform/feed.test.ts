@@ -10,20 +10,20 @@ describe("generateFeed", () => {
       description: "x",
       updatedAt: `2026-04-${String((i % 18) + 1).padStart(2, "0")}T12:00:00.000Z`,
     }));
-    const xml = generateFeed({ siteBase: "https://clawmart.dev", entries });
+    const xml = generateFeed({ siteBase: "https://clawforge.dev", entries });
     const itemCount = (xml.match(/<item>/g) ?? []).length;
     expect(itemCount).toBe(50);
   });
 
   it("includes channel metadata", () => {
-    const xml = generateFeed({ siteBase: "https://clawmart.dev", entries: [] });
-    expect(xml).toContain("<title>clawmart — new entries</title>");
-    expect(xml).toContain("<link>https://clawmart.dev</link>");
+    const xml = generateFeed({ siteBase: "https://clawforge.dev", entries: [] });
+    expect(xml).toContain("<title>clawforge — new entries</title>");
+    expect(xml).toContain("<link>https://clawforge.dev</link>");
   });
 
   it("escapes xml special chars in description", () => {
     const xml = generateFeed({
-      siteBase: "https://clawmart.dev",
+      siteBase: "https://clawforge.dev",
       entries: [
         {
           kind: "skill",

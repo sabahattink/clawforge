@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import type { Kind } from "@clawmart/schema";
+import type { Kind } from "@clawforge/schema";
 import type { Scope } from "../manifest/types.js";
 
 export type ResolvedScope = {
@@ -28,6 +28,6 @@ export function resolveScope(opts: ResolveOptions, kind?: Kind): ResolvedScope {
   const base =
     chosen === "global" ? (opts.home ?? process.env.HOME ?? "~") : (opts.cwd ?? process.cwd());
   const claudeDir = join(base, ".claude");
-  const manifestPath = join(claudeDir, ".clawmart", "manifest.json");
+  const manifestPath = join(claudeDir, ".clawforge", "manifest.json");
   return { scope: chosen, claudeDir, manifestPath };
 }

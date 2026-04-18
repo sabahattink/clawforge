@@ -1,14 +1,14 @@
 {
-  "name": "@clawmart/cli",
+  "name": "@clawforge/cli",
   "version": "0.0.1",
-  "description": "The clawmart CLI — install Claude Code skills, agents, hooks, and MCP servers.",
+  "description": "The clawforge CLI — install Claude Code skills, agents, hooks, and MCP servers.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "clawmart": "./dist/bin.js"
+    "clawforge": "./dist/bin.js"
   },
   "exports": {
     ".": {
@@ -25,7 +25,7 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
   },
   "dependencies": {
-    "@clawmart/schema": "workspace:*",
+    "@clawforge/schema": "workspace:*",
     "commander": "^12.1.0",
     "picocolors": "^1.1.0",
     "prompts": "^2.4.2"

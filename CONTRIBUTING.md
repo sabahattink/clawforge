@@ -1,6 +1,6 @@
-# Contributing to clawmart
+# Contributing to clawforge
 
-Thanks for taking the time. clawmart gets better when contributors add battle-tested skills, agents, and configs they already use.
+Thanks for taking the time. clawforge gets better when contributors add battle-tested skills, agents, and configs they already use.
 
 ## Ways to contribute
 
@@ -17,8 +17,8 @@ Thanks for taking the time. clawmart gets better when contributors add battle-te
 ### 1. Fork & clone
 
 ```bash
-gh repo fork kalkan/clawmart --clone
-cd clawmart
+gh repo fork kalkan/clawforge --clone
+cd clawforge
 pnpm install
 ```
 
@@ -81,9 +81,9 @@ The build pipeline overwrites `createdAt`, `updatedAt`, `sourceCommit`, and `sha
 ### 5. Validate locally
 
 ```bash
-pnpm --filter @clawmart/schema build
-pnpm --filter @clawmart/build-index build
-pnpm --filter @clawmart/validator build
+pnpm --filter @clawforge/schema build
+pnpm --filter @clawforge/build-index build
+pnpm --filter @clawforge/validator build
 pnpm validate
 ```
 
@@ -139,18 +139,18 @@ pnpm lint         # Biome (formatter + linter)
 To run the dev web server:
 
 ```bash
-pnpm --filter @clawmart/web dev
+pnpm --filter @clawforge/web dev
 ```
 
 To rebuild the web site's data from the current registry:
 
 ```bash
-pnpm --filter @clawmart/build-index build
+pnpm --filter @clawforge/build-index build
 node packages/build-index/dist/bin.js \
   --registry ./registry \
   --out apps/web/data \
-  --cdn-base https://cdn.clawmart.dev \
-  --site-base https://clawmart.dev \
+  --cdn-base https://cdn.clawforge.dev \
+  --site-base https://clawforge.dev \
   --generated-at "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
 ```
 

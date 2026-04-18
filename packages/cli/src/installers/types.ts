@@ -1,4 +1,4 @@
-import type { Entry } from "@clawmart/schema";
+import type { Entry } from "@clawforge/schema";
 import type { JsonMergeRecord } from "../manifest/types.js";
 
 export type PromptFn = (question: string, choices: string[]) => Promise<string>;

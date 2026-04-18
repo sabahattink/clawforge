@@ -1,4 +1,4 @@
-import type { IndexEntry } from "@clawmart/schema";
+import type { IndexEntry } from "@clawforge/schema";
 import { describe, expect, it } from "vitest";
 import { assembleIndex, shardByKind } from "../../src/transform/assemble.js";
 
@@ -13,7 +13,7 @@ const ix = (id: string, kind: "skill" | "agent" = "skill"): IndexEntry => ({
   verified: false,
   version: "1.0.0",
   author: "kalkan",
-  detailUrl: `https://cdn.clawmart.dev/${id}/entry.json`,
+  detailUrl: `https://cdn.clawforge.dev/${id}/entry.json`,
   sha256: "a".repeat(64),
   updatedAt: "2026-04-10T18:00:00.000Z",
 });

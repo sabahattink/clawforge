@@ -1,24 +1,24 @@
-# 🐾 clawmart
+# 🐾 clawforge
 
 > The registry for Claude Code. Install skills, agents, hooks, and MCP servers with one command.
 
-[![npm version](https://img.shields.io/npm/v/@clawmart/cli.svg?logo=npm)](https://www.npmjs.com/package/@clawmart/cli)
-[![CI](https://img.shields.io/github/actions/workflow/status/kalkan/clawmart/validate-pr.yml?branch=main&logo=github)](https://github.com/kalkan/clawmart/actions)
+[![npm version](https://img.shields.io/npm/v/@clawforge/cli.svg?logo=npm)](https://www.npmjs.com/package/@clawforge/cli)
+[![CI](https://img.shields.io/github/actions/workflow/status/kalkan/clawforge/validate-pr.yml?branch=main&logo=github)](https://github.com/kalkan/clawforge/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![Node](https://img.shields.io/node/v/@clawmart/cli)](package.json)
+[![Node](https://img.shields.io/node/v/@clawforge/cli)](package.json)
 
 ```bash
-npx clawmart add skill:tdd-workflow
+npx clawforge add skill:tdd-workflow
 ```
 
 That's it. One command installs a Claude Code skill — as a plain file under `~/.claude/skills/`, which you can read, edit, or delete. No lock-in. No magic. Shadcn-style: **you own the code**.
 
 ---
 
-## What clawmart does
+## What clawforge does
 
 - 🗂 **Registry** of curated skills, agents, hooks, MCP configs, slash commands, and presets.
-- 📦 **One-command install** via `npx clawmart add <id>` — works on macOS, Linux, and Windows (Git Bash / WSL).
+- 📦 **One-command install** via `npx clawforge add <id>` — works on macOS, Linux, and Windows (Git Bash / WSL).
 - 🔄 **Fully reversible** — every install records a `before` snapshot; `remove` restores it cleanly.
 - ✅ **Verified tier** — maintainer-reviewed entries carry a verified badge you can trust.
 - 🔐 **Security-gated** — every PR runs a scanner that blocks `rm -rf`, `curl | sh`, and friends.
@@ -31,26 +31,26 @@ That's it. One command installs a Claude Code skill — as a plain file under `~
 ### Install the CLI
 
 ```bash
-npm install -g @clawmart/cli
-# or use npx on demand: npx clawmart ...
+npm install -g @clawforge/cli
+# or use npx on demand: npx clawforge ...
 ```
 
 ### Initialise a manifest
 
 ```bash
-clawmart init
+clawforge init
 ```
 
 ### Find an entry
 
 ```bash
-clawmart search tdd
+clawforge search tdd
 ```
 
 ### Install it
 
 ```bash
-clawmart add skill:tdd-workflow --track
+clawforge add skill:tdd-workflow --track
 ```
 
 The file lands at `~/.claude/skills/tdd-workflow/SKILL.md`. Open it, read it, edit it — it's yours now.
@@ -58,7 +58,7 @@ The file lands at `~/.claude/skills/tdd-workflow/SKILL.md`. Open it, read it, ed
 ### Remove it
 
 ```bash
-clawmart remove skill:tdd-workflow
+clawforge remove skill:tdd-workflow
 ```
 
 Everything the install wrote is reverted, including JSON-merge entries in `settings.json`.
@@ -99,13 +99,13 @@ Quick version: fork, create your entry under `registry/<kind>/<slug>/`, open a P
 ## Monorepo layout
 
 ```
-clawmart/
-├── apps/web/               clawmart.dev (Astro site)
+clawforge/
+├── apps/web/               clawforge.dev (Astro site)
 ├── packages/
-│   ├── schema/             @clawmart/schema (Zod schemas)
-│   ├── build-index/        @clawmart/build-index (CI artefacts)
-│   ├── validator/          @clawmart/validator (CI auto-gates)
-│   └── cli/                @clawmart/cli (npx clawmart)
+│   ├── schema/             @clawforge/schema (Zod schemas)
+│   ├── build-index/        @clawforge/build-index (CI artefacts)
+│   ├── validator/          @clawforge/validator (CI auto-gates)
+│   └── cli/                @clawforge/cli (npx clawforge)
 ├── registry/               source of truth for every entry
 └── docs/                   spec, plans, playbooks
 ```
@@ -116,18 +116,18 @@ clawmart/
 
 ```bash
 pnpm install
-pnpm --filter @clawmart/build-index build
+pnpm --filter @clawforge/build-index build
 node packages/build-index/dist/bin.js \
   --registry ./my-registry \
   --out ./dist \
   --cdn-base https://my-cdn.example.com \
-  --site-base https://my-clawmart.example.com
+  --site-base https://my-clawforge.example.com
 ```
 
-Upload `dist/` to any static host. Point your `clawmart` CLI at it:
+Upload `dist/` to any static host. Point your `clawforge` CLI at it:
 
 ```bash
-clawmart add --registry https://my-cdn.example.com skill:foo
+clawforge add --registry https://my-cdn.example.com skill:foo
 ```
 
 ---
@@ -136,7 +136,7 @@ clawmart add --registry https://my-cdn.example.com skill:foo
 
 Pre-launch. 12 seed entries shipped across every kind. Remaining 38 tracked in [docs/SEED_BACKLOG.md](docs/SEED_BACKLOG.md).
 
-Design spec: [docs/superpowers/specs/2026-04-18-clawmart-design.md](docs/superpowers/specs/2026-04-18-clawmart-design.md).
+Design spec: [docs/superpowers/specs/2026-04-18-clawforge-design.md](docs/superpowers/specs/2026-04-18-clawforge-design.md).
 
 ---
 

@@ -1,19 +1,19 @@
-# clawmart — Design Specification
+# clawforge — Design Specification
 
 **Date:** 2026-04-18
 **Status:** Draft (approved by owner, pending spec review)
 **Owner:** @kalkan
-**Repo location:** `H:/60_OSS/clawmart/`
+**Repo location:** `H:/60_OSS/clawforge/`
 
 ---
 
 ## 1. Overview
 
-`clawmart` is an open-source registry and CLI for the Claude Code ecosystem — skills, agents, hooks, MCP servers, slash commands, and settings presets — installable with one command, shadcn/ui-style.
+`clawforge` is an open-source registry and CLI for the Claude Code ecosystem — skills, agents, hooks, MCP servers, slash commands, and settings presets — installable with one command, shadcn/ui-style.
 
 **Tagline:** *The registry for Claude Code. Install skills, agents, hooks, and MCP servers with one command.*
 
-**Problem solved:** Claude Code ecosystem is fragmented. Skills live in scattered GitHub repos, agents in private configs, MCP configs in ad-hoc gists. There is no canonical index, no install tool, no quality signal. `clawmart` is the npm/shadcn-ui of Claude Code assets.
+**Problem solved:** Claude Code ecosystem is fragmented. Skills live in scattered GitHub repos, agents in private configs, MCP configs in ad-hoc gists. There is no canonical index, no install tool, no quality signal. `clawforge` is the npm/shadcn-ui of Claude Code assets.
 
 **Non-goals (MVP):**
 - Not a skill/agent authoring tool
@@ -30,7 +30,7 @@
 
 ```
         ┌──────────────────────────────────────────┐
-        │   GitHub: github.com/<user>/clawmart     │
+        │   GitHub: github.com/<user>/clawforge     │
         │   (monorepo, source of truth)            │
         │                                          │
         │   /registry   → MD + JSON entries        │
@@ -49,7 +49,7 @@
           │          │                 │
      ┌────▼────┐   ┌─▼──────────────┐  │
      │ npx CLI │   │ Astro Site     │◄─┘
-     │         │   │ clawmart.dev   │
+     │         │   │ clawforge.dev   │
      └─────────┘   └────────────────┘
 ```
 
@@ -57,7 +57,7 @@
 
 - **GitHub is source of truth.** Everything else is derivative and reproducible from the repo state.
 - **Zero-server runtime.** No database, no dynamic backend. CDN serves static JSON; MeiliSearch serves search. Both have free tiers.
-- **User owns the code (shadcn/ui model).** Installed files live in the user's `.claude/` tree; clawmart does not hide them behind a resolver.
+- **User owns the code (shadcn/ui model).** Installed files live in the user's `.claude/` tree; clawforge does not hide them behind a resolver.
 - **Install operations are reversible.** Manifest records exact file list + JSON merge before-state so `remove` fully cleans up.
 - **Install operations are transparent.** Every write is shown to the user before it happens (unless `--yes`).
 - **Content integrity via sha256.** CDN-served artifacts are verified against expected hashes at install time.
@@ -88,18 +88,18 @@
 ## 3. Repo structure
 
 ```
-clawmart/
+clawforge/
 ├── apps/
-│   ├── cli/                    # @clawmart/cli — npx clawmart
+│   ├── cli/                    # @clawforge/cli — npx clawforge
 │   │   ├── src/
 │   │   │   ├── commands/       # add, list, update, remove, search, init, info, doctor, browse
 │   │   │   ├── installers/     # per-kind handlers
 │   │   │   ├── registry/       # CDN fetch + local cache
-│   │   │   └── manifest/       # .clawmart/manifest.json I/O
-│   │   ├── package.json        # bin: { clawmart: dist/cli.js }
+│   │   │   └── manifest/       # .clawforge/manifest.json I/O
+│   │   ├── package.json        # bin: { clawforge: dist/cli.js }
 │   │   └── tsup.config.ts
 │   │
-│   └── web/                    # @clawmart/web — clawmart.dev
+│   └── web/                    # @clawforge/web — clawforge.dev
 │       ├── src/
 │       │   ├── pages/
 │       │   ├── components/
@@ -107,12 +107,12 @@ clawmart/
 │       └── astro.config.mjs
 │
 ├── packages/
-│   ├── schema/                 # @clawmart/schema — shared types + Zod
+│   ├── schema/                 # @clawforge/schema — shared types + Zod
 │   │   └── src/
 │   │       ├── entry.ts
 │   │       └── registry.ts
 │   │
-│   └── validator/              # @clawmart/validator — CI auto-gates
+│   └── validator/              # @clawforge/validator — CI auto-gates
 │       └── src/
 │           ├── schema-check.ts
 │           ├── link-liveness.ts
@@ -201,7 +201,7 @@ interface BaseEntry {
   version: string;                 // semver
   license: string;                 // SPDX identifier
   claudeCodeVersion?: string;      // compat hint, e.g. ">=2.0.0"
-  requires?: string[];             // other clawmart entry IDs
+  requires?: string[];             // other clawforge entry IDs
   conflicts?: string[];            // known incompatibilities
   repository?: { type: "git"; url: string };
 
@@ -294,7 +294,7 @@ Only these two tokens are supported in v1. Any other `{{…}}` pattern in `files
 
 ### 4.5 Registry index (CDN artifact)
 
-Served at `https://cdn.clawmart.dev/registry.json`:
+Served at `https://cdn.clawforge.dev/registry.json`:
 
 ```json
 {
@@ -313,7 +313,7 @@ Served at `https://cdn.clawmart.dev/registry.json`:
       "verified": true,
       "version": "1.2.0",
       "author": "kalkan",
-      "detailUrl": "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+      "detailUrl": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sha256": "…",
       "updatedAt": "2026-04-10T…"
     }
@@ -346,16 +346,16 @@ Index may reach 10 MB before pagination is needed (v2).
 
 | Command | Purpose |
 |---|---|
-| `clawmart init` | Interactive setup — scope, manifest, optional scan of existing assets |
-| `clawmart add <id>` | Install an entry |
-| `clawmart search <query>` | Fuzzy search via MeiliSearch |
-| `clawmart list` | Show installed entries from manifest |
-| `clawmart info <id>` | Show entry details without installing |
-| `clawmart update [id]` | Update tracked entries; all if `[id]` omitted |
-| `clawmart remove <id>` | Uninstall — reverse file copies and JSON merges |
-| `clawmart browse` | Open web UI in default browser |
-| `clawmart doctor` | Health check manifest ↔ disk ↔ registry |
-| `clawmart publish` | (v2) Helper for submitting a local entry as a PR |
+| `clawforge init` | Interactive setup — scope, manifest, optional scan of existing assets |
+| `clawforge add <id>` | Install an entry |
+| `clawforge search <query>` | Fuzzy search via MeiliSearch |
+| `clawforge list` | Show installed entries from manifest |
+| `clawforge info <id>` | Show entry details without installing |
+| `clawforge update [id]` | Update tracked entries; all if `[id]` omitted |
+| `clawforge remove <id>` | Uninstall — reverse file copies and JSON merges |
+| `clawforge browse` | Open web UI in default browser |
+| `clawforge doctor` | Health check manifest ↔ disk ↔ registry |
+| `clawforge publish` | (v2) Helper for submitting a local entry as a PR |
 
 ### 5.2 Global flags
 
@@ -382,7 +382,7 @@ Index may reach 10 MB before pagination is needed (v2).
 
 ### 5.4 Manifest format
 
-`<scope-root>/.clawmart/manifest.json`:
+`<scope-root>/.clawforge/manifest.json`:
 
 ```json
 {
@@ -394,7 +394,7 @@ Index may reach 10 MB before pagination is needed (v2).
       "id": "skill:tdd-workflow",
       "version": "1.2.0",
       "installedAt": "2026-04-18T12:00:00Z",
-      "source": "https://cdn.clawmart.dev/skills/tdd-workflow/entry.json",
+      "source": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sourceCommit": "a1b2c3…",
       "verifiedAtInstall": true,
       "files": ["skills/tdd-workflow/SKILL.md"],
@@ -429,11 +429,11 @@ The `before` snapshot is critical — it allows `remove` to cleanly revert JSON 
 
 ### 5.5 Offline / fallback behaviour
 
-When MeiliSearch is unreachable, `clawmart search` falls back to a local substring + tag match against the cached `registry.json` (24 h cache). When `registry.json` itself is unreachable and no cache exists, the CLI returns a clear error with a `--registry` flag hint for self-hosted setups. `clawmart add` never depends on the search service and works offline against the cached registry.
+When MeiliSearch is unreachable, `clawforge search` falls back to a local substring + tag match against the cached `registry.json` (24 h cache). When `registry.json` itself is unreachable and no cache exists, the CLI returns a clear error with a `--registry` flag hint for self-hosted setups. `clawforge add` never depends on the search service and works offline against the cached registry.
 
 ---
 
-## 6. Web UI (`clawmart.dev`)
+## 6. Web UI (`clawforge.dev`)
 
 ### 6.1 Pages
 
@@ -639,7 +639,7 @@ Post-publish: download-rate anomalies flagged; ≥ 3 user reports → auto-hide 
 2. Maintainer triage within 24 h.
 3. Move entry to `registry/_removed/<kind>/<name>/` and add tombstone to `registry/_removed.json` with reason and date.
 4. CI rebuild → CDN index no longer lists the entry; `_removed.json` is served alongside the index.
-5. `clawmart update` warns users when it encounters a removed entry, with cleanup option.
+5. `clawforge update` warns users when it encounters a removed entry, with cleanup option.
 6. Public disclosure if security-related (GitHub Advisory).
 
 ### 8.7 Supply-chain protections (client side)
@@ -647,7 +647,7 @@ Post-publish: download-rate anomalies flagged; ≥ 3 user reports → auto-hide 
 - Content integrity — sha256 of downloaded file verified against registry value; mismatch aborts install.
 - Transparent writes — all paths and JSON diffs shown before execution.
 - Manifest provenance — records source commit, sha256, and verified-at-install flag.
-- `clawmart doctor` detects local tampering, missing files, and entries later added to `_removed.json`.
+- `clawforge doctor` detects local tampering, missing files, and entries later added to `_removed.json`.
 
 ### 8.8 Deferred to v2
 
@@ -680,7 +680,7 @@ All seed entries are MIT-licensed and authored by the owner. No re-publishing of
 
 - [ ] ≥ 50 entries live, all verified
 - [ ] CLI published to npm, tested on macOS, Linux (Ubuntu), Windows (via WSL + Git Bash)
-- [ ] `clawmart.dev` live, Lighthouse ≥ 95 (all four)
+- [ ] `clawforge.dev` live, Lighthouse ≥ 95 (all four)
 - [ ] Dark mode works, OG images render, Twitter card validated
 - [ ] 5-second install GIF in README
 - [ ] README badges: npm version, stars, license, CI status
@@ -695,10 +695,10 @@ All seed entries are MIT-licensed and authored by the owner. No re-publishing of
 
 | T+ | Action |
 |---|---|
-| 0 | HN `Show HN: Clawmart – An npm-like registry for Claude Code skills and agents` |
+| 0 | HN `Show HN: Clawforge – An npm-like registry for Claude Code skills and agents` |
 | 0:30 | Twitter/X thread (9 tweets, GIF, screenshots) |
 | 1:00 | r/ClaudeAI, r/programming, r/commandline posts |
-| 2:00 | dev.to meta-article "How I built clawmart" |
+| 2:00 | dev.to meta-article "How I built clawforge" |
 | 4:00 | Newsletter pitches (TLDR Dev, Console.dev, Pointer.io, Terminal Trove) |
 | D+1 | Discord communities |
 | D+7 | YouTube demo video |
@@ -723,7 +723,7 @@ All seed entries are MIT-licensed and authored by the owner. No re-publishing of
 4. Weekly digest email re-engages dormant users.
 5. Author profile pages drive vanity sign-ups.
 6. `/submit` pre-fills the PR body, collapsing contribution friction to ~1 minute.
-7. `clawmart browse` inside the CLI redirects web traffic.
+7. `clawforge browse` inside the CLI redirects web traffic.
 
 ### 9.6 Success metrics (6 months)
 
@@ -752,10 +752,10 @@ All seed entries are MIT-licensed and authored by the owner. No re-publishing of
 
 | Package | Framework | Coverage target |
 |---|---|---|
-| `@clawmart/cli` | Vitest + fs-mock | ≥ 80 %, integration tests for every installer path (including conflict branches) |
-| `@clawmart/schema` | Vitest | ≥ 95 % — schemas are load-bearing |
-| `@clawmart/validator` | Vitest + golden-file fixtures for each BLOCK/WARN pattern | ≥ 90 % |
-| `@clawmart/web` | Playwright | Critical flows: landing → detail → copy install command; search; submit flow |
+| `@clawforge/cli` | Vitest + fs-mock | ≥ 80 %, integration tests for every installer path (including conflict branches) |
+| `@clawforge/schema` | Vitest | ≥ 95 % — schemas are load-bearing |
+| `@clawforge/validator` | Vitest + golden-file fixtures for each BLOCK/WARN pattern | ≥ 90 % |
+| `@clawforge/web` | Playwright | Critical flows: landing → detail → copy install command; search; submit flow |
 | Registry seed content | Snapshot tests ensure each seed entry validates and builds | 100 % |
 
 E2E smoke pipeline runs on each PR: validate-pr-fixture → build-index → start MeiliSearch container → CLI `add skill:<fixture>` against a local registry server.
@@ -770,16 +770,16 @@ None blocking. Tracked deferrals:
 
 - Dependency resolution for `requires` (currently advisory, not enforced at install).
 - Semver range support in `requires`/`conflicts`.
-- `clawmart publish` helper command (v2).
+- `clawforge publish` helper command (v2).
 - Sigstore signing and entry SBOMs (v2).
 
 **Phase progress:**
 
-- Phase 1 (`@clawmart/schema`): ✅ complete — tag `phase-1-schema-complete`, 70 tests green, coverage 100 % lines / 97.5 % branches, build artefacts produced.
-- Phase 2 (`@clawmart/build-index`): ✅ complete — tag `phase-2-build-index-complete`, coverage thresholds met (~93 % lines / ~85 % branches / 100 % funcs), fixture-based e2e test green, CLI + root `build:index` script wired.
-- Phase 3 (`@clawmart/validator`): ✅ complete — tag `phase-3-validator-complete`, 16 tests green (4 checkers + orchestrator + types), coverage thresholds met, CLI demonstrably blocks a `rm -rf /` fixture snippet.
-- Phase 4 (`@clawmart/cli`): ✅ complete — tag `phase-4-cli-complete`, 55 tests green, all 9 commands wired (init/add/list/info/search/remove/update/doctor/browse), e2e add → list → remove smoke test green. Preset installer deferred to v2 (documented).
-- Phase 5 (`@clawmart/web`): ✅ complete — tag `phase-5-web-complete`, Astro SSG with 7 static routes (landing, browse, docs, 4 detail pages from `getStaticPaths`), dark-mode default, client-side browse filters verified live in preview. Submit / stats / author / tag / category pages deferred to post-MVP.
+- Phase 1 (`@clawforge/schema`): ✅ complete — tag `phase-1-schema-complete`, 70 tests green, coverage 100 % lines / 97.5 % branches, build artefacts produced.
+- Phase 2 (`@clawforge/build-index`): ✅ complete — tag `phase-2-build-index-complete`, coverage thresholds met (~93 % lines / ~85 % branches / 100 % funcs), fixture-based e2e test green, CLI + root `build:index` script wired.
+- Phase 3 (`@clawforge/validator`): ✅ complete — tag `phase-3-validator-complete`, 16 tests green (4 checkers + orchestrator + types), coverage thresholds met, CLI demonstrably blocks a `rm -rf /` fixture snippet.
+- Phase 4 (`@clawforge/cli`): ✅ complete — tag `phase-4-cli-complete`, 55 tests green, all 9 commands wired (init/add/list/info/search/remove/update/doctor/browse), e2e add → list → remove smoke test green. Preset installer deferred to v2 (documented).
+- Phase 5 (`@clawforge/web`): ✅ complete — tag `phase-5-web-complete`, Astro SSG with 7 static routes (landing, browse, docs, 4 detail pages from `getStaticPaths`), dark-mode default, client-side browse filters verified live in preview. Submit / stats / author / tag / category pages deferred to post-MVP.
 - Phase 6 (CI/CD + governance): ✅ complete — tag `phase-6-cicd-complete`, 5 workflows (`validate-pr`, `publish-registry`, `release-cli`, `release-web`, `weekly-health`), CODEOWNERS wired, PR + issue templates, SECURITY.md, branch-protection playbook documented at `docs/BRANCH_PROTECTION.md`.
 - Phase 7 (verified tier tooling): ✅ complete — tag `phase-7-verified-complete`. `registry/` seeded with empty `_verified.json` and `_removed.json`, `registry/README.md` explains contribution flow, `docs/MAINTAINER_PLAYBOOK.md` covers verification / revocation / takedown / incident response / onboarding. Validator + build-index pipeline end-to-end-tested against the live empty registry.
 - Phase 8 (seed content): ✅ shipped **12 of 50** — tag `phase-8-seed-complete`. Covers every kind (4 skills, 2 agents, 2 cmds, 2 hooks, 1 mcp, 1 preset), 4 verified, real data flowing through build-index into the Astro site's data loader, preview-verified live. Remaining 38 captured in `docs/SEED_BACKLOG.md`. Two bugs found and fixed in the process: build-index passed registry-relative paths to `git log` (now absolute), and git `%aI` returns tz offsets rather than Z-suffixed UTC (now normalised).

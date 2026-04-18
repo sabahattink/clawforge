@@ -6,7 +6,7 @@ const isActive = (href: string): boolean => (href === "/" ? path === "/" : path.
 <nav class="border-b border-zinc-200 dark:border-zinc-800">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a href="/" class="flex items-center gap-2 font-bold">
-      <span class="text-brand">clawmart</span>
+      <span class="text-brand">clawforge</span>
     </a>
     <div class="flex items-center gap-6 text-sm">
       <a
@@ -26,7 +26,7 @@ const isActive = (href: string): boolean => (href === "/" ? path === "/" : path.
         >Docs</a
       >
       <a
-        href="https://github.com/kalkan/clawmart"
+        href="https://github.com/kalkan/clawforge"
         class="text-zinc-600 hover:text-brand dark:text-zinc-400">GitHub</a
       >
       <button
@@ -45,6 +45,6 @@ const isActive = (href: string): boolean => (href === "/" ? path === "/" : path.
   const btn = document.getElementById("theme-toggle");
   btn?.addEventListener("click", () => {
     const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("clawmart-theme", isDark ? "dark" : "light");
+    localStorage.setItem("clawforge-theme", isDark ? "dark" : "light");
   });
 </script>

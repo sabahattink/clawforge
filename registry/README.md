@@ -1,6 +1,6 @@
 # Registry
 
-Source of truth for every entry served at `cdn.clawmart.dev`.
+Source of truth for every entry served at `cdn.clawforge.dev`.
 
 ## Layout
 

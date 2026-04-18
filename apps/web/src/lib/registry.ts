@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { IndexEntry, Kind, RegistryIndex } from "@clawmart/schema";
-import { RegistryIndexSchema } from "@clawmart/schema";
+import type { IndexEntry, Kind, RegistryIndex } from "@clawforge/schema";
+import { RegistryIndexSchema } from "@clawforge/schema";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = resolve(here, "../../data/registry.json");

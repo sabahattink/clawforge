@@ -15,8 +15,8 @@ async function main(): Promise<void> {
 
   const registryRoot = resolve(opts.registry ?? "registry");
   const distDir = resolve(opts.out ?? "dist");
-  const cdnBase = opts["cdn-base"] ?? "https://cdn.clawmart.dev";
-  const siteBase = opts["site-base"] ?? "https://clawmart.dev";
+  const cdnBase = opts["cdn-base"] ?? "https://cdn.clawforge.dev";
+  const siteBase = opts["site-base"] ?? "https://clawforge.dev";
   const generatedAt = opts["generated-at"] ?? new Date().toISOString();
 
   const git = new ExecaGitReader(process.cwd());

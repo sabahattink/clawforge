@@ -1,6 +1,6 @@
 # Maintainer playbook
 
-Day-to-day operations for clawmart maintainers. Everything here assumes you're listed in `.github/CODEOWNERS`.
+Day-to-day operations for clawforge maintainers. Everything here assumes you're listed in `.github/CODEOWNERS`.
 
 ---
 
@@ -12,7 +12,7 @@ Triggered by a `verification-request` issue.
 
 - [ ] LICENSE present (MIT / Apache-2.0 / BSD / CC0)
 - [ ] README has description, usage, examples, author contact
-- [ ] `pnpm --filter @clawmart/validator build && node packages/validator/dist/bin.js --registry registry` — no BLOCK / WARN on this entry
+- [ ] `pnpm --filter @clawforge/validator build && node packages/validator/dist/bin.js --registry registry` — no BLOCK / WARN on this entry
 - [ ] Author GitHub account ≥ 30 days old, not flagged
 - [ ] Entry purpose is clear and non-trivial
 - [ ] Works with current stable Claude Code
@@ -69,7 +69,7 @@ Triggered by a `takedown-request` issue (or direct security report).
    }
    ```
 4. **Open a PR** on a maintainer branch. Branch protection + CODEOWNERS ensure this requires maintainer approval.
-5. **Merge** — `publish-registry.yml` pushes the new index. Users running `clawmart update` against the old id will see a warning.
+5. **Merge** — `publish-registry.yml` pushes the new index. Users running `clawforge update` against the old id will see a warning.
 6. **Close the issue** with a comment linking the PR and the tombstone entry.
 7. **Public disclosure** (security category only):
    - File a [GitHub Security Advisory](https://docs.github.com/en/code-security/security-advisories/repository-security-advisories).
@@ -95,7 +95,7 @@ git tag cli-v0.1.0
 git push --tags
 ```
 
-`release-cli.yml` runs tests, publishes `@clawmart/cli` to npm, and creates a GitHub Release with auto-generated notes.
+`release-cli.yml` runs tests, publishes `@clawforge/cli` to npm, and creates a GitHub Release with auto-generated notes.
 
 ---
 
@@ -111,7 +111,7 @@ git push --tags
 ## Adding a new maintainer
 
 1. Add their handle to `.github/CODEOWNERS`.
-2. Invite them to the `clawmart` npm org (`npm org set clawmart <user>` as a developer).
+2. Invite them to the `clawforge` npm org (`npm org set clawforge <user>` as a developer).
 3. Grant them repo write access on GitHub.
 4. Add them to the branch-protection "Allowed actors" list for `registry/_verified.json`.
 5. Run through the onboarding section below with them.
@@ -124,6 +124,6 @@ git push --tags
 - [ ] Local checkout works (`pnpm install && pnpm -r test` passes)
 - [ ] Can reproduce the `build-index` pipeline locally (`pnpm build:index`)
 - [ ] Can reproduce validator BLOCK against fixtures
-- [ ] Read this playbook + SECURITY.md + the design spec (`docs/superpowers/specs/2026-04-18-clawmart-design.md`)
+- [ ] Read this playbook + SECURITY.md + the design spec (`docs/superpowers/specs/2026-04-18-clawforge-design.md`)
 - [ ] 2FA enabled on GitHub and npm
 - [ ] GPG signing configured (optional but recommended)

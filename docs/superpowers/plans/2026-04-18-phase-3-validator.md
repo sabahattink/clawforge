@@ -1,8 +1,8 @@
-# Phase 3: `@clawmart/validator` — Implementation Plan
+# Phase 3: `@clawforge/validator` — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans. Steps use checkbox (`- [ ]`) syntax.
 
-**Goal:** Ship `@clawmart/validator` — a library + CLI used by CI on PRs that touch `registry/**`. Auto-gates: schema validation, duplicate detection, file existence, security scan. Link-check is optional (flag-gated) to keep CI fast and deterministic.
+**Goal:** Ship `@clawforge/validator` — a library + CLI used by CI on PRs that touch `registry/**`. Auto-gates: schema validation, duplicate detection, file existence, security scan. Link-check is optional (flag-gated) to keep CI fast and deterministic.
 
 **Architecture:** Pure-function checkers, each returning a list of `ValidationIssue`. A driver composes them and aggregates. CLI prints issues and exits non-zero on BLOCK.
 
@@ -24,7 +24,7 @@ packages/validator/
 │   ├── bin.ts                # CLI
 │   ├── issue.ts              # ValidationIssue + severity
 │   ├── checks/
-│   │   ├── schema.ts         # parses each entry via @clawmart/schema
+│   │   ├── schema.ts         # parses each entry via @clawforge/schema
 │   │   ├── duplicates.ts     # cross-entry name collisions
 │   │   ├── file-existence.ts # entry files[].source must exist on disk
 │   │   └── security.ts       # hook/mcp snippet danger patterns
@@ -58,13 +58,13 @@ export type ValidationReport = {
 
 Files: `packages/validator/package.json`, `tsconfig.json`, `tsconfig.test.json`, `vitest.config.ts`, `tsup.config.ts`, `src/index.ts` (placeholder).
 
-Follows the same shape as `@clawmart/build-index`. Key differences:
-- `name`: `@clawmart/validator`
-- `bin`: `clawmart-validate`
-- Deps: `@clawmart/schema` (workspace), `@clawmart/build-index` (workspace — reuse `enumerateEntries` + `readJson`)
+Follows the same shape as `@clawforge/build-index`. Key differences:
+- `name`: `@clawforge/validator`
+- `bin`: `clawforge-validate`
+- Deps: `@clawforge/schema` (workspace), `@clawforge/build-index` (workspace — reuse `enumerateEntries` + `readJson`)
 - DevDeps: same Vitest/tsup/typescript
 
-**Commit:** `chore(validator): scaffold @clawmart/validator package`
+**Commit:** `chore(validator): scaffold @clawforge/validator package`
 
 ---
 
@@ -149,7 +149,7 @@ Test fixtures:
 
 `runValidator({ registryRoot })` → `Promise<ValidationReport>`
 
-Reuse `enumerateEntries` + `readJson` from `@clawmart/build-index` to load raw JSON payloads. Build a `LoadedEntry` list: `{ location, raw, parsed?: Entry }`. Run each check and aggregate.
+Reuse `enumerateEntries` + `readJson` from `@clawforge/build-index` to load raw JSON payloads. Build a `LoadedEntry` list: `{ location, raw, parsed?: Entry }`. Run each check and aggregate.
 
 Test with a fixture registry that has 2 valid entries + 1 duplicate-id + 1 dangerous hook → expect at least 2 BLOCK issues.
 
@@ -161,7 +161,7 @@ Test with a fixture registry that has 2 valid entries + 1 duplicate-id + 1 dange
 
 `src/bin.ts`:
 ```
-clawmart-validate --registry ./registry
+clawforge-validate --registry ./registry
 ```
 Prints each issue with code + severity + path, exits 1 if any BLOCK, 0 otherwise.
 
@@ -174,7 +174,7 @@ Prints each issue with code + severity + path, exits 1 if any BLOCK, 0 otherwise
 ### Task 9: README + sign-off
 
 - `packages/validator/README.md` — usage snippet, severity legend, CI integration example
-- Verify: `pnpm lint && pnpm --filter @clawmart/validator typecheck && pnpm --filter @clawmart/validator test && pnpm --filter @clawmart/validator build`
+- Verify: `pnpm lint && pnpm --filter @clawforge/validator typecheck && pnpm --filter @clawforge/validator test && pnpm --filter @clawforge/validator build`
 - Update spec §11 with Phase 3 status
 - Tag `phase-3-validator-complete`
 - Merge to master

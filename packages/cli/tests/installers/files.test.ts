@@ -1,7 +1,7 @@
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { SkillEntry } from "@clawmart/schema";
+import type { SkillEntry } from "@clawforge/schema";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { installFiles } from "../../src/installers/files.js";
 import type { InstallerContext } from "../../src/installers/types.js";
@@ -28,8 +28,8 @@ const skill = (): SkillEntry => ({
 });
 
 beforeEach(() => {
-  entryDir = mkdtempSync(join(tmpdir(), "clawmart-src-"));
-  claudeDir = mkdtempSync(join(tmpdir(), "clawmart-claude-"));
+  entryDir = mkdtempSync(join(tmpdir(), "clawforge-src-"));
+  claudeDir = mkdtempSync(join(tmpdir(), "clawforge-claude-"));
   writeFileSync(join(entryDir, "skill.md"), "skill body v1", "utf8");
 });
 afterEach(() => {

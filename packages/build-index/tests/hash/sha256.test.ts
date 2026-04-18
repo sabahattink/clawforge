@@ -6,7 +6,7 @@ import { computeContentSha256 } from "../../src/hash/sha256.js";
 
 let dir: string;
 beforeAll(() => {
-  dir = mkdtempSync(join(tmpdir(), "clawmart-sha-"));
+  dir = mkdtempSync(join(tmpdir(), "clawforge-sha-"));
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "a.md"), "hello", "utf8");
   writeFileSync(join(dir, "b.md"), "world", "utf8");

@@ -1,4 +1,4 @@
-<!-- Thanks for contributing to clawmart! -->
+<!-- Thanks for contributing to clawforge! -->
 
 ## What this PR adds / changes
 

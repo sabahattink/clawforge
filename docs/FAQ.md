@@ -4,25 +4,25 @@ Answers for first-week questions. Update as real ones come in.
 
 ---
 
-## Why would I use clawmart over just copying snippets from a README?
+## Why would I use clawforge over just copying snippets from a README?
 
 Three reasons:
 
-1. **One command.** `npx clawmart add skill:tdd-workflow` vs "clone this repo, find the file, copy it into ~/.claude/skills/, make sure you edit settings.json for the hook..."
-2. **Reversibility.** The manifest records everything, so `clawmart remove` cleanly reverts.
+1. **One command.** `npx clawforge add skill:tdd-workflow` vs "clone this repo, find the file, copy it into ~/.claude/skills/, make sure you edit settings.json for the hook..."
+2. **Reversibility.** The manifest records everything, so `clawforge remove` cleanly reverts.
 3. **Security layer.** The registry rejects entries with obviously dangerous hook snippets before they even land.
 
-If you only ever install two skills and never change them, a README copy-paste is fine. If you install more than a handful, clawmart pays for itself.
+If you only ever install two skills and never change them, a README copy-paste is fine. If you install more than a handful, clawforge pays for itself.
 
 ---
 
 ## Is this Anthropic-official?
 
-No. clawmart is an independent open-source project, MIT-licensed, maintained by [@kalkan](https://github.com/kalkan) and contributors. It does not speak for Anthropic and does not distribute Anthropic proprietary code.
+No. clawforge is an independent open-source project, MIT-licensed, maintained by [@kalkan](https://github.com/kalkan) and contributors. It does not speak for Anthropic and does not distribute Anthropic proprietary code.
 
 ---
 
-## Does clawmart run code on my machine?
+## Does clawforge run code on my machine?
 
 The CLI runs. Entries themselves are static content:
 
@@ -57,7 +57,7 @@ No. The CLI fetches the registry index and the entry files you ask for. There's 
 
 ```bash
 pnpm install
-pnpm --filter @clawmart/build-index build
+pnpm --filter @clawforge/build-index build
 node packages/build-index/dist/bin.js \
   --registry ./your-registry \
   --out ./dist \
@@ -85,9 +85,9 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md). TL;DR:
 
 ## Why do I need `--track`?
 
-Without it, clawmart writes the file and forgets about it. You own the file, but `clawmart update` / `remove` can't manage it because there's no manifest record.
+Without it, clawforge writes the file and forgets about it. You own the file, but `clawforge update` / `remove` can't manage it because there's no manifest record.
 
-Use `--track` if you want clawmart to keep managing the entry (most people do).
+Use `--track` if you want clawforge to keep managing the entry (most people do).
 
 ---
 
@@ -107,15 +107,15 @@ Pass `--force` to auto-overwrite without prompting. Pass `--dry-run` to see the 
 
 Three common causes:
 
-1. **settings.json isn't picked up** — make sure you ran `clawmart init` first, which confirms the scope is right.
+1. **settings.json isn't picked up** — make sure you ran `clawforge init` first, which confirms the scope is right.
 2. **The hook matcher doesn't match** — open `~/.claude/settings.json`, find the hooks array, and check the `matcher` regex against the tool name Claude Code uses.
 3. **Claude Code wasn't restarted** — some hook configs require a restart.
 
-Run `clawmart doctor` to verify the install is intact.
+Run `clawforge doctor` to verify the install is intact.
 
 ---
 
-## Can I use clawmart with a non-Anthropic coding agent?
+## Can I use clawforge with a non-Anthropic coding agent?
 
 Technically — the entries are just files + JSON snippets. Practically — most entries assume Claude Code's specific settings.json shape and tool names. Forking for another agent is reasonable; the build pipeline and CLI are agent-agnostic.
 
@@ -131,4 +131,4 @@ Open a `verification-request` issue. A maintainer goes through the checklist in 
 
 - **Bug** → GitHub Issue with the bug template.
 - **Malicious entry** → `takedown-request` issue template.
-- **Security in clawmart itself** → email (see [SECURITY.md](../SECURITY.md)), don't file public issues.
+- **Security in clawforge itself** → email (see [SECURITY.md](../SECURITY.md)), don't file public issues.

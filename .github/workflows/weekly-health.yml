@@ -27,9 +27,9 @@ jobs:
 
       - name: Build schema + validator
         run: |
-          pnpm --filter @clawmart/schema build
-          pnpm --filter @clawmart/build-index build
-          pnpm --filter @clawmart/validator build
+          pnpm --filter @clawforge/schema build
+          pnpm --filter @clawforge/build-index build
+          pnpm --filter @clawforge/validator build
 
       - name: Re-run validator
         id: validate

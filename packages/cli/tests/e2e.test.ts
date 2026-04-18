@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { Entry, IndexEntry, RegistryIndex } from "@clawmart/schema";
+import type { Entry, IndexEntry, RegistryIndex } from "@clawforge/schema";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { addCommand } from "../src/commands/add.js";
 import { listCommand } from "../src/commands/list.js";
@@ -66,8 +66,8 @@ const client: RegistryClient = {
 };
 
 beforeEach(() => {
-  home = mkdtempSync(join(tmpdir(), "clawmart-e2e-home-"));
-  downloadDir = mkdtempSync(join(tmpdir(), "clawmart-e2e-dl-"));
+  home = mkdtempSync(join(tmpdir(), "clawforge-e2e-home-"));
+  downloadDir = mkdtempSync(join(tmpdir(), "clawforge-e2e-dl-"));
 });
 afterEach(() => {
   rmSync(home, { recursive: true, force: true });

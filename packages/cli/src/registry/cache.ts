@@ -15,7 +15,7 @@ function keyFor(url: string): string {
 }
 
 function defaultCacheDir(): string {
-  return join(homedir(), ".clawmart", "cache");
+  return join(homedir(), ".clawforge", "cache");
 }
 
 export async function readCached(url: string, opts: CacheOptions = {}): Promise<Buffer | null> {

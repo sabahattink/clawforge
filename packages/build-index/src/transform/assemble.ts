@@ -1,4 +1,4 @@
-import type { IndexEntry, RegistryIndex } from "@clawmart/schema";
+import type { IndexEntry, RegistryIndex } from "@clawforge/schema";
 
 export function assembleIndex(entries: IndexEntry[], generatedAt: string): RegistryIndex {
   return { version: 1, generatedAt, count: entries.length, entries };

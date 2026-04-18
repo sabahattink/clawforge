@@ -11,20 +11,20 @@ Three phases complete and shipped:
 
 | Phase | Package | Tag | Tests | Notes |
 |---|---|---|---|---|
-| P1 | `@clawmart/schema` | `phase-1-schema-complete` | 70 | Zod schemas + types foundation |
-| P2 | `@clawmart/build-index` | `phase-2-build-index-complete` | 35 | Registry → CDN artefacts pipeline |
-| P3 | `@clawmart/validator` | `phase-3-validator-complete` | 16 | CI auto-gates (schema/dup/file/security) |
+| P1 | `@clawforge/schema` | `phase-1-schema-complete` | 70 | Zod schemas + types foundation |
+| P2 | `@clawforge/build-index` | `phase-2-build-index-complete` | 35 | Registry → CDN artefacts pipeline |
+| P3 | `@clawforge/validator` | `phase-3-validator-complete` | 16 | CI auto-gates (schema/dup/file/security) |
 
 Total: **121 tests green**, lint clean, typecheck clean on all three packages.
 
-All three are consumable as workspace packages. `@clawmart/build-index` re-exports `enumerateEntries` which `@clawmart/validator` uses.
+All three are consumable as workspace packages. `@clawforge/build-index` re-exports `enumerateEntries` which `@clawforge/validator` uses.
 
 ## Remaining phases
 
 | # | Phase | Scope |
 |---|---|---|
-| **P4** | `@clawmart/cli` | `npx clawmart` — init, add, list, info, update, remove, search, doctor, browse. 6 installer per kind. Manifest I/O. Conflict resolution. Registry fetch + cache. **Biggest phase.** |
-| P5 | Astro web site | `clawmart.dev` — landing / browse / detail / submit / docs / stats / author pages. Shadcn/ui, Tailwind 4, MeiliSearch InstantSearch + Pagefind fallback. OG images via Satori. |
+| **P4** | `@clawforge/cli` | `npx clawforge` — init, add, list, info, update, remove, search, doctor, browse. 6 installer per kind. Manifest I/O. Conflict resolution. Registry fetch + cache. **Biggest phase.** |
+| P5 | Astro web site | `clawforge.dev` — landing / browse / detail / submit / docs / stats / author pages. Shadcn/ui, Tailwind 4, MeiliSearch InstantSearch + Pagefind fallback. OG images via Satori. |
 | P6 | CI/CD | 5 workflows: `validate-pr.yml`, `publish-registry.yml`, `release-cli.yml`, `release-web.yml`, `weekly-health.yml`. Branch protection, CODEOWNERS. Required secrets documented. |
 | P7 | Verified tier tooling | `_verified.json` wiring in build-index, `_removed.json` tombstone handling, CODEOWNERS, issue templates, takedown playbook. |
 | P8 | Seed content | 50 entries authored: 20 skills + 8 agents + 6 hooks + 5 MCP configs + 5 slash commands + 6 presets. All MIT. All by owner. |
@@ -40,7 +40,7 @@ All three are consumable as workspace packages. `@clawmart/build-index` re-expor
 
 ## Key design references
 
-- Spec: [`docs/superpowers/specs/2026-04-18-clawmart-design.md`](specs/2026-04-18-clawmart-design.md) — §11 tracks phase progress.
+- Spec: [`docs/superpowers/specs/2026-04-18-clawforge-design.md`](specs/2026-04-18-clawforge-design.md) — §11 tracks phase progress.
 - Plan archive: `docs/superpowers/plans/` — P1, P2, P3 plans are useful templates.
 
 ## Notes / warnings for next session
@@ -51,4 +51,4 @@ All three are consumable as workspace packages. `@clawmart/build-index` re-expor
 - **Discriminated unions + `.refine()`** — `.refine()` on a `ZodObject` breaks `z.discriminatedUnion`. Use `superRefine` on the union for cross-field invariants (see `packages/schema/src/entry.ts`).
 - **Coverage thresholds** — per-package, tuned to reality. Exclude `src/bin.ts` and sometimes `src/index.ts` (re-export-only) in `vitest.config.ts`.
 - **Git log depth in CI** — P6 workflows must use `actions/checkout@v4` with `fetch-depth: 0`, otherwise `build-index` cannot resolve `createdAt` / `updatedAt`.
-- **CDN base** is currently hard-coded to `https://cdn.clawmart.dev` in scripts. P6 / P9 should audit before launch.
+- **CDN base** is currently hard-coded to `https://cdn.clawforge.dev` in scripts. P6 / P9 should audit before launch.

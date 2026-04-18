@@ -5,7 +5,7 @@ import {
   type RemovedIndex,
   type VerifiedIndex,
   parseEntry,
-} from "@clawmart/schema";
+} from "@clawforge/schema";
 import { enumerateEntries } from "./fs/enumerate.js";
 import { readJson } from "./fs/read-json.js";
 import { writeOutputs } from "./fs/write-outputs.js";

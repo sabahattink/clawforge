@@ -26,7 +26,7 @@ export const IdReferenceSchema = z
   .string()
   .regex(
     /^(skill|agent|hook|mcp|cmd|preset):(@[a-zA-Z0-9][a-zA-Z0-9-]{0,38}\/)?[a-z][a-z0-9-]{0,63}$/,
-    "must be a clawmart id",
+    "must be a clawforge id",
   );
 
 export const BaseEntrySchema = z

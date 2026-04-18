@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { enumerateEntries } from "@clawmart/build-index";
+import { enumerateEntries } from "@clawforge/build-index";
 import { checkDuplicates } from "./checks/duplicates.js";
 import { checkFileExistence } from "./checks/file-existence.js";
 import { type LoadedEntry, checkSchema } from "./checks/schema.js";

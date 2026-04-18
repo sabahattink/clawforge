@@ -1,4 +1,4 @@
-import type { Entry, RemovedIndex } from "@clawmart/schema";
+import type { Entry, RemovedIndex } from "@clawforge/schema";
 import { describe, expect, it } from "vitest";
 import { filterRemoved } from "../../src/transform/filter-removed.js";
 

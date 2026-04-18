@@ -27,15 +27,15 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm --filter @clawmart/schema build
-      - run: pnpm --filter @clawmart/build-index build
-      - run: pnpm --filter @clawmart/cli test
-      - run: pnpm --filter @clawmart/cli build
+      - run: pnpm --filter @clawforge/schema build
+      - run: pnpm --filter @clawforge/build-index build
+      - run: pnpm --filter @clawforge/cli test
+      - run: pnpm --filter @clawforge/cli build
 
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm --filter @clawmart/cli publish --access public --no-git-checks
+        run: pnpm --filter @clawforge/cli publish --access public --no-git-checks
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
