@@ -16,7 +16,7 @@
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/hooks/auto-format-ts/entry.json",
       "sha256": "cb77fa4dd7696d14e0895374c0326c18807f50f2db341f27703a9647ff083fa4",
       "updatedAt": "2026-04-18T21:15:43.000Z"
@@ -34,7 +34,7 @@
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/hooks/commit-msg-lint/entry.json",
       "sha256": "634341c6e2d5f4aaee60dbe985a794b316fbfe0c02627c9c97fa3580c7a1537f",
       "updatedAt": "2026-04-18T21:15:43.000Z"

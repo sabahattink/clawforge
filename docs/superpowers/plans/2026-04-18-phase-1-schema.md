@@ -27,7 +27,7 @@
 |---|---|
 | `.gitignore` | Ignore `node_modules`, `dist`, `.turbo`, `coverage` |
 | `.nvmrc` | Pin Node 20 |
-| `LICENSE` | MIT (owner: @kalkan) |
+| `LICENSE` | MIT (owner: @sabahattink) |
 | `README.md` | Minimal placeholder (replaced at launch) |
 | `package.json` | Root, `private: true`, workspace config + root scripts |
 | `pnpm-workspace.yaml` | Workspace glob `apps/*`, `packages/*` |
@@ -573,9 +573,9 @@ describe("parseId", () => {
   });
 
   it("parses a scoped id", () => {
-    expect(parseId("skill:@kalkan/custom-tdd")).toEqual({
+    expect(parseId("skill:@sabahattink/custom-tdd")).toEqual({
       kind: "skill",
-      user: "kalkan",
+      user: "sabahattink",
       name: "custom-tdd",
     });
   });
@@ -613,8 +613,8 @@ describe("formatId", () => {
 
   it("formats a scoped id", () => {
     expect(
-      formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" }),
-    ).toBe("agent:@kalkan/code-reviewer");
+      formatId({ kind: "agent", user: "sabahattink", name: "code-reviewer" }),
+    ).toBe("agent:@sabahattink/code-reviewer");
   });
 
   it("round-trips every global id", () => {
@@ -742,7 +742,7 @@ const validBase = {
   description: "Write tests first, enforce red-green-refactor discipline.",
   author: {
     name: "Sabahattin Kalkan",
-    github: "kalkan",
+    github: "sabahattink",
   },
   tags: ["testing", "tdd"],
   category: "testing",
@@ -833,8 +833,8 @@ describe("BaseEntrySchema", () => {
       ...validBase,
       requires: ["skill:tdd-guide"],
       conflicts: ["skill:bdd-workflow"],
-      repository: { type: "git", url: "https://github.com/kalkan/tdd" },
-      sourcePR: "https://github.com/kalkan/clawforge/pull/1",
+      repository: { type: "git", url: "https://github.com/sabahattink/tdd" },
+      sourcePR: "https://github.com/sabahattink/clawforge/pull/1",
       claudeCodeVersion: ">=2.0.0",
     });
     expect(parsed.requires).toEqual(["skill:tdd-guide"]);
@@ -960,7 +960,7 @@ export const BASE_FIXTURE: BaseEntry = {
   name: "tdd-workflow",
   displayName: "TDD Workflow",
   description: "Write tests first, enforce red-green-refactor discipline.",
-  author: { name: "Sabahattin Kalkan", github: "kalkan" },
+  author: { name: "Sabahattin Kalkan", github: "sabahattink" },
   tags: ["testing", "tdd"],
   category: "testing",
   version: "1.2.0",
@@ -1842,7 +1842,7 @@ const validIndexEntry = {
   category: "testing",
   verified: true,
   version: "1.2.0",
-  author: "kalkan",
+  author: "sabahattink",
   detailUrl: "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
   sha256: "a".repeat(64),
   updatedAt: "2026-04-18T12:00:00.000Z",
@@ -1889,14 +1889,14 @@ describe("VerifiedIndexSchema", () => {
       entries: {
         "skill:tdd-workflow": {
           verifiedAt: "2026-04-15T12:00:00.000Z",
-          verifiedBy: "kalkan",
+          verifiedBy: "sabahattink",
           verifiedVersion: "1.2.0",
           reason: "High-quality, well-documented.",
           expiresAt: null,
         },
       },
     });
-    expect(parsed.entries["skill:tdd-workflow"]?.verifiedBy).toBe("kalkan");
+    expect(parsed.entries["skill:tdd-workflow"]?.verifiedBy).toBe("sabahattink");
   });
 
   it("allows null expiresAt", () => {
@@ -2302,8 +2302,8 @@ import { parseId, formatId } from "@clawforge/schema";
 parseId("skill:tdd-workflow");
 // → { kind: "skill", user: null, name: "tdd-workflow" }
 
-formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" });
-// → "agent:@kalkan/code-reviewer"
+formatId({ kind: "agent", user: "sabahattink", name: "code-reviewer" });
+// → "agent:@sabahattink/code-reviewer"
 ```
 
 ## Supported kinds

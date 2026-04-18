@@ -7,7 +7,7 @@ const validBase = {
   description: "Write tests first, enforce red-green-refactor discipline.",
   author: {
     name: "Sabahattin Kalkan",
-    github: "kalkan",
+    github: "sabahattink",
   },
   tags: ["testing", "tdd"],
   category: "testing",
@@ -98,8 +98,8 @@ describe("BaseEntrySchema", () => {
       ...validBase,
       requires: ["skill:tdd-guide"],
       conflicts: ["skill:bdd-workflow"],
-      repository: { type: "git", url: "https://github.com/kalkan/tdd" },
-      sourcePR: "https://github.com/kalkan/clawforge/pull/1",
+      repository: { type: "git", url: "https://github.com/sabahattink/tdd" },
+      sourcePR: "https://github.com/sabahattink/clawforge/pull/1",
       claudeCodeVersion: ">=2.0.0",
     });
     expect(parsed.requires).toEqual(["skill:tdd-guide"]);

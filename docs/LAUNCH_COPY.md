@@ -38,7 +38,7 @@ MVP ships 12 seed entries across every kind. 38 more in the backlog.
 Design spec, plans, maintainer playbook, and the security policy are all in
 the repo. Happy to answer anything.
 
-GitHub: github.com/kalkan/clawforge
+GitHub: github.com/sabahattink/clawforge
 Site: clawforge.dev
 ```
 
@@ -74,7 +74,7 @@ Built-in:
 
 Self-hostable if you want a private registry.
 
-GitHub: github.com/kalkan/clawforge — would love first-week feedback.
+GitHub: github.com/sabahattink/clawforge — would love first-week feedback.
 ```
 
 ---
@@ -97,7 +97,7 @@ One-command install, copy-paste semantics, full reversibility.
 Reads from a public registry (self-hostable). Every install records a
 before-snapshot for JSON-merge entries so `remove` genuinely reverts.
 
-Repo: github.com/kalkan/clawforge
+Repo: github.com/sabahattink/clawforge
 ```
 
 ---
@@ -113,7 +113,7 @@ one command. one file written. fully reversible.
 
 `npx clawforge add skill:tdd-workflow`
 
-github.com/kalkan/clawforge
+github.com/sabahattink/clawforge
 ```
 
 2.
@@ -193,7 +193,7 @@ presets — strict-tdd bundle
 
 9.
 ```
-repo: github.com/kalkan/clawforge
+repo: github.com/sabahattink/clawforge
 site: clawforge.dev
 docs: full maintainer playbook, security policy, branch-protection guide
 already in the repo.
@@ -243,7 +243,7 @@ One-paragraph pitch:
 - Security scanner blocks dangerous patterns before merge
 - Self-hostable for private registries
 
-Repo: github.com/kalkan/clawforge
+Repo: github.com/sabahattink/clawforge
 Site: clawforge.dev
 
 Happy to do a 5-minute walkthrough on video if it helps.

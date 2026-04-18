@@ -26,7 +26,7 @@ const idx: VerifiedIndex = {
   entries: {
     "skill:tdd": {
       verifiedAt: "2026-04-15T12:00:00.000Z",
-      verifiedBy: "kalkan",
+      verifiedBy: "sabahattink",
       verifiedVersion: "1.2.0",
       reason: "good",
       expiresAt: null,

@@ -3,7 +3,7 @@
   "name": "test",
   "displayName": "/test",
   "description": "Run the test suite relevant to the current diff.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["testing"],
   "category": "testing",
   "version": "1.0.0",

@@ -3,7 +3,7 @@
   "name": "planner",
   "displayName": "Planner",
   "description": "Produces a tight implementation plan from a spec or feature request.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["planning"],
   "category": "productivity",
   "version": "1.0.0",

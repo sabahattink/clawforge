@@ -3,7 +3,7 @@
   "name": "strict-tdd",
   "displayName": "Strict TDD bundle",
   "description": "TDD workflow + code-reviewer agent + /review + /test + commit-msg-lint.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["tdd", "testing", "bundle"],
   "category": "testing",
   "version": "1.0.0",

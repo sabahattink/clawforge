@@ -3,7 +3,7 @@
   "name": "commit-msg-lint",
   "displayName": "Commit-message Lint",
   "description": "Rejects commits whose message does not match Conventional Commits.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["git", "conventions"],
   "category": "devops",
   "version": "1.0.0",

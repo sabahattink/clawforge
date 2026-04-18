@@ -3,7 +3,7 @@
   "name": "code-reviewer",
   "displayName": "Code Reviewer",
   "description": "Reviews code against project standards.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["review"],
   "category": "testing",
   "version": "0.1.0",

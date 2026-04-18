@@ -7,7 +7,7 @@ const skill: Entry = {
   name: "tdd-workflow",
   displayName: "TDD Workflow",
   description: "Write tests first.",
-  author: { name: "Kalkan", github: "kalkan" },
+  author: { name: "Kalkan", github: "sabahattink" },
   tags: ["tdd"],
   category: "testing",
   version: "1.2.0",
@@ -25,7 +25,7 @@ describe("toIndexEntry", () => {
     const ix = toIndexEntry(skill, "https://cdn.clawforge.dev");
     expect(ix.id).toBe("skill:tdd-workflow");
     expect(ix.detailUrl).toBe("https://cdn.clawforge.dev/skills/tdd-workflow/entry.json");
-    expect(ix.author).toBe("kalkan");
+    expect(ix.author).toBe("sabahattink");
     expect(ix.verified).toBe(true);
   });
 

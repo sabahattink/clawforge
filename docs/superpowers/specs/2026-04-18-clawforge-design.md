@@ -2,7 +2,7 @@
 
 **Date:** 2026-04-18
 **Status:** Draft (approved by owner, pending spec review)
-**Owner:** @kalkan
+**Owner:** @sabahattink
 **Repo location:** `H:/60_OSS/clawforge/`
 
 ---
@@ -312,7 +312,7 @@ Served at `https://cdn.clawforge.dev/registry.json`:
       "category": "testing",
       "verified": true,
       "version": "1.2.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sha256": "…",
       "updatedAt": "2026-04-10T…"
@@ -576,7 +576,7 @@ Cloudflare R2 versioning is enabled — rollback is a single `wrangler r2 object
   "entries": {
     "skill:tdd-workflow": {
       "verifiedAt": "2026-04-15T12:00:00Z",
-      "verifiedBy": "kalkan",
+      "verifiedBy": "sabahattink",
       "verifiedVersion": "1.2.0",
       "reason": "…",
       "expiresAt": null
@@ -590,10 +590,10 @@ Major version bumps reset `verified` to `false` — new version requires fresh r
 `.github/CODEOWNERS`:
 
 ```
-/registry/_verified.json      @kalkan @maintainer2
-/registry/_removed/           @kalkan @maintainer2
-/.github/                     @kalkan
-/packages/validator/          @kalkan
+/registry/_verified.json      @sabahattink @maintainer2
+/registry/_removed/           @sabahattink @maintainer2
+/.github/                     @sabahattink
+/packages/validator/          @sabahattink
 ```
 
 ### 8.2 Verification checklist (maintainer uses before approval)
@@ -789,6 +789,6 @@ None blocking. Tracked deferrals:
 
 ## 12. Approvals
 
-- **Owner:** @kalkan — approved 2026-04-18 via brainstorming session.
+- **Owner:** @sabahattink — approved 2026-04-18 via brainstorming session.
 - **Spec review:** pending (spec-document-reviewer agent).
 - **Implementation plan:** pending (`writing-plans` skill after spec review passes).

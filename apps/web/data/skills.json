@@ -16,7 +16,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/receiving-code-review/entry.json",
       "sha256": "85bdb5bf2d7afad4d6c2efc3af8d6c497520a740c6b1b00c75dc45fa32191d1a",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -34,7 +34,7 @@
       "category": "debugging",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/systematic-debugging/entry.json",
       "sha256": "cecc6cf0670b53898f385be77df523dcbec0ad390d42606716d110b4342d9bfe",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -53,7 +53,7 @@
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sha256": "2727e018eb0c5002bfda27d01a9ca109786430ef876b0efde9405689923cbad8",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -71,7 +71,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/writing-plans/entry.json",
       "sha256": "cf168641106d1c2ae068044d18ddf93e5f14c057ce0b520756315b3a238d9302",
       "updatedAt": "2026-04-18T21:22:31.000Z"

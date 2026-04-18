@@ -3,7 +3,7 @@
   "name": "filesystem",
   "displayName": "Filesystem MCP",
   "description": "Official @modelcontextprotocol filesystem server — read/write files under a root.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["filesystem", "official"],
   "category": "productivity",
   "version": "1.0.0",

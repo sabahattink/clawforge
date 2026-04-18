@@ -28,8 +28,8 @@ import { parseId, formatId } from "@clawforge/schema";
 parseId("skill:tdd-workflow");
 // → { kind: "skill", user: null, name: "tdd-workflow" }
 
-formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" });
-// → "agent:@kalkan/code-reviewer"
+formatId({ kind: "agent", user: "sabahattink", name: "code-reviewer" });
+// → "agent:@sabahattink/code-reviewer"
 ```
 
 ## Supported kinds

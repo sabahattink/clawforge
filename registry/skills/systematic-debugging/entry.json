@@ -3,7 +3,7 @@
   "name": "systematic-debugging",
   "displayName": "Systematic Debugging",
   "description": "Narrow the search space with the scientific method before touching code.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["debugging", "methodology"],
   "category": "debugging",
   "version": "1.0.0",

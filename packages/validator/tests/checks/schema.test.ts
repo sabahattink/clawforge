@@ -12,7 +12,7 @@ const valid: LoadedEntry = {
     name: "tdd",
     displayName: "TDD",
     description: "Write tests first.",
-    author: { name: "K", github: "kalkan" },
+    author: { name: "K", github: "sabahattink" },
     tags: [],
     category: "testing",
     version: "1.0.0",

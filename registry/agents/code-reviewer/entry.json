@@ -3,7 +3,7 @@
   "name": "code-reviewer",
   "displayName": "Code Reviewer",
   "description": "Reviews diffs for correctness, readability, and common security issues.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["review", "security"],
   "category": "testing",
   "version": "1.0.0",

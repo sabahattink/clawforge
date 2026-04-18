@@ -11,9 +11,9 @@ describe("parseId", () => {
   });
 
   it("parses a scoped id", () => {
-    expect(parseId("skill:@kalkan/custom-tdd")).toEqual({
+    expect(parseId("skill:@sabahattink/custom-tdd")).toEqual({
       kind: "skill",
-      user: "kalkan",
+      user: "sabahattink",
       name: "custom-tdd",
     });
   });
@@ -50,8 +50,8 @@ describe("formatId", () => {
   });
 
   it("formats a scoped id", () => {
-    expect(formatId({ kind: "agent", user: "kalkan", name: "code-reviewer" })).toBe(
-      "agent:@kalkan/code-reviewer",
+    expect(formatId({ kind: "agent", user: "sabahattink", name: "code-reviewer" })).toBe(
+      "agent:@sabahattink/code-reviewer",
     );
   });
 

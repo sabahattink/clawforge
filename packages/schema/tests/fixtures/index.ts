@@ -4,7 +4,7 @@ export const BASE_FIXTURE: BaseEntry = {
   name: "tdd-workflow",
   displayName: "TDD Workflow",
   description: "Write tests first, enforce red-green-refactor discipline.",
-  author: { name: "Sabahattin Kalkan", github: "kalkan" },
+  author: { name: "Sabahattin Kalkan", github: "sabahattink" },
   tags: ["testing", "tdd"],
   category: "testing",
   version: "1.2.0",

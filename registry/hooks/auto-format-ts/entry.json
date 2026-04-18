@@ -3,7 +3,7 @@
   "name": "auto-format-ts",
   "displayName": "Auto-format TypeScript",
   "description": "Runs Biome format on any TS/TSX file Claude Code just wrote.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["devops", "formatting"],
   "category": "devops",
   "version": "1.0.0",

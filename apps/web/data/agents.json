@@ -16,7 +16,7 @@
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/agents/code-reviewer/entry.json",
       "sha256": "6c3b76a90541ee2eed4a6e89b72c8a163d981e53c79941eb26d73ce44fbbe496",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -33,7 +33,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/agents/planner/entry.json",
       "sha256": "d58cb213b6fa3edb1acdddebe9dac4d0242d5120434d8517675ff769e8f5378e",
       "updatedAt": "2026-04-18T21:22:31.000Z"

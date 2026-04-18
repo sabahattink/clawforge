@@ -38,7 +38,7 @@ jobs:
         run: node packages/validator/dist/bin.js --registry registry
 
       - name: Ensure no changes to _verified.json from non-maintainers
-        if: ${{ !contains(fromJson('["kalkan"]'), github.event.pull_request.user.login) }}
+        if: ${{ !contains(fromJson('["sabahattink"]'), github.event.pull_request.user.login) }}
         run: |
           if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^registry/_verified.json$"; then
             echo "::error::Only CODEOWNERS may edit registry/_verified.json"

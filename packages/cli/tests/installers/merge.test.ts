@@ -14,7 +14,7 @@ const hook = (): HookEntry => ({
   name: "auto-fmt",
   displayName: "Auto Format",
   description: "Format on save.",
-  author: { name: "K", github: "kalkan" },
+  author: { name: "K", github: "sabahattink" },
   tags: [],
   category: "devops",
   version: "1.0.0",

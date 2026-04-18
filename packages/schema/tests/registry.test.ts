@@ -16,7 +16,7 @@ const validIndexEntry = {
   category: "testing",
   verified: true,
   version: "1.2.0",
-  author: "kalkan",
+  author: "sabahattink",
   detailUrl: "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
   sha256: "a".repeat(64),
   updatedAt: "2026-04-18T12:00:00.000Z",
@@ -63,14 +63,14 @@ describe("VerifiedIndexSchema", () => {
       entries: {
         "skill:tdd-workflow": {
           verifiedAt: "2026-04-15T12:00:00.000Z",
-          verifiedBy: "kalkan",
+          verifiedBy: "sabahattink",
           verifiedVersion: "1.2.0",
           reason: "High-quality, well-documented.",
           expiresAt: null,
         },
       },
     });
-    expect(parsed.entries["skill:tdd-workflow"]?.verifiedBy).toBe("kalkan");
+    expect(parsed.entries["skill:tdd-workflow"]?.verifiedBy).toBe("sabahattink");
   });
 
   it("allows null expiresAt", () => {

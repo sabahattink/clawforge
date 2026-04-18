@@ -17,7 +17,7 @@ Thanks for taking the time. clawforge gets better when contributors add battle-t
 ### 1. Fork & clone
 
 ```bash
-gh repo fork kalkan/clawforge --clone
+gh repo fork sabahattink/clawforge --clone
 cd clawforge
 pnpm install
 ```

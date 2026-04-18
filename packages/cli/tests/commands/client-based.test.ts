@@ -15,7 +15,7 @@ const ix = (id: string, extra: Partial<IndexEntry> = {}): IndexEntry => ({
   category: "testing",
   verified: false,
   version: "1.0.0",
-  author: "kalkan",
+  author: "sabahattink",
   detailUrl: `https://cdn.example/${id}/entry.json`,
   sha256: "a".repeat(64),
   updatedAt: "2026-04-19T00:00:00.000Z",

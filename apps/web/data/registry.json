@@ -16,7 +16,7 @@
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/agents/code-reviewer/entry.json",
       "sha256": "6c3b76a90541ee2eed4a6e89b72c8a163d981e53c79941eb26d73ce44fbbe496",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -33,7 +33,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/agents/planner/entry.json",
       "sha256": "d58cb213b6fa3edb1acdddebe9dac4d0242d5120434d8517675ff769e8f5378e",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -50,7 +50,7 @@
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/commands/review/entry.json",
       "sha256": "b876f7643ef99f9ccc959904d05ae377df533d7709f1bac3e8db4fa13a5cc1ba",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -67,7 +67,7 @@
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/commands/test/entry.json",
       "sha256": "b4fcf485c2d49b6ff2c119ce36c84ed0949a1bbb0f5e8d9ceffdeb2ac36cedec",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -85,7 +85,7 @@
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/hooks/auto-format-ts/entry.json",
       "sha256": "cb77fa4dd7696d14e0895374c0326c18807f50f2db341f27703a9647ff083fa4",
       "updatedAt": "2026-04-18T21:15:43.000Z"
@@ -103,7 +103,7 @@
       "category": "devops",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/hooks/commit-msg-lint/entry.json",
       "sha256": "634341c6e2d5f4aaee60dbe985a794b316fbfe0c02627c9c97fa3580c7a1537f",
       "updatedAt": "2026-04-18T21:15:43.000Z"
@@ -121,7 +121,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/mcp-servers/filesystem/entry.json",
       "sha256": "726be59b01457c26a5abcfe313467b8b064a142dd67cc7edb187e6891a932cc0",
       "updatedAt": "2026-04-18T21:15:43.000Z"
@@ -140,7 +140,7 @@
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/presets/strict-tdd/entry.json",
       "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "updatedAt": "2026-04-18T21:15:43.000Z"
@@ -158,7 +158,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/receiving-code-review/entry.json",
       "sha256": "85bdb5bf2d7afad4d6c2efc3af8d6c497520a740c6b1b00c75dc45fa32191d1a",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -176,7 +176,7 @@
       "category": "debugging",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/systematic-debugging/entry.json",
       "sha256": "cecc6cf0670b53898f385be77df523dcbec0ad390d42606716d110b4342d9bfe",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -195,7 +195,7 @@
       "category": "testing",
       "verified": true,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/tdd-workflow/entry.json",
       "sha256": "2727e018eb0c5002bfda27d01a9ca109786430ef876b0efde9405689923cbad8",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -213,7 +213,7 @@
       "category": "productivity",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/skills/writing-plans/entry.json",
       "sha256": "cf168641106d1c2ae068044d18ddf93e5f14c057ce0b520756315b3a238d9302",
       "updatedAt": "2026-04-18T21:22:31.000Z"

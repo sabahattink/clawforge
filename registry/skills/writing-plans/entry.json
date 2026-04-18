@@ -3,7 +3,7 @@
   "name": "writing-plans",
   "displayName": "Writing Implementation Plans",
   "description": "Turn a spec into a tight task list: exact files, complete code, TDD per task.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["planning", "methodology"],
   "category": "productivity",
   "version": "1.0.0",

@@ -14,7 +14,7 @@ const skill = (): SkillEntry => ({
   name: "tdd",
   displayName: "TDD",
   description: "Tests first.",
-  author: { name: "K", github: "kalkan" },
+  author: { name: "K", github: "sabahattink" },
   tags: [],
   category: "testing",
   version: "1.0.0",

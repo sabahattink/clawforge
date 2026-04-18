@@ -15,7 +15,7 @@
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/commands/review/entry.json",
       "sha256": "b876f7643ef99f9ccc959904d05ae377df533d7709f1bac3e8db4fa13a5cc1ba",
       "updatedAt": "2026-04-18T21:22:31.000Z"
@@ -32,7 +32,7 @@
       "category": "testing",
       "verified": false,
       "version": "1.0.0",
-      "author": "kalkan",
+      "author": "sabahattink",
       "detailUrl": "https://cdn.clawforge.dev/commands/test/entry.json",
       "sha256": "b4fcf485c2d49b6ff2c119ce36c84ed0949a1bbb0f5e8d9ceffdeb2ac36cedec",
       "updatedAt": "2026-04-18T21:22:31.000Z"

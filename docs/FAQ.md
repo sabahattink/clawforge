@@ -18,7 +18,7 @@ If you only ever install two skills and never change them, a README copy-paste i
 
 ## Is this Anthropic-official?
 
-No. clawforge is an independent open-source project, MIT-licensed, maintained by [@kalkan](https://github.com/kalkan) and contributors. It does not speak for Anthropic and does not distribute Anthropic proprietary code.
+No. clawforge is an independent open-source project, MIT-licensed, maintained by [@sabahattink](https://github.com/sabahattink) and contributors. It does not speak for Anthropic and does not distribute Anthropic proprietary code.
 
 ---
 

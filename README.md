@@ -3,7 +3,7 @@
 > The registry for Claude Code. Install skills, agents, hooks, and MCP servers with one command.
 
 [![npm version](https://img.shields.io/npm/v/@clawforge/cli.svg?logo=npm)](https://www.npmjs.com/package/@clawforge/cli)
-[![CI](https://img.shields.io/github/actions/workflow/status/kalkan/clawforge/validate-pr.yml?branch=main&logo=github)](https://github.com/kalkan/clawforge/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/sabahattink/clawforge/validate-pr.yml?branch=main&logo=github)](https://github.com/sabahattink/clawforge/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Node](https://img.shields.io/node/v/@clawforge/cli)](package.json)
 

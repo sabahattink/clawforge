@@ -12,7 +12,7 @@ const ix = (id: string, kind: "skill" | "agent" = "skill"): IndexEntry => ({
   category: "testing",
   verified: false,
   version: "1.0.0",
-  author: "kalkan",
+  author: "sabahattink",
   detailUrl: `https://cdn.clawforge.dev/${id}/entry.json`,
   sha256: "a".repeat(64),
   updatedAt: "2026-04-10T18:00:00.000Z",

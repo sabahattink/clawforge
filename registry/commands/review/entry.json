@@ -3,7 +3,7 @@
   "name": "review",
   "displayName": "/review",
   "description": "Run the code-reviewer agent on the current diff or a named PR.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["review"],
   "category": "testing",
   "version": "1.0.0",

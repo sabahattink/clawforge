@@ -3,7 +3,7 @@
   "name": "tdd-workflow",
   "displayName": "TDD Workflow",
   "description": "Write tests first, enforce red-green-refactor, keep commits tight.",
-  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "author": { "name": "Sabahattin Kalkan", "github": "sabahattink" },
   "tags": ["testing", "tdd", "workflow"],
   "category": "testing",
   "version": "1.0.0",
