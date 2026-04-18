@@ -5,9 +5,7 @@ describe("generateSitemap", () => {
   it("emits urls for every entry", () => {
     const xml = generateSitemap({
       siteBase: "https://clawmart.dev",
-      entries: [
-        { kind: "skill", name: "tdd", updatedAt: "2026-04-10T18:00:00.000Z" },
-      ],
+      entries: [{ kind: "skill", name: "tdd", updatedAt: "2026-04-10T18:00:00.000Z" }],
     });
     expect(xml).toContain("https://clawmart.dev/skill/tdd");
     expect(xml).toContain("<lastmod>2026-04-10</lastmod>");

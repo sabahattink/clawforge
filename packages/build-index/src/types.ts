@@ -1,6 +1,4 @@
-export type Result<T> =
-  | { ok: true; value: T }
-  | { ok: false; error: BuildError };
+export type Result<T> = { ok: true; value: T } | { ok: false; error: BuildError };
 
 export type BuildError = {
   code: string;

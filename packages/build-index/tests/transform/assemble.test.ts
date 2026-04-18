@@ -32,7 +32,7 @@ describe("shardByKind", () => {
     const all = [ix("skill:a"), ix("agent:b", "agent")];
     const shards = shardByKind(all, "2026-04-18T12:00:00.000Z");
     expect(Object.keys(shards).sort()).toEqual(["agent", "skill"]);
-    expect(shards["skill"]?.count).toBe(1);
-    expect(shards["agent"]?.count).toBe(1);
+    expect(shards.skill?.count).toBe(1);
+    expect(shards.agent?.count).toBe(1);
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { type BuildError, isErr, isOk, type Result } from "../src/types.js";
+import { type BuildError, type Result, isErr, isOk } from "../src/types.js";
 
 describe("Result helpers", () => {
   it("isOk narrows to success", () => {

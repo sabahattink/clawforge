@@ -1,10 +1,10 @@
 import { join } from "node:path";
 import {
-  parseEntry,
   type Entry,
   type RegistryIndex,
   type RemovedIndex,
   type VerifiedIndex,
+  parseEntry,
 } from "@clawmart/schema";
 import { enumerateEntries } from "./fs/enumerate.js";
 import { readJson } from "./fs/read-json.js";
@@ -35,19 +35,13 @@ export type BuildResult = {
 };
 
 export async function buildIndex(ctx: BuildContext): Promise<Result<BuildResult>> {
-  const verifiedRead = await readJson<VerifiedIndex>(
-    join(ctx.registryRoot, "_verified.json"),
-  );
+  const verifiedRead = await readJson<VerifiedIndex>(join(ctx.registryRoot, "_verified.json"));
   const verified: VerifiedIndex = verifiedRead.ok
     ? verifiedRead.value
     : { version: 1, entries: {} };
 
-  const removedRead = await readJson<RemovedIndex>(
-    join(ctx.registryRoot, "_removed.json"),
-  );
-  const removed: RemovedIndex = removedRead.ok
-    ? removedRead.value
-    : { version: 1, entries: {} };
+  const removedRead = await readJson<RemovedIndex>(join(ctx.registryRoot, "_removed.json"));
+  const removed: RemovedIndex = removedRead.ok ? removedRead.value : { version: 1, entries: {} };
 
   const locations = await enumerateEntries(ctx.registryRoot);
   const parsedEntries: Entry[] = [];
@@ -81,9 +75,7 @@ export async function buildIndex(ctx: BuildContext): Promise<Result<BuildResult>
 
     const hashInputs = collectHashInputs(entry);
     const sha256 =
-      hashInputs.length > 0
-        ? await computeContentSha256(loc.dir, hashInputs)
-        : "0".repeat(64);
+      hashInputs.length > 0 ? await computeContentSha256(loc.dir, hashInputs) : "0".repeat(64);
 
     parsedEntries.push({
       ...entry,

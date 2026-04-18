@@ -1,7 +1,7 @@
-import { execa } from "execa";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { execa } from "execa";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ExecaGitReader } from "../../src/git/timestamps.js";
 

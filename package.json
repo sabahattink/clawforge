@@ -12,7 +12,8 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "biome check .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "build:index": "pnpm --filter @clawmart/build-index build && node packages/build-index/dist/bin.js --registry registry --out dist --cdn-base https://cdn.clawmart.dev --site-base https://clawmart.dev"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",

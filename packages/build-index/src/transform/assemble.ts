@@ -10,7 +10,9 @@ export function shardByKind(
 ): Record<string, RegistryIndex> {
   const buckets: Record<string, IndexEntry[]> = {};
   for (const entry of entries) {
-    (buckets[entry.kind] ??= []).push(entry);
+    const list = buckets[entry.kind] ?? [];
+    list.push(entry);
+    buckets[entry.kind] = list;
   }
   const result: Record<string, RegistryIndex> = {};
   for (const [kind, list] of Object.entries(buckets)) {

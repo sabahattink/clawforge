@@ -19,25 +19,25 @@ export function generateFeed({ siteBase, entries }: FeedInput): string {
     const link = `${base}/${e.kind}/${esc(e.name)}`;
     const pubDate = new Date(e.updatedAt).toUTCString();
     return [
-      `  <item>`,
+      "  <item>",
       `    <title>${esc(e.displayName)}</title>`,
       `    <link>${link}</link>`,
       `    <guid isPermaLink="true">${link}</guid>`,
       `    <pubDate>${pubDate}</pubDate>`,
       `    <description>${esc(e.description)}</description>`,
-      `  </item>`,
+      "  </item>",
     ].join("\n");
   });
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<rss version="2.0">`,
-    `<channel>`,
-    `  <title>clawmart — new entries</title>`,
+    "<channel>",
+    "  <title>clawmart — new entries</title>",
     `  <link>${base}</link>`,
-    `  <description>Newly added entries to clawmart.</description>`,
+    "  <description>Newly added entries to clawmart.</description>",
     ...items,
-    `</channel>`,
-    `</rss>`,
+    "</channel>",
+    "</rss>",
   ].join("\n");
 }
 

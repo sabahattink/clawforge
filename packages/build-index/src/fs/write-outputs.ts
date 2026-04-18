@@ -30,11 +30,7 @@ export async function writeOutputs(input: WriteOutputsInput): Promise<void> {
   for (const [kind, shard] of Object.entries(input.shards)) {
     const filename = KIND_TO_FILENAME[kind];
     if (filename === undefined) continue;
-    await writeFile(
-      join(input.distDir, filename),
-      `${JSON.stringify(shard, null, 2)}\n`,
-      "utf8",
-    );
+    await writeFile(join(input.distDir, filename), `${JSON.stringify(shard, null, 2)}\n`, "utf8");
   }
   await writeFile(join(input.distDir, "sitemap.xml"), input.sitemap, "utf8");
   await writeFile(join(input.distDir, "feed.xml"), input.feed, "utf8");

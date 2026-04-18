@@ -8,7 +8,7 @@ describe("generateFeed", () => {
       name: `e${i}`,
       displayName: `E${i}`,
       description: "x",
-      updatedAt: `2026-04-${String(((i % 18) + 1)).padStart(2, "0")}T12:00:00.000Z`,
+      updatedAt: `2026-04-${String((i % 18) + 1).padStart(2, "0")}T12:00:00.000Z`,
     }));
     const xml = generateFeed({ siteBase: "https://clawmart.dev", entries });
     const itemCount = (xml.match(/<item>/g) ?? []).length;
