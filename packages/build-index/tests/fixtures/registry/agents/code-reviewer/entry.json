@@ -1,0 +1,17 @@
+{
+  "kind": "agent",
+  "name": "code-reviewer",
+  "displayName": "Code Reviewer",
+  "description": "Reviews code against project standards.",
+  "author": { "name": "Sabahattin Kalkan", "github": "kalkan" },
+  "tags": ["review"],
+  "category": "testing",
+  "version": "0.1.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-18T00:00:00.000Z",
+  "updatedAt": "2026-04-18T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [{ "source": "agent.md", "target": "{{CLAUDE_DIR}}/agents/{{name}}.md" }]
+}
