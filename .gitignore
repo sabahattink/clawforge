@@ -3,6 +3,7 @@ dist/
 .turbo/
 coverage/
 .tmp/
+.astro/
 *.log
 .DS_Store
 .env
