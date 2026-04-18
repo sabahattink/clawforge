@@ -11,7 +11,10 @@ beforeEach(() => {
 afterEach(() => rmSync(cacheDir, { recursive: true, force: true }));
 
 const okResponse = (body: unknown): Response =>
-  new Response(JSON.stringify(body), { status: 200, headers: { "content-type": "application/json" } });
+  new Response(JSON.stringify(body), {
+    status: 200,
+    headers: { "content-type": "application/json" },
+  });
 
 describe("HttpRegistryClient", () => {
   it("fetches and parses the index", async () => {
@@ -65,9 +68,7 @@ describe("HttpRegistryClient", () => {
 
   it("fetchEntry parses entry JSON", async () => {
     const entryShape = { kind: "skill", name: "tdd-workflow" };
-    const fetchImpl = vi
-      .fn<typeof fetch>()
-      .mockImplementation(async () => okResponse(entryShape));
+    const fetchImpl = vi.fn<typeof fetch>().mockImplementation(async () => okResponse(entryShape));
     const client = new HttpRegistryClient({
       cdnBase: "https://cdn.example",
       cacheDir,
@@ -80,9 +81,7 @@ describe("HttpRegistryClient", () => {
   it("fetchFile returns raw buffer", async () => {
     const fetchImpl = vi
       .fn<typeof fetch>()
-      .mockImplementation(
-        async () => new Response(Buffer.from("raw bytes"), { status: 200 }),
-      );
+      .mockImplementation(async () => new Response(Buffer.from("raw bytes"), { status: 200 }));
     const client = new HttpRegistryClient({
       cdnBase: "https://cdn.example",
       cacheDir,

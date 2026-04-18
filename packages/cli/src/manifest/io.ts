@@ -1,6 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
-import { emptyManifest, type InstalledRecord, type Manifest, type Scope } from "./types.js";
+import { type InstalledRecord, type Manifest, type Scope, emptyManifest } from "./types.js";
 
 export async function readManifest(
   path: string,

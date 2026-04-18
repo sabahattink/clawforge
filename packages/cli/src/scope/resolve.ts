@@ -9,9 +9,9 @@ export type ResolvedScope = {
 };
 
 export type ResolveOptions = {
-  scope?: Scope;
-  cwd?: string;
-  home?: string;
+  scope?: Scope | undefined;
+  cwd?: string | undefined;
+  home?: string | undefined;
 };
 
 const KIND_DEFAULT_SCOPE: Record<Kind, Scope> = {
@@ -24,9 +24,9 @@ const KIND_DEFAULT_SCOPE: Record<Kind, Scope> = {
 };
 
 export function resolveScope(opts: ResolveOptions, kind?: Kind): ResolvedScope {
-  const chosen: Scope =
-    opts.scope ?? (kind !== undefined ? KIND_DEFAULT_SCOPE[kind] : "global");
-  const base = chosen === "global" ? (opts.home ?? process.env.HOME ?? "~") : (opts.cwd ?? process.cwd());
+  const chosen: Scope = opts.scope ?? (kind !== undefined ? KIND_DEFAULT_SCOPE[kind] : "global");
+  const base =
+    chosen === "global" ? (opts.home ?? process.env.HOME ?? "~") : (opts.cwd ?? process.cwd());
   const claudeDir = join(base, ".claude");
   const manifestPath = join(claudeDir, ".clawmart", "manifest.json");
   return { scope: chosen, claudeDir, manifestPath };

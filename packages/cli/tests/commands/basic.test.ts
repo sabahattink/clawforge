@@ -58,8 +58,13 @@ describe("browseCommand", () => {
   });
 
   it("invokes open when provided", () => {
-    let opened: string | null = null;
-    browseCommand({ open: (u) => (opened = u), webBase: "https://x.dev/" });
-    expect(opened).toBe("https://x.dev/browse");
+    const opened: string[] = [];
+    browseCommand({
+      open: (u) => {
+        opened.push(u);
+      },
+      webBase: "https://x.dev/",
+    });
+    expect(opened).toEqual(["https://x.dev/browse"]);
   });
 });

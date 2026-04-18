@@ -1,5 +1,5 @@
 import type { Entry, RegistryIndex } from "@clawmart/schema";
-import { readCached, writeCache, type CacheOptions } from "./cache.js";
+import { type CacheOptions, readCached, writeCache } from "./cache.js";
 
 export type RegistryClient = {
   fetchIndex(): Promise<RegistryIndex>;

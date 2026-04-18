@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { Entry } from "@clawmart/schema";
-import { emptyResult, type InstallerContext, type InstallResult } from "./types.js";
+import { type InstallResult, type InstallerContext, emptyResult } from "./types.js";
 
 type FileBasedEntry = Entry & { files: { source: string; target: string }[] };
 
@@ -39,10 +39,10 @@ export async function installFiles(ctx: InstallerContext): Promise<InstallResult
         continue;
       }
       if (!ctx.force) {
-        const choice = await ctx.onPrompt(
-          `File ${target} exists with different content. Action?`,
-          ["overwrite", "skip"],
-        );
+        const choice = await ctx.onPrompt(`File ${target} exists with different content. Action?`, [
+          "overwrite",
+          "skip",
+        ]);
         if (choice === "skip") continue;
       }
     }

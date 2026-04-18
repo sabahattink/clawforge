@@ -25,9 +25,7 @@ export async function updateCommand(opts: UpdateOptions): Promise<UpdatePlan[]> 
     claudeDir: scope.claudeDir,
   });
   const targets =
-    opts.id !== undefined
-      ? manifest.installed.filter((r) => r.id === opts.id)
-      : manifest.installed;
+    opts.id !== undefined ? manifest.installed.filter((r) => r.id === opts.id) : manifest.installed;
 
   const index = await opts.client.fetchIndex();
   return targets.map((record: InstalledRecord) => {

@@ -85,8 +85,6 @@ describe("installFiles", () => {
   it("dry-run reports planned writes, does nothing", async () => {
     const result = await installFiles(ctx({ dryRun: true }));
     expect(result.files).toHaveLength(1);
-    expect(() =>
-      readFileSync(join(claudeDir, "skills", "tdd", "SKILL.md"), "utf8"),
-    ).toThrow();
+    expect(() => readFileSync(join(claudeDir, "skills", "tdd", "SKILL.md"), "utf8")).toThrow();
   });
 });

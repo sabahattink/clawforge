@@ -2,13 +2,8 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import {
-  readManifest,
-  removeById,
-  upsert,
-  writeManifest,
-} from "../../src/manifest/io.js";
-import { emptyManifest, type InstalledRecord } from "../../src/manifest/types.js";
+import { readManifest, removeById, upsert, writeManifest } from "../../src/manifest/io.js";
+import { type InstalledRecord, emptyManifest } from "../../src/manifest/types.js";
 
 let dir: string;
 beforeEach(() => {

@@ -20,7 +20,11 @@ export type RemoveResult = {
 };
 
 export async function removeCommand(opts: RemoveOptions): Promise<RemoveResult> {
-  const scope = resolveScope({ scope: opts.scope, cwd: opts.cwd, home: opts.home });
+  const scope = resolveScope({
+    ...(opts.scope !== undefined ? { scope: opts.scope } : {}),
+    ...(opts.cwd !== undefined ? { cwd: opts.cwd } : {}),
+    ...(opts.home !== undefined ? { home: opts.home } : {}),
+  });
   const manifest = await readManifest(scope.manifestPath, {
     scope: scope.scope,
     claudeDir: scope.claudeDir,

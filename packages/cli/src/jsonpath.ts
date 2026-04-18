@@ -35,10 +35,7 @@ export function setPath(
   return out;
 }
 
-export function deletePath(
-  obj: Record<string, unknown>,
-  path: string,
-): Record<string, unknown> {
+export function deletePath(obj: Record<string, unknown>, path: string): Record<string, unknown> {
   const parts = path.split(".");
   const last = parts[parts.length - 1];
   if (last === undefined) return obj;

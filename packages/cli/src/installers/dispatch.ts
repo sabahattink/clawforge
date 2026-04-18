@@ -1,7 +1,7 @@
 import type { Entry } from "@clawmart/schema";
 import { installFiles } from "./files.js";
 import { installMerge } from "./merge.js";
-import type { InstallerContext, InstallResult } from "./types.js";
+import type { InstallResult, InstallerContext } from "./types.js";
 
 export async function installEntry(ctx: InstallerContext): Promise<InstallResult> {
   return dispatch(ctx.entry, ctx);

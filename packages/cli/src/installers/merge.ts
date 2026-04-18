@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { Entry } from "@clawmart/schema";
 import { getPath, setPath } from "../jsonpath.js";
-import { emptyResult, type InstallerContext, type InstallResult } from "./types.js";
+import { type InstallResult, type InstallerContext, emptyResult } from "./types.js";
 
 type MergeEntry = Entry & {
   snippetFile: string;
@@ -51,10 +51,10 @@ export async function installMerge(ctx: InstallerContext): Promise<InstallResult
     const current = Array.isArray(before) ? before : [];
     after = [...current, snippet];
   } else if (before !== undefined && !ctx.force) {
-    const choice = await ctx.onPrompt(
-      `settings.json already has ${mergePath}. Action?`,
-      ["replace", "skip"],
-    );
+    const choice = await ctx.onPrompt(`settings.json already has ${mergePath}. Action?`, [
+      "replace",
+      "skip",
+    ]);
     if (choice === "skip") {
       return { ...emptyResult(), skipped: true, reason: "user skipped replace" };
     }

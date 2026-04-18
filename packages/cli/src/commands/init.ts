@@ -1,5 +1,5 @@
 import { writeManifest } from "../manifest/io.js";
-import { emptyManifest, type Scope } from "../manifest/types.js";
+import { type Scope, emptyManifest } from "../manifest/types.js";
 import { resolveScope } from "../scope/resolve.js";
 
 export type InitOptions = {
