@@ -777,6 +777,7 @@ None blocking. Tracked deferrals:
 
 - Phase 1 (`@clawmart/schema`): ✅ complete — tag `phase-1-schema-complete`, 70 tests green, coverage 100 % lines / 97.5 % branches, build artefacts produced.
 - Phase 2 (`@clawmart/build-index`): ✅ complete — tag `phase-2-build-index-complete`, coverage thresholds met (~93 % lines / ~85 % branches / 100 % funcs), fixture-based e2e test green, CLI + root `build:index` script wired.
+- Phase 3 (`@clawmart/validator`): ✅ complete — tag `phase-3-validator-complete`, 16 tests green (4 checkers + orchestrator + types), coverage thresholds met, CLI demonstrably blocks a `rm -rf /` fixture snippet.
 
 ---
 
