@@ -1,0 +1,85 @@
+---
+import Base from "../layouts/Base.astro";
+import EntryCard from "../components/EntryCard.astro";
+import { allKinds, getIndex } from "../lib/registry.ts";
+
+const index = getIndex();
+const kinds = allKinds();
+---
+
+<Base title="Browse · clawmart" description="Browse the clawmart registry.">
+  <section class="py-8">
+    <h1 class="text-3xl font-bold">Browse</h1>
+    <p id="count-label" class="mt-2 text-sm text-zinc-500">{index.count} entries</p>
+  </section>
+
+  <section class="mb-8 flex flex-wrap items-center gap-3 text-sm">
+    <span class="text-zinc-500">Kind:</span>
+    {
+      kinds.map((kind) => (
+        <label class="inline-flex cursor-pointer items-center gap-1 rounded-lg border border-zinc-200 px-3 py-1 hover:border-brand dark:border-zinc-800">
+          <input type="checkbox" class="kind-filter accent-brand" value={kind} checked />
+          <span class="font-mono text-xs">{kind}</span>
+        </label>
+      ))
+    }
+    <label
+      class="ml-4 inline-flex cursor-pointer items-center gap-2 rounded-lg border border-zinc-200 px-3 py-1 hover:border-brand dark:border-zinc-800"
+    >
+      <input id="verified-only" type="checkbox" class="accent-brand" />
+      <span class="text-xs">Verified only</span>
+    </label>
+  </section>
+
+  <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      index.entries.map((entry) => (
+        <div
+          data-entry-card
+          data-kind={entry.kind}
+          data-verified={String(entry.verified)}
+        >
+          <EntryCard entry={entry} />
+        </div>
+      ))
+    }
+  </section>
+
+  <p id="empty-state" class="mt-12 hidden text-center text-sm text-zinc-500">
+    No entries match the current filters.
+  </p>
+</Base>
+
+<script>
+  const kindCheckboxes = document.querySelectorAll<HTMLInputElement>(".kind-filter");
+  const verifiedOnly = document.getElementById("verified-only") as HTMLInputElement | null;
+  const cards = document.querySelectorAll<HTMLElement>("[data-entry-card]");
+  const countLabel = document.getElementById("count-label");
+  const emptyState = document.getElementById("empty-state");
+
+  function applyFilters() {
+    const activeKinds = new Set(
+      Array.from(kindCheckboxes)
+        .filter((c) => c.checked)
+        .map((c) => c.value),
+    );
+    const verifiedOnlyValue = verifiedOnly?.checked ?? false;
+    let visible = 0;
+    cards.forEach((card) => {
+      const kind = card.dataset.kind ?? "";
+      const verified = card.dataset.verified === "true";
+      const pass = activeKinds.has(kind) && (!verifiedOnlyValue || verified);
+      card.style.display = pass ? "" : "none";
+      if (pass) visible += 1;
+    });
+    if (countLabel) {
+      countLabel.textContent = `${visible} of ${cards.length} entries`;
+    }
+    if (emptyState) {
+      emptyState.classList.toggle("hidden", visible > 0);
+    }
+  }
+
+  kindCheckboxes.forEach((c) => c.addEventListener("change", applyFilters));
+  verifiedOnly?.addEventListener("change", applyFilters);
+</script>
