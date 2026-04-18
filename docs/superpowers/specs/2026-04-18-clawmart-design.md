@@ -780,6 +780,7 @@ None blocking. Tracked deferrals:
 - Phase 3 (`@clawmart/validator`): ✅ complete — tag `phase-3-validator-complete`, 16 tests green (4 checkers + orchestrator + types), coverage thresholds met, CLI demonstrably blocks a `rm -rf /` fixture snippet.
 - Phase 4 (`@clawmart/cli`): ✅ complete — tag `phase-4-cli-complete`, 55 tests green, all 9 commands wired (init/add/list/info/search/remove/update/doctor/browse), e2e add → list → remove smoke test green. Preset installer deferred to v2 (documented).
 - Phase 5 (`@clawmart/web`): ✅ complete — tag `phase-5-web-complete`, Astro SSG with 7 static routes (landing, browse, docs, 4 detail pages from `getStaticPaths`), dark-mode default, client-side browse filters verified live in preview. Submit / stats / author / tag / category pages deferred to post-MVP.
+- Phase 6 (CI/CD + governance): ✅ complete — tag `phase-6-cicd-complete`, 5 workflows (`validate-pr`, `publish-registry`, `release-cli`, `release-web`, `weekly-health`), CODEOWNERS wired, PR + issue templates, SECURITY.md, branch-protection playbook documented at `docs/BRANCH_PROTECTION.md`.
 
 ---
 

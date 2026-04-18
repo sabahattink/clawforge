@@ -1,0 +1,18 @@
+# Code ownership for clawmart.
+# Format: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default — maintainer review on every PR
+*                               @kalkan
+
+# Security-sensitive paths — maintainer approval required
+/.github/                       @kalkan
+/packages/validator/            @kalkan
+/registry/_verified.json        @kalkan
+/registry/_removed/             @kalkan
+/registry/_removed.json         @kalkan
+
+# Core packages
+/packages/schema/               @kalkan
+/packages/build-index/          @kalkan
+/packages/cli/                  @kalkan
+/apps/web/                      @kalkan

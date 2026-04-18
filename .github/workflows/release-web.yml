@@ -1,0 +1,46 @@
+name: Release Web
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "apps/web/**"
+      - "packages/schema/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm --filter @clawmart/schema build
+      - run: pnpm --filter @clawmart/build-index build
+
+      - name: Hydrate web data from CDN
+        run: |
+          mkdir -p apps/web/data
+          curl -sSfL https://cdn.clawmart.dev/registry.json \
+            -o apps/web/data/registry.json || \
+            echo "::warning::CDN fetch failed; using repo fixture"
+
+      - name: Build site
+        run: pnpm --filter @clawmart/web build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/web/dist --project-name=clawmart

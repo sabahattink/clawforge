@@ -1,0 +1,46 @@
+name: Validate PR
+
+on:
+  pull_request:
+    paths:
+      - "registry/**"
+      - "packages/schema/**"
+      - "packages/validator/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build schema + validator
+        run: |
+          pnpm --filter @clawmart/schema build
+          pnpm --filter @clawmart/build-index build
+          pnpm --filter @clawmart/validator build
+
+      - name: Run validator against registry
+        run: node packages/validator/dist/bin.js --registry registry
+
+      - name: Ensure no changes to _verified.json from non-maintainers
+        if: ${{ !contains(fromJson('["kalkan"]'), github.event.pull_request.user.login) }}
+        run: |
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^registry/_verified.json$"; then
+            echo "::error::Only CODEOWNERS may edit registry/_verified.json"
+            exit 1
+          fi
