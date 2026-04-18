@@ -67,7 +67,9 @@ export async function buildIndex(ctx: BuildContext): Promise<Result<BuildResult>
       continue;
     }
 
-    const ts = await resolveTimestamps(ctx.git, loc.relativePath);
+    // Use absolute path: git log accepts abs paths within the repo and
+    // we cannot assume registryRoot matches git cwd.
+    const ts = await resolveTimestamps(ctx.git, loc.absolutePath);
     if (!ts.ok) {
       errors.push(ts.error);
       continue;

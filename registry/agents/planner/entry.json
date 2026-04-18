@@ -13,9 +13,7 @@
   "updatedAt": "2026-04-19T00:00:00.000Z",
   "sourceCommit": "0000000000000000000000000000000000000000",
   "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-  "files": [
-    { "source": "agent.md", "target": "{{CLAUDE_DIR}}/agents/{{name}}.md" }
-  ],
+  "files": [{ "source": "agent.md", "target": "{{CLAUDE_DIR}}/agents/{{name}}.md" }],
   "tools": ["Read", "Grep", "Glob"],
   "model": "sonnet"
 }

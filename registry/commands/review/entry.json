@@ -13,8 +13,6 @@
   "updatedAt": "2026-04-19T00:00:00.000Z",
   "sourceCommit": "0000000000000000000000000000000000000000",
   "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-  "files": [
-    { "source": "command.md", "target": "{{CLAUDE_DIR}}/commands/{{name}}.md" }
-  ],
+  "files": [{ "source": "command.md", "target": "{{CLAUDE_DIR}}/commands/{{name}}.md" }],
   "invocation": "/review"
 }

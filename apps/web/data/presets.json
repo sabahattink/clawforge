@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-19T12:00:00.000Z",
+  "count": 1,
+  "entries": [
+    {
+      "id": "preset:strict-tdd",
+      "kind": "preset",
+      "name": "strict-tdd",
+      "displayName": "Strict TDD bundle",
+      "description": "TDD workflow + code-reviewer agent + /review + /test + commit-msg-lint.",
+      "tags": ["tdd", "testing", "bundle"],
+      "category": "testing",
+      "verified": true,
+      "version": "1.0.0",
+      "author": "kalkan",
+      "detailUrl": "https://cdn.clawmart.dev/presets/strict-tdd/entry.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "updatedAt": "2026-04-18T21:15:43.000Z"
+    }
+  ]
+}

@@ -13,8 +13,6 @@
   "updatedAt": "2026-04-19T00:00:00.000Z",
   "sourceCommit": "0000000000000000000000000000000000000000",
   "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-  "files": [
-    { "source": "SKILL.md", "target": "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }
-  ],
+  "files": [{ "source": "SKILL.md", "target": "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }],
   "activatesOn": ["bug", "debugging", "unexpected-behavior"]
 }
