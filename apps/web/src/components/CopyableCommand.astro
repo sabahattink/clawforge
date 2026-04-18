@@ -1,0 +1,37 @@
+---
+interface Props {
+  command: string;
+}
+
+const { command } = Astro.props;
+---
+
+<div
+  class="group relative flex items-center justify-between rounded-lg border border-zinc-300 bg-zinc-50 px-4 py-3 font-mono text-sm dark:border-zinc-700 dark:bg-zinc-900"
+>
+  <code>
+    <span class="select-none text-zinc-400">$ </span><span>{command}</span>
+  </code>
+  <button
+    data-command={command}
+    class="copy-btn rounded border border-zinc-300 bg-white px-2 py-1 text-xs text-zinc-600 opacity-0 transition hover:text-brand group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400"
+    aria-label="Copy command"
+  >
+    copy
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const value = btn.dataset.command;
+      if (value === undefined) return;
+      await navigator.clipboard.writeText(value);
+      const original = btn.textContent;
+      btn.textContent = "copied";
+      setTimeout(() => {
+        btn.textContent = original;
+      }, 1200);
+    });
+  });
+</script>

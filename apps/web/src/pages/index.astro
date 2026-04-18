@@ -1,19 +1,74 @@
 ---
-import "../styles/global.css";
+import Base from "../layouts/Base.astro";
+import CopyableCommand from "../components/CopyableCommand.astro";
+import EntryCard from "../components/EntryCard.astro";
+import { countByKind, getFeatured, getIndex } from "../lib/registry.ts";
+
+const index = getIndex();
+const featured = getFeatured(6);
+const counts = countByKind();
+const verifiedCount = index.entries.filter((e) => e.verified).length;
+const authorCount = new Set(index.entries.map((e) => e.author)).size;
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>clawmart</title>
-  </head>
-  <body>
-    <main class="p-8">
-      <h1 class="text-3xl font-bold">clawmart</h1>
-      <p class="mt-2 text-zinc-400">The registry for Claude Code.</p>
-      <p class="mt-8 text-sm text-zinc-500">Site scaffolding in progress…</p>
-    </main>
-  </body>
-</html>
+<Base>
+  <section class="py-12 text-center sm:py-20">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
+      The registry for <span class="text-brand">Claude Code</span>
+    </h1>
+    <p class="mx-auto mt-4 max-w-2xl text-zinc-600 dark:text-zinc-400">
+      Install skills, agents, hooks, and MCP servers with one command.
+    </p>
+    <div class="mx-auto mt-8 max-w-xl">
+      <CopyableCommand command="npx clawmart add skill:tdd-workflow" />
+    </div>
+    <div class="mt-6 flex items-center justify-center gap-3 text-sm">
+      <a
+        href="/browse"
+        class="rounded-lg bg-brand px-4 py-2 font-medium text-white hover:bg-brand-dim"
+        >Browse registry</a
+      >
+      <a
+        href="/docs"
+        class="rounded-lg border border-zinc-300 px-4 py-2 font-medium hover:border-brand hover:text-brand dark:border-zinc-700"
+        >Get started</a
+      >
+    </div>
+    <p class="mt-8 text-sm text-zinc-500">
+      {index.count} entries · {verifiedCount} verified · {authorCount} author{
+        authorCount === 1 ? "" : "s"
+      } · MIT licensed
+    </p>
+  </section>
+
+  <section class="mt-8">
+    <h2 class="mb-4 text-xl font-semibold">⭐ Featured</h2>
+    {
+      featured.length === 0 ? (
+        <p class="text-sm text-zinc-500">No verified entries yet.</p>
+      ) : (
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((entry) => (
+            <EntryCard entry={entry} />
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <section class="mt-12">
+    <h2 class="mb-4 text-xl font-semibold">By kind</h2>
+    <div class="flex flex-wrap gap-2 text-sm">
+      {
+        Object.entries(counts).map(([kind, count]) => (
+          <a
+            href={`/browse?kind=${kind}`}
+            class="rounded-lg border border-zinc-200 px-3 py-1.5 hover:border-brand hover:text-brand dark:border-zinc-800"
+          >
+            <span class="font-mono">{kind}</span> <span class="text-zinc-500">{count}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>
