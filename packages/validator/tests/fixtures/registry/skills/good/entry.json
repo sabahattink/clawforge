@@ -1,0 +1,17 @@
+{
+  "kind": "skill",
+  "name": "good",
+  "displayName": "Good",
+  "description": "A valid entry.",
+  "author": { "name": "K", "github": "kalkan" },
+  "tags": [],
+  "category": "testing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "verified": false,
+  "createdAt": "2026-04-18T00:00:00.000Z",
+  "updatedAt": "2026-04-18T00:00:00.000Z",
+  "sourceCommit": "0000000000000000000000000000000000000000",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [{ "source": "skill.md", "target": "{{CLAUDE_DIR}}/skills/{{name}}/SKILL.md" }]
+}
