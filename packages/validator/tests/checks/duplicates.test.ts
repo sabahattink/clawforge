@@ -23,7 +23,10 @@ describe("checkDuplicates", () => {
   });
 
   it("accepts unique ids", () => {
-    const issues = checkDuplicates([mk("a", "skills/a/entry.json"), mk("b", "skills/b/entry.json")]);
+    const issues = checkDuplicates([
+      mk("a", "skills/a/entry.json"),
+      mk("b", "skills/b/entry.json"),
+    ]);
     expect(issues).toEqual([]);
   });
 });

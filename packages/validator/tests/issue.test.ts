@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { summarize, type ValidationIssue } from "../src/issue.js";
+import { type ValidationIssue, summarize } from "../src/issue.js";
 
 const block: ValidationIssue = { code: "X", severity: "BLOCK", message: "x" };
 const warn: ValidationIssue = { code: "Y", severity: "WARN", message: "y" };

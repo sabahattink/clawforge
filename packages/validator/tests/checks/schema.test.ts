@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkSchema, type LoadedEntry } from "../../src/checks/schema.js";
+import { type LoadedEntry, checkSchema } from "../../src/checks/schema.js";
 
 const valid: LoadedEntry = {
   kind: "skill",

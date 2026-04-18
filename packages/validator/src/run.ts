@@ -1,10 +1,10 @@
-import { enumerateEntries } from "@clawmart/build-index";
 import { readFile } from "node:fs/promises";
+import { enumerateEntries } from "@clawmart/build-index";
 import { checkDuplicates } from "./checks/duplicates.js";
 import { checkFileExistence } from "./checks/file-existence.js";
-import { checkSchema, type LoadedEntry } from "./checks/schema.js";
+import { type LoadedEntry, checkSchema } from "./checks/schema.js";
 import { checkSecurity } from "./checks/security.js";
-import { summarize, type ValidationIssue, type ValidationReport } from "./issue.js";
+import { type ValidationIssue, type ValidationReport, summarize } from "./issue.js";
 
 export type RunOptions = {
   registryRoot: string;
