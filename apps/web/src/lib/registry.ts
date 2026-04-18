@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { IndexEntry, Kind, RegistryIndex } from "@clawmart/schema";
 import { RegistryIndexSchema } from "@clawmart/schema";
 

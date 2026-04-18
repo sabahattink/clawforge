@@ -1,0 +1,102 @@
+---
+import CopyableCommand from "../../components/CopyableCommand.astro";
+import Base from "../../layouts/Base.astro";
+---
+
+<Base title="Docs — clawmart" description="Get started with clawmart.">
+  <article class="py-8">
+    <h1 class="text-4xl font-bold">Getting started</h1>
+    <p class="mt-3 text-zinc-600 dark:text-zinc-400">
+      Install Claude Code assets — skills, agents, hooks, MCP servers — with one command.
+    </p>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">1. Install the CLI</h2>
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        The CLI ships as <code class="rounded bg-zinc-100 px-1 dark:bg-zinc-800">@clawmart/cli</code>.
+        Use <code class="rounded bg-zinc-100 px-1 dark:bg-zinc-800">npx</code> for one-off
+        installs or install globally.
+      </p>
+      <div class="mt-3">
+        <CopyableCommand command="npm install -g @clawmart/cli" />
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">2. Initialise your manifest</h2>
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        A manifest records everything clawmart installs for you. This is what makes installs
+        reversible.
+      </p>
+      <div class="mt-3">
+        <CopyableCommand command="clawmart init" />
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">3. Find entries</h2>
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        Search the registry from the CLI, or browse online.
+      </p>
+      <div class="mt-3">
+        <CopyableCommand command="clawmart search tdd" />
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">4. Install one</h2>
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        Install an entry by id. Use <code class="rounded bg-zinc-100 px-1 dark:bg-zinc-800">--track</code>
+        so the manifest can remove it cleanly later.
+      </p>
+      <div class="mt-3">
+        <CopyableCommand command="clawmart add skill:tdd-workflow --track" />
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">5. Remove when done</h2>
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        Clean removal: files deleted, JSON merges reverted to their <code
+          class="rounded bg-zinc-100 px-1 dark:bg-zinc-800">before</code
+        > snapshot.
+      </p>
+      <div class="mt-3">
+        <CopyableCommand command="clawmart remove skill:tdd-workflow" />
+      </div>
+    </section>
+
+    <section class="mt-10 rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+      <h3 class="text-lg font-semibold">Supported entry kinds</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li>
+          <code class="font-mono">skill:</code> — SKILL.md files under <code class="font-mono"
+            >~/.claude/skills/</code
+          >
+        </li>
+        <li>
+          <code class="font-mono">agent:</code> — subagent definitions under <code
+            class="font-mono">~/.claude/agents/</code
+          >
+        </li>
+        <li>
+          <code class="font-mono">cmd:</code> — slash commands under <code class="font-mono"
+            >./.claude/commands/</code
+          >
+        </li>
+        <li>
+          <code class="font-mono">hook:</code> — PreToolUse / PostToolUse snippets merged into
+          <code class="font-mono">settings.json</code>
+        </li>
+        <li>
+          <code class="font-mono">mcp:</code> — MCP server configs merged into <code
+            class="font-mono">settings.json</code
+          >
+        </li>
+        <li>
+          <code class="font-mono">preset:</code> — bundles of the above
+        </li>
+      </ul>
+    </section>
+  </article>
+</Base>

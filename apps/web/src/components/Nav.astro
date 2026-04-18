@@ -1,7 +1,6 @@
 ---
 const path = Astro.url.pathname;
-const isActive = (href: string): boolean =>
-  href === "/" ? path === "/" : path.startsWith(href);
+const isActive = (href: string): boolean => (href === "/" ? path === "/" : path.startsWith(href));
 ---
 
 <nav class="border-b border-zinc-200 dark:border-zinc-800">
