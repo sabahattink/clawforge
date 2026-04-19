@@ -1,6 +1,6 @@
 {
   "name": "@clawforge/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The clawforge CLI — install Claude Code skills, agents, hooks, and MCP servers.",
   "license": "MIT",
   "type": "module",

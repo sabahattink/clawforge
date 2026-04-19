@@ -58,7 +58,7 @@ async function main(): Promise<void> {
   program
     .name("clawforge")
     .description("The registry for Claude Code.")
-    .version("0.0.1")
+    .version("0.0.2")
     .option("--scope <scope>", "install scope: global or project")
     .option("--registry <url>", "registry CDN base URL", DEFAULT_CDN)
     .option("--track", "record installs in the manifest", false)

@@ -1,6 +1,6 @@
 import { readFile, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { setPath } from "../jsonpath.js";
+import { deletePath, setPath } from "../jsonpath.js";
 import { readManifest, removeById, writeManifest } from "../manifest/io.js";
 import type { Scope } from "../manifest/types.js";
 import { resolveScope } from "../scope/resolve.js";
@@ -50,7 +50,13 @@ export async function removeCommand(opts: RemoveOptions): Promise<RemoveResult> 
       try {
         const raw = await readFile(targetPath, "utf8");
         const current = JSON.parse(raw) as Record<string, unknown>;
-        const restored = setPath(current, merge.path, merge.before);
+        // If the path did not exist before the install (snapshot is null),
+        // delete it instead of writing `null` back. Removing the key keeps
+        // settings.json clean and avoids leaving no-op entries.
+        const restored =
+          merge.before === null
+            ? deletePath(current, merge.path)
+            : setPath(current, merge.path, merge.before);
         await writeFile(targetPath, `${JSON.stringify(restored, null, 2)}\n`, "utf8");
       } catch {
         // file gone or corrupt; skip

@@ -131,3 +131,100 @@ describe("e2e: add → list → remove", () => {
     ).rejects.toThrow(/not found/);
   });
 });
+
+describe("e2e: hook install → remove leaves settings.json clean", () => {
+  const hookEntry: Entry = {
+    kind: "hook",
+    name: "auto-format",
+    displayName: "Auto Format",
+    description: "Run biome after writes.",
+    author: { name: "K", github: "sabahattink" },
+    tags: ["devops"],
+    category: "devops",
+    version: "1.0.0",
+    license: "MIT",
+    verified: false,
+    createdAt: "2026-04-19T00:00:00.000Z",
+    updatedAt: "2026-04-19T00:00:00.000Z",
+    sourceCommit: "a".repeat(40),
+    sha256: "a".repeat(64),
+    snippetFile: "hook.json",
+    mergeTarget: "settings.json",
+    mergePath: "hooks.PostToolUse",
+    strategy: "append",
+  };
+
+  const hookIndexEntry: IndexEntry = {
+    id: "hook:auto-format",
+    kind: "hook",
+    name: "auto-format",
+    displayName: "Auto Format",
+    description: "Run biome after writes.",
+    tags: ["devops"],
+    category: "devops",
+    verified: false,
+    version: "1.0.0",
+    author: "sabahattink",
+    detailUrl: "https://cdn.test/hooks/auto-format/entry.json",
+    sha256: "a".repeat(64),
+    updatedAt: "2026-04-19T00:00:00.000Z",
+  };
+
+  const snippetBytes = Buffer.from(
+    JSON.stringify({ matcher: "Write", command: "biome format --write" }),
+    "utf8",
+  );
+
+  const hookClient: RegistryClient = {
+    async fetchIndex() {
+      return {
+        version: 1,
+        generatedAt: "2026-04-19T00:00:00.000Z",
+        count: 1,
+        entries: [hookIndexEntry],
+      };
+    },
+    async fetchEntry() {
+      return hookEntry;
+    },
+    async fetchFile() {
+      return snippetBytes;
+    },
+  };
+
+  it("installs into fresh settings.json and removes the key entirely", async () => {
+    const onPrompt = vi.fn().mockResolvedValue("overwrite");
+
+    const add = await addCommand({
+      id: "hook:auto-format",
+      client: hookClient,
+      scope: "global",
+      home,
+      track: true,
+      force: false,
+      dryRun: false,
+      onPrompt,
+      downloadDir,
+    });
+    expect(add.jsonMerges).toHaveLength(1);
+
+    const settingsPath = join(home, ".claude", "settings.json");
+    const installed = JSON.parse(readFileSync(settingsPath, "utf8"));
+    expect(Array.isArray(installed.hooks?.PostToolUse)).toBe(true);
+    expect(installed.hooks.PostToolUse).toHaveLength(1);
+
+    const removed = await removeCommand({
+      id: "hook:auto-format",
+      scope: "global",
+      home,
+      dryRun: false,
+    });
+    expect(removed.found).toBe(true);
+    expect(removed.jsonRestored).toBe(1);
+
+    const after = JSON.parse(readFileSync(settingsPath, "utf8"));
+    // hooks.PostToolUse key must be gone, not set to null.
+    expect(after).not.toHaveProperty("hooks.PostToolUse");
+    expect(after.hooks?.PostToolUse).toBeUndefined();
+  });
+});

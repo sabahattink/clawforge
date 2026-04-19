@@ -47,7 +47,16 @@ export class HttpRegistryClient implements RegistryClient {
       const cached = await readCached(url, this.cacheOpts);
       if (cached !== null) return cached;
     }
-    const response = await this.fetchImpl(url);
+    let response: Response;
+    try {
+      response = await this.fetchImpl(url);
+    } catch (cause) {
+      const reason = cause instanceof Error ? cause.message : String(cause);
+      throw new Error(
+        `cannot reach ${url}: ${reason}. If the registry is at a different URL, pass --registry <url>.`,
+        { cause },
+      );
+    }
     if (!response.ok) {
       throw new Error(`fetch failed: ${response.status} ${response.statusText} for ${url}`);
     }
